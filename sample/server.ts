@@ -5,7 +5,7 @@
  */
 
 //import * as Minirachne from '../mod.ts';
-import * as Minirachne from 'https://github.com/Azulamb/minirachne/raw/master/mod.ts';
+import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
 const server = new Minirachne.Server();
 
