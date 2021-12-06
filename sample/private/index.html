@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Minirachne sample</title>
+<script>
+window.addEventListener('DOMContentLoaded', () =>
+{
+	document.getElementById( 'button' ).addEventListener( 'click', () =>
+	{
+		location.href = '/logout';
+	} );
+
+	fetch('/status').then( ( result ) =>
+	{
+		return result.json();
+	} ).then( ( result ) =>
+	{
+		document.getElementById( 'status' ).textContent = JSON.stringify( result );
+	} );
+
+	const headers = new Headers();
+	headers.set('range', 'bytes=3-7');
+	fetch( '/range.txt', { headers: headers } ).then( ( result ) =>
+	{
+		return result.text();
+	} ).then( ( result ) =>
+	{
+		console.log( result );
+		document.getElementById( 'range' ).textContent = result;
+	} );
+
+	fetch( '/user' ).then( ( result ) =>
+	{
+		return result.json();
+	} ).then( ( result ) =>
+	{
+		console.log( result );
+		document.getElementById( 'uid' ).textContent = result.uid;
+	} );
+} );
+</script>
+</head>
+<body>
+	<h1>Private</h1>
+	<button id="button">Logout</button>
+	<div>Status: <span id="status"></span></div>
+	<div>Range test: <span id="range"></span></div>
+	<div>Uid: <span id="uid">-</span></div>
+</body>
+</html>
