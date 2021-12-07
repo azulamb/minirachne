@@ -12,7 +12,7 @@ const server = new Minirachne.Server();
 class StatusApi implements Minirachne.Route {
 	public order!: number;
 	public pattern!: URLPattern;
-	public middlewares?: Minirachne.Middlewares | undefined;
+	public middlewares?: Minirachne.Middlewares;
 
 	constructor(order: number, pattern: URLPattern) {
 		this.order = order;
@@ -37,7 +37,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	// Route
 	public order!: number;
 	public pattern!: URLPattern;
-	public middlewares?: Minirachne.Middlewares | undefined;
+	public middlewares: Minirachne.Middlewares;
 
 	constructor(order: number) {
 		this.order = order;
