@@ -42,7 +42,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	constructor(order: number) {
 		this.order = order;
 		this.pattern = server.router.path('/(login|logout|user)');
-		this.middlewares = new Minirachne.Middlewares().add(this);
+		this.middlewares = Minirachne.Middlewares.create(this);
 	}
 
 	public async onRequest(data: Minirachne.RequestData) {
@@ -78,7 +78,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	}
 
 	// Middleware
-	public async onRequestBefore(data: Minirachne.RequestData) {
+	public async handle(data: Minirachne.RequestData) {
 		const path = this.getPath(data.request);
 		const user = this.getUser(data.request);
 		if (path !== 'login' && !user) {

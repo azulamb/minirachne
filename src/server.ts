@@ -1,7 +1,7 @@
 import { RequestData } from '../types.d.ts';
 import { serve, serveTls } from './denostd.ts';
-import { Router } from './route.ts';
-import * as response from './response.ts';
+import { Router } from './router.ts';
+import * as httpres from './httpres.ts';
 
 export class Server {
 	private url: URL = new URL('localhost:8080');
@@ -52,7 +52,7 @@ export class Server {
 
 	protected async onRequest(data: RequestData) {
 		const url = data.request.url;
-		const result = await this.router.exec(url, async (route) => {
+		const response = await this.router.exec(url, async (route) => {
 			if (!route.middlewares) {
 				return route.onRequest(data);
 			}
@@ -62,10 +62,10 @@ export class Server {
 			});
 		});
 
-		if (result) {
-			return result;
+		if (response) {
+			return response;
 		}
 
-		return response.notFound();
+		return httpres.notFound();
 	}
 }

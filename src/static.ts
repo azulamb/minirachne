@@ -1,7 +1,7 @@
 import { join } from './denostd.ts';
 import { RequestData, Route } from '../types.d.ts';
 import { MIMETYPES, MIMETypes } from './mime.ts';
-import * as response from './response.ts';
+import * as httpres from './httpres.ts';
 
 interface NotfoundCallback {
 	(data: RequestData): Promise<Response>;
@@ -40,7 +40,7 @@ export class StaticRoute implements Route {
 	public enableNotfound() {
 		// This route is last route.
 		this.setNotfound(() => {
-			return response.notFound();
+			return httpres.notFound();
 		});
 		return this;
 	}
@@ -138,7 +138,7 @@ export class StaticRoute implements Route {
 		if (range.exists && (range.end < range.start || max < range.start || max < range.end)) {
 			return this.createHeader(filePath, stat, range.exists ? range : null).then((headers) => {
 				responseInit.headers = headers;
-				return response.requestedRangeNotSatisfiable(responseInit);
+				return httpres.requestedRangeNotSatisfiable(responseInit);
 			});
 		}
 
@@ -190,7 +190,7 @@ export class StaticRoute implements Route {
 			case 'HEAD':
 				break;
 			default:
-				return response.methodNotAllowed();
+				return httpres.methodNotAllowed();
 		}
 
 		return Deno.stat(path).then((stat) => {
