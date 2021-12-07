@@ -1,6 +1,6 @@
 # Minirachne
 
-Minirachne is a API server made with Deno.
+Minirachne is a Web API server made with Deno.
 
 ## Need
 
