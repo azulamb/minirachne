@@ -1,3 +1,5 @@
+![Minirachne](docs/widelogo.png "Minirachne")
+
 # Minirachne
 
 Minirachne is a Web API server made with Deno.
