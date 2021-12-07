@@ -1,3 +1,4 @@
 #!/bin/sh
 
-deno cache ./mod.ts
+deno cache -r ./mod.ts
+deno cache -r ./sample/server.ts
