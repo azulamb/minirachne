@@ -47,7 +47,7 @@ export type Middleware = {
 	 *
 	 * @param data Request data etc ...
 	 */
-	onRequestBefore(data: RequestData): Promise<unknown>;
+	handle(data: RequestData): Promise<unknown>;
 };
 
 export type Middlewares = {
