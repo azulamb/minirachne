@@ -20,7 +20,7 @@ export class StaticRoute implements Route {
 		this.order = order;
 		this.pattern = typeof pattern === 'string' ? new URLPattern(pattern) : pattern;
 		this.docs = join(docs, '/');
-		this.disableNotfound();
+		this.setNotfound(false);
 		this.mime = new MIMETypes();
 	}
 
@@ -29,23 +29,26 @@ export class StaticRoute implements Route {
 		return this;
 	}
 
-	public disableNotfound() {
-		// Notfound => Next route.
-		this.setNotfound(() => {
-			return Promise.reject('Notfound');
-		});
-		return this;
-	}
+	/**
+	 * @param enableDefaultNotfound true = Default response. false = return Promise.reject.
+	 */
+	public setNotfound(enableDefaultNotfound: boolean): this;
+	/**
+	 * @param response Callback.
+	 */
+	public setNotfound(response: NotfoundCallback): this;
+	public setNotfound(response: NotfoundCallback | boolean): this {
+		if (typeof response === 'boolean') {
+			this.notfound = response
+				? () => {
+					return httpres.notFound();
+				}
+				: () => {
+					return Promise.reject('Notfound');
+				};
+			return this;
+		}
 
-	public enableNotfound() {
-		// This route is last route.
-		this.setNotfound(() => {
-			return httpres.notFound();
-		});
-		return this;
-	}
-
-	public setNotfound(response: NotfoundCallback) {
 		this.notfound = response;
 
 		return this;

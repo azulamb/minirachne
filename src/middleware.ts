@@ -1,8 +1,7 @@
 import { Middleware, Middlewares as m, RequestData } from '../types.d.ts';
 
 export class Middlewares implements m {
-	public static create(...middlewares: Middleware[]): Middlewares
-	{
+	public static create(...middlewares: Middleware[]): Middlewares {
 		return new Middlewares().add(...middlewares);
 	}
 

@@ -42,8 +42,9 @@ export class Server {
 				});
 			},
 			{
+				port: parseInt(this.url.port),
 				signal: this.controller.signal,
-				addr: this.url.host,
+				hostname: this.url.hostname,
 				keyFile: this.files.keyFile,
 				certFile: this.files.certFile,
 			},
