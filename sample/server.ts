@@ -23,6 +23,7 @@ class StatusApi implements Minirachne.Route {
 		const body = JSON.stringify({
 			framework: Minirachne.NAME,
 			version: Minirachne.VERSION,
+			std: Minirachne.STD_VERSION,
 		});
 		const headers = new Headers();
 		headers.set('Content-Type', 'application/json');

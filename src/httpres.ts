@@ -8,17 +8,20 @@ function createResponseInit(status: number, responseInit?: ResponseInit): Respon
 	return responseInit;
 }
 
+/** 404 NotFound */
 export function notFound(responseInit?: ResponseInit) {
 	responseInit = createResponseInit(Status.NotFound, responseInit);
 	return Promise.resolve(new Response(responseInit.statusText, responseInit));
 }
 
-export function requestedRangeNotSatisfiable(responseInit?: ResponseInit) {
-	responseInit = createResponseInit(Status.RequestedRangeNotSatisfiable, responseInit);
+/** 405 MethodNotAllowed */
+export function methodNotAllowed(responseInit?: ResponseInit) {
+	responseInit = createResponseInit(Status.MethodNotAllowed, responseInit);
 	return Promise.resolve(new Response(responseInit.statusText, responseInit));
 }
 
-export function methodNotAllowed(responseInit?: ResponseInit) {
-	responseInit = createResponseInit(Status.MethodNotAllowed, responseInit);
+/** 416 RequestedRangeNotSatisfiable */
+export function requestedRangeNotSatisfiable(responseInit?: ResponseInit) {
+	responseInit = createResponseInit(Status.RequestedRangeNotSatisfiable, responseInit);
 	return Promise.resolve(new Response(responseInit.statusText, responseInit));
 }
