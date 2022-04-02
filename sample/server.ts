@@ -54,16 +54,12 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 			case 'login': {
 				console.log('Login user:');
 				const uid = Math.random().toString(36).slice(-8);
-				Minirachne.setCookie(headers, { name: 'login', value: uid });
+				Minirachne.Cookie.set(headers, { name: 'login', value: uid });
 				break;
 			}
 			case 'logout': {
 				console.log('Logout user:');
-				Minirachne.setCookie(headers, {
-					name: 'login',
-					value: '',
-					expires: new Date(),
-				});
+				Minirachne.Cookie.delete(headers, 'login');
 				break;
 			}
 			case 'user': {
@@ -97,7 +93,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	}
 
 	protected getUser(request: Request) {
-		const cookie = Minirachne.getCookies(request.headers);
+		const cookie = Minirachne.Cookie.get(request.headers);
 
 		return cookie.login ? { uid: cookie.login } : null;
 	}
