@@ -145,12 +145,12 @@ class EchoChat extends Minirachne.WebSocketEvent implements Minirachne.Route {
 	// API sample.
 	server.router.add(new StatusApi(30, server.router.path('/status')));
 
-	// EchoChat.
-	server.router.add(new EchoChat(40, server.router.path('/echochat')));
-
 	// Create login middleware & route.
 	const simpleLogin = new SimpleLogin(0);
 	server.router.add(simpleLogin);
+
+	// EchoChat.
+	server.router.add(new EchoChat(40, server.router.path('/echochat')), simpleLogin.middlewares);
 
 	// Private document root.
 	const privateDocs = Minirachne.createAbsolutePath(import.meta, './private');

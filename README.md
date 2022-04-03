@@ -12,3 +12,10 @@ Minirachne is a Web API server made with Deno.
 ## Sample
 
 See `sample/server.ts` .
+
+## Command
+
+* `deno fmt`
+  * Format.
+* `./cache.sh`
+  * Cache clear.
