@@ -27,13 +27,44 @@ window.addEventListener('DOMContentLoaded', () =>
 		console.log( result );
 		document.getElementById( 'range' ).textContent = result;
 	} );
+
+	( () =>
+	{
+		const submit = document.getElementById( 'submit' );
+		const message = document.getElementById( 'message' );
+
+		submit.addEventListener( 'click', () =>
+		{
+			if ( message.disabled )
+			{
+				// Connect (Failure.)
+				const ws = new WebSocket( `${ location.href.replace( /^http/, 'ws' ) }echochat` );
+
+				ws.onerror = ( event ) =>
+				{
+					close();
+					message.value = 'ERROR !!!! Need login.';
+				};
+			}
+		} );
+	} )();
 } );
 </script>
+<style>
+#submit::before { content: 'Send'; }
+#message:disabled + #submit::before { content: 'Connect'; }
+</style>
 </head>
 <body>
 	<h1>Public</h1>
 	<button id="button">Login</button>
 	<div>Status: <span id="status"></span></div>
 	<div>Range test: <span id="range"></span></div>
+	<div>
+		<div>
+			<input id="message" disabled>
+			<button id="submit"></button>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 export class WebSocketEvent {
-	public onOpen(ws: WebSocket, ev: Event) {}
-	public onMessage(ws: WebSocket, ev: MessageEvent) {}
+	public onOpen(ws: WebSocket, event: Event) {}
+	public onMessage(ws: WebSocket, event: MessageEvent) {}
 	public onClose(ws: WebSocket, event: CloseEvent) {}
 	public onError(ws: WebSocket, event: Event | ErrorEvent) {}
 }
 
-export function SetupWebSocket(request: Request, webSocketEvent: WebSocketEvent) {
-	const { socket, response } = Deno.upgradeWebSocket(request);
+export function SetupWebSocket(request: Request, webSocketEvent: WebSocketEvent, options?: Deno.UpgradeWebSocketOptions) {
+	const { socket, response } = Deno.upgradeWebSocket(request, options);
 
 	socket.onopen = (event) => {
 		webSocketEvent.onOpen(socket, event);

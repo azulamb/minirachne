@@ -71,7 +71,7 @@ export class Server {
 		return httpres.notFound();
 	}
 
-	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketEvent) {
-		return SetupWebSocket(data.request, webSocketEvent);
+	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketEvent, options?: Deno.UpgradeWebSocketOptions) {
+		return SetupWebSocket(data.request, webSocketEvent, options);
 	}
 }
