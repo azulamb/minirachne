@@ -2,6 +2,7 @@ import { RequestData } from '../types.d.ts';
 import { serve, serveTls } from './denostd.ts';
 import { Router } from './router.ts';
 import * as httpres from './httpres.ts';
+import { SetupWebSocket, WebSocketEvent } from './ws.ts';
 
 export class Server {
 	private url: URL = new URL('localhost:8080');
@@ -68,5 +69,9 @@ export class Server {
 		}
 
 		return httpres.notFound();
+	}
+
+	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketEvent) {
+		return SetupWebSocket(data.request, webSocketEvent);
 	}
 }

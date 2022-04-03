@@ -99,6 +99,40 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	}
 }
 
+class EchoChat extends Minirachne.WebSocketEvent implements Minirachne.Route {
+	public order!: number;
+	public pattern!: URLPattern;
+
+	constructor(order: number, pattern: URLPattern) {
+		super();
+		this.order = order;
+		this.pattern = pattern;
+	}
+
+	public async onRequest(data: Minirachne.RequestData) {
+		return server.upgradeWebSocket(data, this);
+	}
+
+	// WebSocketEvent
+
+	public onOpen(ws: WebSocket, event: Event) {
+		console.log(`Start EchoChat:`);
+	}
+
+	public onMessage(ws: WebSocket, event: MessageEvent) {
+		console.log(`Message EchoChat: ${event.data}`);
+		ws.send(event.data);
+	}
+
+	public onClose(ws: WebSocket, event: CloseEvent) {
+		console.log(`Close EchoChat:`);
+	}
+
+	public onError(ws: WebSocket, event: Event | ErrorEvent) {
+		console.log(`Error EchoChat:`);
+	}
+}
+
 (() => {
 	server.setURL(new URL(Deno.env.get('MINIRACHNE_URL') || 'http://localhost:8080/'));
 
@@ -110,6 +144,9 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 
 	// API sample.
 	server.router.add(new StatusApi(30, server.router.path('/status')));
+
+	// EchoChat.
+	server.router.add(new EchoChat(40, server.router.path('/echochat')));
 
 	// Create login middleware & route.
 	const simpleLogin = new SimpleLogin(0);
@@ -126,6 +163,8 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	 *     Use middleware(Simple login).
 	 * - (30) Status API
 	 *     Do not use middleware.
+	 * - (40) EchoChat
+	 *     Use middleware(Simple login).
 	 * - (50) Private static file server.
 	 *     Use middleware(Simple login).
 	 * - (100) Public static file server.
