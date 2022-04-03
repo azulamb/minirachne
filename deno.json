@@ -1,5 +1,8 @@
 {
 	"fmt": {
+		"files": {
+			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "sample/"]
+		},
 		"options": {
 			"useTabs": true,
 			"indentWidth": 4,
