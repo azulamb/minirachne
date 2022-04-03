@@ -36,8 +36,67 @@ window.addEventListener('DOMContentLoaded', () =>
 		console.log( result );
 		document.getElementById( 'uid' ).textContent = result.uid;
 	} );
+
+	( () =>
+	{
+		const submit = document.getElementById( 'submit' );
+		const message = document.getElementById( 'message' );
+		const log = document.getElementById( 'log' );
+
+		let send = () => {};
+		submit.addEventListener( 'click', () =>
+		{
+			if ( message.disabled )
+			{
+				// Connect
+				const ws = new WebSocket( `${ location.href.replace( /^http/, 'ws' ) }echochat` );
+
+				const close = () =>
+				{
+					message.disabled = true;
+					send = () => {};
+					message.value = '';
+				};
+				ws.onopen = () =>
+				{
+					log.innerHTML = '';
+					message.disabled = false;
+					send = ( message ) => { ws.send( message ); };
+				};
+				ws.onmessage = ( event ) =>
+				{
+					console.log(event);
+					const message = document.createElement( 'div' );
+					message.textContent = event.data;
+					log.appendChild( message );
+					if ( event.data === 'exit' )
+					{
+						ws.close();
+					}
+				};
+				ws.onclose = () =>
+				{
+					close();
+				};
+				ws.onerror = ( event ) =>
+				{
+					close();
+					message.value = event.message;
+				};
+			} else
+			{
+				// Send
+				send( message.value );
+				message.value = '';
+			}
+		} );
+	} )();
 } );
 </script>
+<style>
+#submit::before { content: 'Send'; }
+#message:disabled + #submit::before { content: 'Connect'; }
+</style>
 </head>
 <body>
 	<h1>Private</h1>
@@ -45,5 +104,12 @@ window.addEventListener('DOMContentLoaded', () =>
 	<div>Status: <span id="status"></span></div>
 	<div>Range test: <span id="range"></span></div>
 	<div>Uid: <span id="uid">-</span></div>
+	<div>
+		<div>
+			<input id="message" disabled>
+			<button id="submit"></button>
+		</div>
+		<div id="log"></div>
+	</div>
 </body>
 </html>

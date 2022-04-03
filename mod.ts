@@ -15,3 +15,6 @@ export function createAbsolutePath(meta: ImportMeta, path = '') {
 
 // Default routes
 export { StaticRoute } from './src/static.ts';
+
+// WebSocket event.
+export { WebSocketEvent } from './src/ws.ts';
