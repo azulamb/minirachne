@@ -15,6 +15,8 @@ See `sample/server.ts` .
 
 ## Command
 
+* `deno lint`
+  * Lint.
 * `deno fmt`
   * Format.
 * `./cache.sh`

@@ -3,22 +3,22 @@ import { ConnInfo } from './src/denostd.ts';
 export type RequestData = {
 	readonly request: Request;
 	readonly connection?: ConnInfo;
+	// deno-lint-ignore no-explicit-any
 	[keys: string]: any;
 };
 
-export type Route = {
+export interface RouteLike {
 	/*
 	 * Route order.
 	 *
-	 * @remarks
 	 * The smaller this value, the higher the priority.
 	 */
-	order: number;
+	order?: number;
 
 	/**
 	 * Match URL pattern.
 	 */
-	pattern: URLPattern;
+	pattern?: URLPattern;
 
 	/**
 	 * Exec before onRequext.
@@ -28,19 +28,33 @@ export type Route = {
 	/**
 	 * Return server Response.
 	 *
-	 * @remarks
 	 * Exec next route when return Promise.reject or throw Error.
+	 * This object is Route when called this method.
+	 * You can use order and pattern.
 	 *
 	 * @param data Request data etc ...
 	 */
-	onRequest(data: RequestData): Promise<Response>;
-};
+	onRequest(this: Route, data: RequestData): Promise<Response>;
+}
+
+export interface Route extends RouteLike {
+	/*
+	 * Route order.
+	 *
+	 * The smaller this value, the higher the priority.
+	 */
+	order: number;
+
+	/**
+	 * Match URL pattern.
+	 */
+	pattern: URLPattern;
+}
 
 export type Middleware = {
 	/**
 	 * Exec before onRequext.
 	 *
-	 * @remarks
 	 * `data` is used in later middleware and onRequest.
 	 * You can add any data to `data`.
 	 * Cannot exec onRequest when return Promise.reject or throw Error.

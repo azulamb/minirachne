@@ -7,32 +7,6 @@
 //import * as Minirachne from '../mod.ts';
 import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
-const server = new Minirachne.Server();
-
-class StatusApi implements Minirachne.Route {
-	public order!: number;
-	public pattern!: URLPattern;
-	public middlewares?: Minirachne.Middlewares;
-
-	constructor(order: number, pattern: URLPattern) {
-		this.order = order;
-		this.pattern = pattern;
-	}
-
-	onRequest(data: Minirachne.RequestData): Promise<Response> {
-		const body = JSON.stringify({
-			framework: Minirachne.NAME,
-			version: Minirachne.VERSION,
-			std: Minirachne.STD_VERSION,
-		});
-		const headers = new Headers();
-		headers.set('Content-Type', 'application/json');
-		headers.set('Content-Length', encodeURI(body).replace(/%../g, '*').length + '');
-		const response = new Response(body, { headers: headers });
-		return Promise.resolve(response);
-	}
-}
-
 // Middleware & Route
 class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	// Route
@@ -40,8 +14,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	public pattern!: URLPattern;
 	public middlewares: Minirachne.Middlewares;
 
-	constructor(order: number) {
-		this.order = order;
+	constructor(server: Minirachne.Server) {
 		this.pattern = server.router.path('/(login|logout|user)');
 		this.middlewares = Minirachne.Middlewares.create(this);
 	}
@@ -99,21 +72,38 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	}
 }
 
-class EchoChat extends Minirachne.WebSocketEvent implements Minirachne.Route {
-	public order!: number;
-	public pattern!: URLPattern;
+class StatusApi implements Minirachne.RouteLike {
+	// RouteLike
 
-	constructor(order: number, pattern: URLPattern) {
-		super();
-		this.order = order;
-		this.pattern = pattern;
+	onRequest(data: Minirachne.RequestData): Promise<Response> {
+		const body = JSON.stringify({
+			framework: Minirachne.NAME,
+			version: Minirachne.VERSION,
+			std: Minirachne.STD_VERSION,
+		});
+		const headers = new Headers();
+		headers.set('Content-Type', 'application/json');
+		headers.set('Content-Length', encodeURI(body).replace(/%../g, '*').length + '');
+		const response = new Response(body, { headers: headers });
+		return Promise.resolve(response);
 	}
+}
+
+class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteLike {
+	private server!: Minirachne.Server;
+
+	constructor(server: Minirachne.Server) {
+		super();
+		this.server = server;
+	}
+
+	// RouteLike
 
 	public async onRequest(data: Minirachne.RequestData) {
-		return server.upgradeWebSocket(data, this);
+		return this.server.upgradeWebSocket(data, this);
 	}
 
-	// WebSocketEvent
+	// WebSocketListener
 
 	public onOpen(ws: WebSocket, event: Event) {
 		console.log(`Start EchoChat:`);
@@ -134,42 +124,48 @@ class EchoChat extends Minirachne.WebSocketEvent implements Minirachne.Route {
 }
 
 (() => {
+	const server = new Minirachne.Server();
+
 	server.setURL(new URL(Deno.env.get('MINIRACHNE_URL') || 'http://localhost:8080/'));
 
-	// Public document root.
-	const publicDocs = Minirachne.createAbsolutePath(import.meta, './public');
-	//server.route.add(new Minirachne.StaticRoute(100, new URLPattern('http://localhost:8080/*'), publicDocs));
-	//server.route.add(new Minirachne.StaticRoute(100, 'http://localhost:8080/*', publicDocs));
-	server.router.add(new Minirachne.StaticRoute(100, server.router.path('/*'), publicDocs));
-
-	// API sample.
-	server.router.add(new StatusApi(30, server.router.path('/status')));
-
-	// Create login middleware & route.
-	const simpleLogin = new SimpleLogin(0);
+	// Create login Route & Middleware.
+	const simpleLogin = new SimpleLogin(server);
+	// Add Route.
 	server.router.add(simpleLogin);
 
-	// EchoChat.
-	server.router.add(new EchoChat(40, server.router.path('/echochat')), simpleLogin.middlewares);
+	// API sample.
+	// Add path and RouteLike.
+	server.router.add('/status', new StatusApi());
+
+	// EchoChat. (WebSocket)
+	// Add path and RouteLike with Middleware.
+	server.router.add('/echochat', new EchoChat(server), simpleLogin.middlewares);
 
 	// Private document root.
 	const privateDocs = Minirachne.createAbsolutePath(import.meta, './private');
-	server.router.add(new Minirachne.StaticRoute(50, server.router.path('/*'), privateDocs), simpleLogin.middlewares);
+	server.router.add('/*', new Minirachne.StaticRoute(privateDocs), simpleLogin.middlewares);
+
+	// Public document root.
+	const publicDocs = Minirachne.createAbsolutePath(import.meta, './public');
+	server.router.add('/*', new Minirachne.StaticRoute(publicDocs));
+	// or
+	//server.router.add(new URLPattern('http://localhost:8080/*'), new Minirachne.StaticRoute(publicDocs));
 
 	/**
 	 * Proirity
-	 * - (0) Simple login.
+	 * - Simple login.
 	 *     Login/Logout/Get user status api.
 	 *     Use middleware(Simple login).
-	 * - (30) Status API
+	 * - Status API
 	 *     Do not use middleware.
-	 * - (40) EchoChat
+	 * - EchoChat
 	 *     Use middleware(Simple login).
-	 * - (50) Private static file server.
+	 * - Private static file server.
 	 *     Use middleware(Simple login).
-	 * - (100) Public static file server.
+	 * - Public static file server.
 	 *     Do not use middleware.
 	 */
+	console.log(`Start: ${server.getURL()}`);
 	return server.run();
 })().then(() => {
 	console.log('Exit.');
