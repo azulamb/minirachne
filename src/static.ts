@@ -9,16 +9,19 @@ interface NotfoundCallback {
 
 export class StaticRoute implements Route {
 	public DEFAULT_CHUNK_SIZE = 16640;
-	public order: number;
+	public order!: number;
 	public pattern!: URLPattern;
 	protected docs!: string;
 	protected notfound!: NotfoundCallback;
 	protected directoryIndex: string[] = ['index.html'];
 	protected mime!: MIMETypes;
 
-	constructor(order: number, pattern: string | URLPattern, docs: string) {
-		this.order = order;
-		this.pattern = typeof pattern === 'string' ? new URLPattern(pattern) : pattern;
+	constructor(docs: string, option?: { order: number; pattern: string | URLPattern }) {
+		if (option) {
+			if (option.order) this.order = option.order;
+			if (option.pattern) this.pattern = typeof option.pattern === 'string' ? new URLPattern(option.pattern) : option.pattern;
+		}
+
 		this.docs = join(docs, '/');
 		this.setNotfound(false);
 		this.mime = new MIMETypes();
@@ -74,6 +77,7 @@ export class StaticRoute implements Route {
 				);
 
 				return response;
+				// deno-lint-ignore no-unused-vars no-empty
 			} catch (error) {
 			}
 		}
@@ -198,7 +202,7 @@ export class StaticRoute implements Route {
 
 		return Deno.stat(path).then((stat) => {
 			return stat.isDirectory ? this.responseDirectory(data, path) : this.responseFile(data.request.method === 'HEAD', path, data.request.headers, stat);
-		}).catch((error) => {
+		}).catch(() => {
 			return this.responseNotfound(data);
 		});
 	}

@@ -2,7 +2,7 @@ import { RequestData } from '../types.d.ts';
 import { serve, serveTls } from './denostd.ts';
 import { Router } from './router.ts';
 import * as httpres from './httpres.ts';
-import { SetupWebSocket, WebSocketEvent } from './ws.ts';
+import { SetupWebSocket, WebSocketListener } from './ws.ts';
 
 export class Server {
 	private url: URL = new URL('localhost:8080');
@@ -16,6 +16,10 @@ export class Server {
 	constructor() {
 		this.controller = new AbortController();
 		this.router = new Router(this.url.origin);
+	}
+
+	public getURL() {
+		return new URL(this.url.toString());
 	}
 
 	public setURL(url: URL) {
@@ -71,7 +75,7 @@ export class Server {
 		return httpres.notFound();
 	}
 
-	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketEvent, options?: Deno.UpgradeWebSocketOptions) {
+	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketListener, options?: Deno.UpgradeWebSocketOptions) {
 		return SetupWebSocket(data.request, webSocketEvent, options);
 	}
 }

@@ -1,4 +1,14 @@
 {
+	"lint": {
+		"files": {
+			"include": ["src/", "types.d.ts", "mod.ts", "version.ts"]
+		},
+		"rules": {
+		  "tags": ["recommended"],
+		  "include": [],
+		  "exclude": ["require-await"]
+		}
+	},
 	"fmt": {
 		"files": {
 			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "sample/"]
