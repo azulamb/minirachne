@@ -33,6 +33,7 @@ const list: { name: string; command: string[]; after: (result: string) => Promis
 		command: ['deno', 'info', 'sample/server.ts'],
 		after: (result) => {
 			return Promise.resolve(
+				// deno-lint-ignore no-control-regex
 				result.replace(/\x1b\[[0-9\;]+m/g, '')
 					.replace(/(\r\n|\r)/g, '\n')
 					.split(/\n\n/)[1].split(/\n/).map((line) => {
