@@ -15,7 +15,7 @@ export class Server {
 
 	constructor() {
 		this.controller = new AbortController();
-		this.router = new Router(this.url.origin);
+		this.router = new Router(this.url);
 	}
 
 	public getURL() {
@@ -23,8 +23,9 @@ export class Server {
 	}
 
 	public setURL(url: URL) {
-		this.url = url;
-		this.router.set(url.origin);
+		this.url = new URL(url.toString());
+		this.router.set(this.url);
+
 		return this;
 	}
 

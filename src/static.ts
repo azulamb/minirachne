@@ -23,7 +23,7 @@ export class StaticRoute implements Route {
 		}
 
 		this.docs = join(docs, '/');
-		this.setNotfound(false);
+		this.setNotfound(true);
 		this.mime = new MIMETypes();
 	}
 
@@ -39,20 +39,21 @@ export class StaticRoute implements Route {
 	/**
 	 * @param response Callback.
 	 */
-	public setNotfound(response: NotfoundCallback): this;
-	public setNotfound(response: NotfoundCallback | boolean): this {
-		if (typeof response === 'boolean') {
-			this.notfound = response
+	public setNotfound(callback: NotfoundCallback): this;
+	public setNotfound(callback: NotfoundCallback | boolean): this {
+		if (typeof callback === 'boolean') {
+			this.notfound = callback
 				? () => {
 					return httpres.notFound();
 				}
 				: () => {
-					return Promise.reject('Notfound');
+					return Promise.reject(new Error('Notfound'));
+					//return Promise.reject('Notfound');
 				};
 			return this;
 		}
 
-		this.notfound = response;
+		this.notfound = callback;
 
 		return this;
 	}
@@ -168,10 +169,12 @@ export class StaticRoute implements Route {
 	protected async createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
 		const headers = new Headers();
 
-		const mime = this.mime.get(filePath);
+		const mime = this.mime.getFromPath(filePath);
 		if (mime) {
 			headers.set('Content-Type', mime);
 		}
+
+		headers.set('Accept-Ranges', 'bytes');
 
 		if (range) {
 			headers.set('Content-Range', `bytes ${range.start}-${range.end}/${stat.size}`);
@@ -203,6 +206,7 @@ export class StaticRoute implements Route {
 		return Deno.stat(path).then((stat) => {
 			return stat.isDirectory ? this.responseDirectory(data, path) : this.responseFile(data.request.method === 'HEAD', path, data.request.headers, stat);
 		}).catch(() => {
+			// TODO: set error and debug flag.
 			return this.responseNotfound(data);
 		});
 	}

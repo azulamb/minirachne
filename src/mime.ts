@@ -95,8 +95,22 @@ export class MIMETypes {
 		return this;
 	}
 
-	public get(path: string) {
+	/**
+	 * Get MIMEType from filepath.
+	 * @param path File path. ex: dir/image.png
+	 * @returns MIMEType or empty string.
+	 */
+	public getFromPath(path: string) {
 		const ext = extname(path);
-		return this.mime[ext.substr(1)] || '';
+		return this.get(ext.substr(1));
+	}
+
+	/**
+	 * Get MIMEType from filename extension.
+	 * @param extension Filename extension. ex: png
+	 * @returns MIMEType or empty string.
+	 */
+	public get(ext: string) {
+		return this.mime[ext] || '';
 	}
 }
