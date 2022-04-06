@@ -22,6 +22,8 @@ Exec `deno task sample`
   * Lint.
 * `deno fmt`
   * Format.
+* `deno task tests`
+  * Test `tests/*.test.ts` .
 * `deno task clear`
   * Cache clear.
 * `deno task check`

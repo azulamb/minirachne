@@ -1,39 +1,39 @@
 import { Middlewares, Route, RouteLike } from '../types.d.ts';
 
-function RouteLikeChecker(route: RouteLike): boolean {
+function RouteLikeChecker(route: RouteLike, arg = 'arg1') {
 	if (typeof route !== 'object') {
-		return false;
+		throw new Error(`${arg} is not RouteLike object.`);
 	}
 	if (typeof route.onRequest !== 'function') {
-		return false;
+		throw new Error(`${arg} han no RouteLike.onRequest().`);
 	}
-	return true;
+	return <Route> route;
 }
 
-function RouteChecker(route: Route): boolean {
-	if (!RouteLikeChecker(route)) {
-		return false;
-	}
+function RouteChecker(route: Route) {
+	RouteLikeChecker(route, 'arg0');
+
 	if (!(route.pattern instanceof URLPattern)) {
-		return false;
+		throw new Error('arg0 has no Route.pattern.');
 	}
-	return true;
+
+	return route;
 }
 
 export class Router {
 	private baseurl!: string;
 	private routes: Route[] = [];
 
-	constructor(baseurl: string) {
+	constructor(baseurl: string | URL) {
 		this.set(baseurl);
 	}
 
 	public path(path: string) {
-		return new URLPattern(this.baseurl + path);
+		return new URLPattern(path, this.baseurl);
 	}
 
-	public set(baseurl: string) {
-		this.baseurl = baseurl;
+	public set(baseurl: string | URL) {
+		this.baseurl = (typeof (baseurl) === 'string' ? new URL(baseurl) : baseurl).toString();
 
 		return this;
 	}
@@ -57,24 +57,21 @@ export class Router {
 
 		if (arg0 instanceof URLPattern) {
 			// RouteLike
-			route = <Route> arg1;
-			if (!RouteLikeChecker(route)) {
-				throw new Error('arg1 is not RouteLike.');
-			}
+			route = RouteLikeChecker(<RouteLike> arg1);
+
 			route.order = this.nextOrder();
 			route.pattern = arg0;
+
 			if (arg2) {
 				route.middlewares = arg2;
 			}
 		} else {
 			// Route
-			route = arg0;
-			if (!RouteChecker(route)) {
-				throw new Error('arg0 is not Route.');
-			}
+			route = RouteChecker(arg0);
 			if (typeof route.order !== 'number') {
 				route.order = this.nextOrder();
 			}
+
 			if (arg1) {
 				route.middlewares = <Middlewares> arg1;
 			}

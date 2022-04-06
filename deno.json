@@ -2,11 +2,12 @@
 	"tasks": {
 		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
-		"check": "deno run --allow-run tools/release_checker.ts"
+		"check": "deno run --allow-run tools/release_checker.ts",
+		"tests": "deno test tests/ --allow-read"
 	},
 	"lint": {
 		"files": {
-			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tools/"]
+			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"]
 		},
 		"rules": {
 		  "tags": ["recommended"],
@@ -16,7 +17,7 @@
 	},
 	"fmt": {
 		"files": {
-			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tools/", "sample/"]
+			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/"]
 		},
 		"options": {
 			"useTabs": true,
