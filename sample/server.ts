@@ -4,8 +4,8 @@
  * deno run --allow-read --allow-net --allow-env ./sample/server.ts
  */
 
-import * as Minirachne from '../mod.ts';
-//import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+//import * as Minirachne from '../mod.ts';
+import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
 // Middleware & Route
 class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
