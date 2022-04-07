@@ -29,6 +29,7 @@ class ErrorMiddleware implements Middleware {
 Deno.test('Middrewares manage', async () => {
 	const data: RequestData = {
 		request: new Request('http://localhost:8080/'),
+		detail: {},
 	};
 	const list: MiddlewareSample[] = [];
 	for (let i = 0; i < 5; ++i) {
@@ -49,6 +50,7 @@ Deno.test('Middrewares manage', async () => {
 Deno.test('Middreware failure', async () => {
 	const data: RequestData = {
 		request: new Request('http://localhost:8080/'),
+		detail: {},
 	};
 	const middleware = new ErrorMiddleware();
 

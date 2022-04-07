@@ -91,7 +91,7 @@ Deno.test('Add Route', async () => {
 		const requestURL = new URL(item.path, url).toString();
 		asserts.assertEquals(
 			await router.exec(requestURL, (route) => {
-				return route.onRequest({ request: new Request(requestURL) });
+				return route.onRequest({ request: new Request(requestURL), detail: {} });
 			}),
 			item.target ? item.target.response : null,
 		);
@@ -101,7 +101,7 @@ Deno.test('Add Route', async () => {
 	const requestURL = new URL(list[0].path, url).toString();
 	asserts.assertNotEquals(
 		await router.exec(requestURL, (route) => {
-			return route.onRequest({ request: new Request(requestURL) });
+			return route.onRequest({ request: new Request(requestURL), detail: {} });
 		}),
 		(<SampleRoute> list[0].target).response,
 	);

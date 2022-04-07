@@ -4,7 +4,7 @@ export type RequestData = {
 	readonly request: Request;
 	readonly connection?: ConnInfo;
 	// deno-lint-ignore no-explicit-any
-	[keys: string]: any;
+	detail: { [keys: string]: any };
 };
 
 export interface RouteLike {
