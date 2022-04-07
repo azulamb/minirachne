@@ -14,8 +14,8 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	public pattern!: URLPattern;
 	public middlewares: Minirachne.Middlewares;
 
-	constructor(server: Minirachne.Server) {
-		this.pattern = server.router.path('/(login|logout|user)');
+	constructor(server: Minirachne.Server, base = '') {
+		this.pattern = server.router.path(`${base}/(login|logout|user)`);
 		this.middlewares = Minirachne.Middlewares.create(this);
 	}
 
@@ -38,7 +38,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 			case 'user': {
 				const headers = new Headers();
 				headers.set('Content-Type', 'application/json');
-				return new Response(JSON.stringify(data.user), {
+				return new Response(JSON.stringify(data.detail.user), {
 					headers: headers,
 				});
 			}
@@ -55,7 +55,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 			return Promise.reject(new Error('Login Error.'));
 		}
 		// Add user data.
-		data.user = user;
+		data.detail.user = user;
 	}
 
 	// Common

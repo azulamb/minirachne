@@ -45,6 +45,7 @@ export class Server {
 				return this.onRequest({
 					request: request,
 					connection: connInfo,
+					detail: {},
 				});
 			},
 			{

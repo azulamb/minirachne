@@ -4,16 +4,6 @@ import { createAbsolutePath } from '../../mod.ts';
 
 const testDir = createAbsolutePath(import.meta, '../tmp');
 
-console.log(111);
-const route = new StaticRoute(testDir);
-route.pattern = new URLPattern('/*', 'http://localhost/');
-await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }) }).then((response) => {
-	console.log(response.status);
-}).catch((e) => {
-	console.log(e);
-});
-console.log(222);
-
 Deno.test('Static Route', async () => {
 	const route = new StaticRoute(testDir);
 	route.pattern = new URLPattern('/*', 'http://localhost/');
@@ -46,7 +36,7 @@ Deno.test('Static Route', async () => {
 	];
 
 	for (const item of list) {
-		await route.onRequest({ request: new Request(item.url, item.reqInit) }).then((result) => {
+		await route.onRequest({ request: new Request(item.url, item.reqInit), detail: {} }).then((result) => {
 			asserts.assertEquals(result.status, item.status || 200);
 			for (const header of result.headers) {
 				const [key, value] = header;
@@ -65,7 +55,7 @@ Deno.test('Static Route', async () => {
 		});
 	}
 
-	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=2-7' } }) }).then((response) => {
+	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=2-7' } }), detail: {} }).then((response) => {
 		return response.text();
 	}).then((body) => {
 		asserts.assertEquals(body, '"hoge"');
@@ -73,7 +63,7 @@ Deno.test('Static Route', async () => {
 		asserts.assertEquals(e, null, 'Range error.');
 	});
 
-	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }) }).then((response) => {
+	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }), detail: {} }).then((response) => {
 		asserts.assertEquals(response.status, 416);
 	}).catch((e) => {
 		asserts.assertEquals(e, null, 'Over Range error.');
@@ -82,7 +72,7 @@ Deno.test('Static Route', async () => {
 	route.setNotfound(false);
 	asserts.assertRejects(
 		() => {
-			return route.onRequest({ request: new Request('http://localhost/notfound') });
+			return route.onRequest({ request: new Request('http://localhost/notfound'), detail: {} });
 		},
 		Error,
 		'Notfound',
@@ -93,7 +83,7 @@ Deno.test('Static Route', async () => {
 	});
 	asserts.assertRejects(
 		() => {
-			return route.onRequest({ request: new Request('http://localhost/notfound') });
+			return route.onRequest({ request: new Request('http://localhost/notfound'), detail: {} });
 		},
 		Error,
 		'Notfound2',
