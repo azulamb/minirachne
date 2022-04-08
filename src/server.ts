@@ -1,7 +1,7 @@
 import { RequestData } from '../types.d.ts';
 import { serve, serveTls } from './denostd.ts';
 import { Router } from './router.ts';
-import * as httpres from './httpres.ts';
+import { HTTPError, HTTPErrors } from './httpres.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
 
 export class Server {
@@ -15,7 +15,7 @@ export class Server {
 
 	constructor() {
 		this.controller = new AbortController();
-		this.router = new Router(this.url);
+		this.router = new Router();
 	}
 
 	public getURL() {
@@ -24,7 +24,6 @@ export class Server {
 
 	public setURL(url: URL) {
 		this.url = new URL(url.toString());
-		this.router.set(this.url);
 
 		return this;
 	}
@@ -60,21 +59,29 @@ export class Server {
 
 	protected async onRequest(data: RequestData) {
 		const url = data.request.url;
-		const response = await this.router.exec(url, async (route) => {
-			if (!route.middlewares) {
-				return route.onRequest(data);
-			}
 
-			return route.middlewares.exec(data).then(() => {
-				return route.onRequest(data);
+		try {
+			const response = await this.router.exec(url, async (route) => {
+				if (!route.middlewares) {
+					return route.onRequest(data);
+				}
+
+				return route.middlewares.exec(data).then(() => {
+					return route.onRequest(data);
+				});
 			});
-		});
 
-		if (response) {
+			if (!response) {
+				throw new Error('UNKNOWN ERROR!!');
+			}
 			return response;
+		} catch (error) {
+			if (error instanceof HTTPError) {
+				return error.createResponse();
+			}
 		}
 
-		return httpres.notFound();
+		return HTTPErrors.internalServerError().createResponse();
 	}
 
 	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketListener, options?: Deno.UpgradeWebSocketOptions) {

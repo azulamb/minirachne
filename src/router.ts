@@ -21,21 +21,10 @@ function RouteChecker(route: Route) {
 }
 
 export class Router {
-	private baseurl!: string;
 	private routes: Route[] = [];
 
-	constructor(baseurl: string | URL) {
-		this.set(baseurl);
-	}
-
-	public path(path: string) {
-		return new URLPattern(path, this.baseurl);
-	}
-
-	public set(baseurl: string | URL) {
-		this.baseurl = (typeof (baseurl) === 'string' ? new URL(baseurl) : baseurl).toString();
-
-		return this;
+	public path(pathname: string) {
+		return new URLPattern({ pathname: pathname });
 	}
 
 	/**
@@ -98,6 +87,7 @@ export class Router {
 		url: string,
 		onMatch: (route: Route) => Promise<Response | null>,
 	) {
+		let lastError: Error | null = null;
 		for (const route of this.routes) {
 			if (!route.pattern.test(url)) continue;
 
@@ -106,7 +96,11 @@ export class Router {
 				return response;
 				// deno-lint-ignore no-unused-vars no-empty
 			} catch (error) {
+				lastError = error;
 			}
+		}
+		if (lastError) {
+			throw lastError;
 		}
 
 		return null;

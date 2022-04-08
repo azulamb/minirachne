@@ -18,14 +18,13 @@ class SampleRoute implements Route {
 }
 
 Deno.test('URL', () => {
-	const url = 'https://localhost:8080/';
-	const router = new Router(url);
-	asserts.assertEquals(router.path('/sample/index.html'), new URLPattern(`/sample/index.html`, url));
+	const router = new Router();
+	asserts.assertEquals(router.path('/sample/index.html'), new URLPattern({ pathname: `/sample/index.html` }));
 });
 
 Deno.test('Route', () => {
 	const url = 'https://localhost:8080/';
-	const router = new Router(url);
+	const router = new Router();
 	const list: { route: string; path: string; result?: boolean }[] = [
 		{ route: '/sample/index.html', path: '/sample/index.html' },
 		{ route: '/sample/*', path: '/sample/index.html' },
@@ -44,7 +43,7 @@ Deno.test('Route', () => {
 
 Deno.test('Add Route', async () => {
 	const url = 'https://localhost:8080/';
-	const router = new Router(url);
+	const router = new Router();
 
 	asserts.assertThrows(
 		() => {

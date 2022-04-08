@@ -1,12 +1,13 @@
 import * as asserts from '../_setup.ts';
 import { StaticRoute } from '../../src/static.ts';
+import { HTTPError } from '../../src/httpres.ts';
 import { createAbsolutePath } from '../../mod.ts';
 
 const testDir = createAbsolutePath(import.meta, '../tmp');
 
 Deno.test('Static Route', async () => {
 	const route = new StaticRoute(testDir);
-	route.pattern = new URLPattern('/*', 'http://localhost/');
+	route.pattern = new URLPattern({ pathname: '/*' });
 
 	route.setMIMETypes({ 'json2': 'application/json' });
 
@@ -36,23 +37,30 @@ Deno.test('Static Route', async () => {
 	];
 
 	for (const item of list) {
-		await route.onRequest({ request: new Request(item.url, item.reqInit), detail: {} }).then((result) => {
-			asserts.assertEquals(result.status, item.status || 200);
-			for (const header of result.headers) {
-				const [key, value] = header;
-				const expected = item.headers.get(key);
-				asserts.assertEquals(value, expected, `Error url: ${item.url} Header[${key}] "${value}" != "${expected}"`);
-			}
-			for (const header of item.headers) {
-				const [key, value] = header;
-				const expected = item.headers.get(key);
-				if (expected) {
-					// Tested value.
-					continue;
+		await route.onRequest({ request: new Request(item.url, item.reqInit), detail: {} })
+			.catch((error) => {
+				if (error instanceof HTTPError) {
+					return error.createResponse();
 				}
-				asserts.assertEquals(value, expected, `Error url: ${item.url} Header[${key}] notfound.`);
-			}
-		});
+				throw error;
+			})
+			.then((result) => {
+				asserts.assertEquals(result.status, item.status || 200);
+				for (const header of result.headers) {
+					const [key, value] = header;
+					const expected = item.headers.get(key);
+					asserts.assertEquals(value, expected, `Error url: ${item.url} Header[${key}] "${value}" != "${expected}"`);
+				}
+				for (const header of item.headers) {
+					const [key, value] = header;
+					const expected = item.headers.get(key);
+					if (expected) {
+						// Tested value.
+						continue;
+					}
+					asserts.assertEquals(value, expected, `Error url: ${item.url} Header[${key}] notfound.`);
+				}
+			});
 	}
 
 	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=2-7' } }), detail: {} }).then((response) => {
@@ -63,13 +71,14 @@ Deno.test('Static Route', async () => {
 		asserts.assertEquals(e, null, 'Range error.');
 	});
 
-	await route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }), detail: {} }).then((response) => {
-		asserts.assertEquals(response.status, 416);
-	}).catch((e) => {
-		asserts.assertEquals(e, null, 'Over Range error.');
-	});
+	asserts.assertRejects(
+		() => {
+			return route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }), detail: {} });
+		},
+		Error,
+		'Requested Range Not Satisfiable',
+	);
 
-	route.setNotfound(false);
 	asserts.assertRejects(
 		() => {
 			return route.onRequest({ request: new Request('http://localhost/notfound'), detail: {} });

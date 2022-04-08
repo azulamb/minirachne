@@ -103,7 +103,7 @@ Deno.test('File server', async () => {
 	const p = server.run();
 
 	await fetch(url).then((response) => {
-		asserts.assertEquals(response.status, 404);
+		asserts.assertEquals(response.status, 500);
 		return response.text();
 	});
 
@@ -169,6 +169,13 @@ Deno.test('Use middleware', async () => {
 		return response.text();
 	}).then((body) => {
 		asserts.assertEquals(body, 'Private page');
+	});
+
+	await fetch(new URL('/publiconly.txt', url), { headers: new Headers({ Cookie: cookie }) }).then((response) => {
+		asserts.assertEquals(response.status, 200);
+		return response.text();
+	}).then((body) => {
+		asserts.assertEquals(body, 'Public only');
 	});
 
 	server.stop();

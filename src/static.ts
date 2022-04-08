@@ -1,7 +1,7 @@
 import { join } from './denostd.ts';
 import { RequestData, Route } from '../types.d.ts';
 import { MIMETYPES, MIMETypes } from './mime.ts';
-import * as httpres from './httpres.ts';
+import { HTTPError, HTTPErrors } from './httpres.ts';
 
 interface NotfoundCallback {
 	(data: RequestData): Promise<Response>;
@@ -16,14 +16,18 @@ export class StaticRoute implements Route {
 	protected directoryIndex: string[] = ['index.html'];
 	protected mime!: MIMETypes;
 
-	constructor(docs: string, option?: { order: number; pattern: string | URLPattern }) {
+	constructor(docs: string, option?: { order?: number; pattern?: string | URLPattern }) {
 		if (option) {
-			if (option.order) this.order = option.order;
-			if (option.pattern) this.pattern = typeof option.pattern === 'string' ? new URLPattern(option.pattern) : option.pattern;
+			if (option.order) {
+				this.order = option.order;
+			}
+			if (option.pattern) {
+				this.pattern = typeof option.pattern === 'string' ? new URLPattern(option.pattern) : option.pattern;
+			}
 		}
 
 		this.docs = join(docs, '/');
-		this.setNotfound(true);
+		this.setNotfound();
 		this.mime = new MIMETypes();
 	}
 
@@ -33,23 +37,13 @@ export class StaticRoute implements Route {
 	}
 
 	/**
-	 * @param enableDefaultNotfound true = Default response. false = return Promise.reject.
+	 * @param response Callback. Set default if none.
 	 */
-	public setNotfound(enableDefaultNotfound: boolean): this;
-	/**
-	 * @param response Callback.
-	 */
-	public setNotfound(callback: NotfoundCallback): this;
-	public setNotfound(callback: NotfoundCallback | boolean): this {
-		if (typeof callback === 'boolean') {
-			this.notfound = callback
-				? () => {
-					return httpres.notFound();
-				}
-				: () => {
-					return Promise.reject(new Error('Notfound'));
-					//return Promise.reject('Notfound');
-				};
+	public setNotfound(callback?: NotfoundCallback) {
+		if (!callback) {
+			this.notfound = () => {
+				return Promise.reject(HTTPErrors.notFound());
+			};
 			return this;
 		}
 
@@ -146,7 +140,7 @@ export class StaticRoute implements Route {
 		if (range.exists && (range.end < range.start || max < range.start || max < range.end)) {
 			return this.createHeader(filePath, stat, range.exists ? range : null).then((headers) => {
 				responseInit.headers = headers;
-				return httpres.requestedRangeNotSatisfiable(responseInit);
+				return Promise.reject(HTTPErrors.requestedRangeNotSatisfiable(responseInit));
 			});
 		}
 
@@ -200,12 +194,15 @@ export class StaticRoute implements Route {
 			case 'HEAD':
 				break;
 			default:
-				return httpres.methodNotAllowed();
+				return Promise.reject(HTTPErrors.methodNotAllowed());
 		}
 
 		return Deno.stat(path).then((stat) => {
 			return stat.isDirectory ? this.responseDirectory(data, path) : this.responseFile(data.request.method === 'HEAD', path, data.request.headers, stat);
-		}).catch(() => {
+		}).catch((error) => {
+			if (error instanceof HTTPError) {
+				throw error;
+			}
 			// TODO: set error and debug flag.
 			return this.responseNotfound(data);
 		});
