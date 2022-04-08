@@ -1,4 +1,4 @@
-import { Middlewares, Route, RouteLike } from '../types.d.ts';
+import { Middlewares, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
 
 function RouteLikeChecker(route: RouteLike, arg = 'arg1') {
 	if (typeof route !== 'object') {
@@ -28,25 +28,39 @@ export class Router {
 	}
 
 	/**
-	 * @param path string path ('/test', '/img/*' etc ...) or URLPattern.
+	 * @param path String path ('/test', '/img/*' etc ...) or URLPattern.
 	 * @param route Call onRequest() when route accessed.
 	 * @param middlewares Set middlewares in route if exists.
 	 */
 	public add(path: string | URLPattern, route: RouteLike, middlewares?: Middlewares): this;
 	/**
+	 * @param path String path ('/test', '/img/*' etc ...) or URLPattern.
+	 * @param handler Call when route accessed.
+	 * @param middlewares Set middlewares in route if exists.
+	 */
+	public add(path: string | URLPattern, handler: OnRequestHandler, middlewares?: Middlewares): this;
+	/**
 	 * @param route Add route.
 	 * @param middlewares Set middlewares in route if exists.
 	 */
 	public add(route: Route, middlewares?: Middlewares): this;
-	add(arg0: string | URLPattern | Route, arg1: RouteLike | Middlewares | undefined, arg2?: Middlewares) {
+	add(arg0: string | URLPattern | Route, arg1: RouteLike | Middlewares | OnRequestHandler | undefined, arg2?: Middlewares) {
 		if (typeof arg0 === 'string') {
 			arg0 = this.path(arg0);
 		}
 		let route: Route;
 
 		if (arg0 instanceof URLPattern) {
-			// RouteLike
-			route = RouteLikeChecker(<RouteLike> arg1);
+			if (typeof arg1 === 'function') {
+				route = <Route> {
+					onRequest: (data: RequestData) => {
+						return (<OnRequestHandler> arg1).bind(<Route> route)(data);
+					},
+				};
+			} else {
+				// RouteLike
+				route = RouteLikeChecker(<RouteLike> arg1);
+			}
 
 			route.order = this.nextOrder();
 			route.pattern = arg0;

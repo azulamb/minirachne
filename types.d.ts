@@ -7,6 +7,10 @@ export type RequestData = {
 	detail: { [keys: string]: any };
 };
 
+export interface OnRequestHandler {
+	(this: Route, data: RequestData): Promise<Response>;
+}
+
 export interface RouteLike {
 	/*
 	 * Route order.

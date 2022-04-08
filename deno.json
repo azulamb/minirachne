@@ -17,7 +17,7 @@
 	},
 	"fmt": {
 		"files": {
-			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/"]
+			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/", "denodeploy/"]
 		},
 		"options": {
 			"useTabs": true,
