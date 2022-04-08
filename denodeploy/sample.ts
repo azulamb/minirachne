@@ -5,6 +5,14 @@ console.log(Deno.env.toObject());
 
 const server = new Minirachne.Server();
 
+/* You can use member variable in Route, if normal function.
+server.router.add('/*', function(data) {
+	console.log(data.pattern); // OK.
+});
+server.router.add('/*', (data) => {
+	console.log(data.pattern); // Error. this = undefined.
+});
+*/
 server.router.add('/*', (data) => {
 	console.log(data.request.url);
 	const body = JSON.stringify({

@@ -21,7 +21,7 @@ function RouteChecker(route: Route) {
 }
 
 export class Router {
-	private routes: Route[] = [];
+	protected routes: Route[] = [];
 
 	public path(pathname: string) {
 		return new URLPattern({ pathname: pathname });
@@ -54,7 +54,7 @@ export class Router {
 			if (typeof arg1 === 'function') {
 				route = <Route> {
 					onRequest: (data: RequestData) => {
-						return (<OnRequestHandler> arg1).bind(<Route> route)(data);
+						return (<OnRequestHandler> arg1).apply(<Route> route, [data]);
 					},
 				};
 			} else {

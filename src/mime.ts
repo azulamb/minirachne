@@ -74,7 +74,7 @@ const DEFAULT: MIMETYPES = {
 };
 
 export class MIMETypes {
-	private mime: MIMETYPES = {};
+	protected mime: MIMETYPES = {};
 
 	constructor(mime?: { [keys: string]: string }) {
 		this.set(mime || DEFAULT);

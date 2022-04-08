@@ -5,12 +5,12 @@ import { HTTPError, HTTPErrors } from './httperror.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
 
 export class Server {
-	private url: URL = new URL('http://localhost:8080/');
-	private files: { keyFile: string; certFile: string } = {
+	protected url: URL = new URL('http://localhost:8080/');
+	protected files: { keyFile: string; certFile: string } = {
 		keyFile: '',
 		certFile: '',
 	};
-	private controller!: AbortController;
+	protected controller!: AbortController;
 	public router!: Router;
 
 	constructor() {
