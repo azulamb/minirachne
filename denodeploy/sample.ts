@@ -1,5 +1,4 @@
-import * as Minirachne from '../mod.ts';
-//import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
 console.log(`Minirachne ver: ${Minirachne.VERSION}`);
 console.log(Deno.env.toObject());
