@@ -51,7 +51,7 @@ const list: { name: string; command: string[]; after: (result: string) => Promis
 		},
 	},
 	{
-		name: 'Sample import check (Deno deploy)',
+		name: 'Sample import check (Deno Deploy)',
 		command: ['deno', 'info', 'denodeploy/sample.ts'],
 		after: (result) => {
 			return Promise.resolve(ImportLocalFiles(result)).then((imports) => {

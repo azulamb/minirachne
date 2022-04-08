@@ -5,7 +5,7 @@ export class Middlewares implements m {
 		return new Middlewares().add(...middlewares);
 	}
 
-	private middlewares: Middleware[] = [];
+	protected middlewares: Middleware[] = [];
 
 	public add(...middlewares: Middleware[]) {
 		this.middlewares.push(...middlewares);

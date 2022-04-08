@@ -12,6 +12,7 @@ export class StaticRoute implements Route {
 	public order!: number;
 	public pattern!: URLPattern;
 	protected docs!: string;
+	protected headers!: Headers;
 	protected notfound!: NotfoundCallback;
 	protected directoryIndex: string[] = ['index.html'];
 	protected mime!: MIMETypes;
@@ -27,13 +28,14 @@ export class StaticRoute implements Route {
 		}
 
 		this.docs = join(docs, '/');
+		this.setBaseHeader(new Headers());
 		this.setNotfound();
 		this.mime = new MIMETypes();
 	}
 
-	public setMIMETypes(mime: MIMETYPES) {
-		this.mime.set(mime);
-		return this;
+	public setBaseHeader(headers: Headers)
+	{
+		this.headers = headers;
 	}
 
 	/**
@@ -59,6 +61,11 @@ export class StaticRoute implements Route {
 	public setDirectoryIndex(...directoryIndex: string[]) {
 		this.directoryIndex = directoryIndex;
 
+		return this;
+	}
+
+	public setMIMETypes(mime: MIMETYPES) {
+		this.mime.set(mime);
 		return this;
 	}
 
@@ -161,7 +168,7 @@ export class StaticRoute implements Route {
 	}
 
 	protected async createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
-		const headers = new Headers();
+		const headers = new Headers(this.headers);
 
 		const mime = this.mime.getFromPath(filePath);
 		if (mime) {

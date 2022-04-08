@@ -12,9 +12,20 @@ Minirachne is a Web API server made with Deno.
 
 ## Sample
 
-See `sample/server.ts`
+### Server
+
+See [sample/server.ts](https://github.com/Azulamb/minirachne/blob/main/sample/server.ts) and [sample/](https://github.com/Azulamb/minirachne/blob/main/sample/)
 
 Exec `deno task sample`
+
+### Deno Deploy
+
+https://deno.com/deploy
+
++ New Playground.
++ Copy sample code.
+  * See [denodeploy/sample.ts](https://github.com/Azulamb/minirachne/tree/main/denodeploy/sample.ts).
++ Save & Deploy.
 
 ## Command
 
