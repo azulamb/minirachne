@@ -1,7 +1,7 @@
 import { join } from './denostd.ts';
 import { RequestData, Route } from '../types.d.ts';
 import { MIMETYPES, MIMETypes } from './mime.ts';
-import { HTTPError, HTTPErrors } from './httpres.ts';
+import { HTTPError, HTTPErrors } from './httperror.ts';
 
 interface NotfoundCallback {
 	(data: RequestData): Promise<Response>;

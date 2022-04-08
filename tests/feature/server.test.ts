@@ -20,13 +20,11 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 
 		switch (this.getPath(data.request)) {
 			case 'login': {
-				console.log('Login user:');
 				const uid = Math.random().toString(36).slice(-8);
 				Minirachne.Cookie.set(headers, { name: 'login', value: uid });
 				break;
 			}
 			case 'logout': {
-				console.log('Logout user:');
 				Minirachne.Cookie.delete(headers, 'login');
 				break;
 			}

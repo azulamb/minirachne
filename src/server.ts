@@ -1,11 +1,11 @@
 import { RequestData } from '../types.d.ts';
 import { serve, serveTls } from './denostd.ts';
 import { Router } from './router.ts';
-import { HTTPError, HTTPErrors } from './httpres.ts';
+import { HTTPError, HTTPErrors } from './httperror.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
 
 export class Server {
-	private url: URL = new URL('localhost:8080');
+	private url: URL = new URL('http://localhost:8080/');
 	private files: { keyFile: string; certFile: string } = {
 		keyFile: '',
 		certFile: '',

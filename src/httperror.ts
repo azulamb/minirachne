@@ -1,4 +1,4 @@
-import { Status, STATUS_TEXT } from './denostd.ts';
+import { STATUS_TEXT } from './denostd.ts';
 
 export class HTTPError extends Error {
 	public responseInit?: ResponseInit;

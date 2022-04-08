@@ -19,7 +19,10 @@ export function createAbsolutePath(meta: ImportMeta, path = '') {
 	return join(dirname(fromFileUrl(meta.url)), path);
 }
 
-// Static routes
+// HTTP Error.
+export * from './src/httperror.ts';
+
+// Static routes.
 export { StaticRoute } from './src/static.ts';
 
 // WebSocket listener.
