@@ -27,21 +27,34 @@ function Complete(message: string) {
 	console.log(`\x1b[92m${message}\x1b[0m`);
 }
 
+function ImportLocalFiles(result: string){
+	// deno-lint-ignore no-control-regex
+	return result.replace(/\x1b\[[0-9\;]+m/g, '')
+	.replace(/(\r\n|\r)/g, '\n')
+	.split(/\n\n/)[1].split(/\n/).map((line) => {
+		return line.replace(/^[ └│├─┬]+/, '').split(' ')[0];
+	}).filter((path) => {
+		return path && !path.match(/^https\:/);
+	})
+}
+
 const list: { name: string; command: string[]; after: (result: string) => Promise<void> }[] = [
 	{
-		name: 'Sample import check',
+		name: 'Sample import check (server)',
 		command: ['deno', 'info', 'sample/server.ts'],
 		after: (result) => {
-			return Promise.resolve(
-				// deno-lint-ignore no-control-regex
-				result.replace(/\x1b\[[0-9\;]+m/g, '')
-					.replace(/(\r\n|\r)/g, '\n')
-					.split(/\n\n/)[1].split(/\n/).map((line) => {
-						return line.replace(/^[ └│├─┬]+/, '').split(' ')[0];
-					}).filter((path) => {
-						return path && !path.match(/^https\:/);
-					}),
-			).then((imports) => {
+			return Promise.resolve(ImportLocalFiles(result)).then((imports) => {
+				if (1 < imports.length) {
+					throw new Error('Sample import local file.');
+				}
+			});
+		},
+	},
+	{
+		name: 'Sample import check (Deno deploy)',
+		command: ['deno', 'info', 'denodeploy/sample.ts'],
+		after: (result) => {
+			return Promise.resolve(ImportLocalFiles(result)).then((imports) => {
 				if (1 < imports.length) {
 					throw new Error('Sample import local file.');
 				}
