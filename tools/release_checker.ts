@@ -27,15 +27,15 @@ function Complete(message: string) {
 	console.log(`\x1b[92m${message}\x1b[0m`);
 }
 
-function ImportLocalFiles(result: string){
+function ImportLocalFiles(result: string) {
 	// deno-lint-ignore no-control-regex
 	return result.replace(/\x1b\[[0-9\;]+m/g, '')
-	.replace(/(\r\n|\r)/g, '\n')
-	.split(/\n\n/)[1].split(/\n/).map((line) => {
-		return line.replace(/^[ └│├─┬]+/, '').split(' ')[0];
-	}).filter((path) => {
-		return path && !path.match(/^https\:/);
-	})
+		.replace(/(\r\n|\r)/g, '\n')
+		.split(/\n\n/)[1].split(/\n/).map((line) => {
+			return line.replace(/^[ └│├─┬]+/, '').split(' ')[0];
+		}).filter((path) => {
+			return path && !path.match(/^https\:/);
+		});
 }
 
 const list: { name: string; command: string[]; after: (result: string) => Promise<void> }[] = [
