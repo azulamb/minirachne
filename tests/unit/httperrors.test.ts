@@ -1,33 +1,44 @@
 import * as asserts from '../_setup.ts';
-import { HTTPErrors, HTTPError } from '../../src/httperror.ts';
+import { HTTPError, HTTPErrors } from '../../src/httperror.ts';
 import { STATUS_TEXT } from '../../src/denostd.ts';
 
+Deno.test('HTTPErrors client(4xx)', async () => {
+	const Errors: { name: string; code: number }[] = [];
+	const convert: { [keys: number]: string } = {
+		418: 'Teapot',
+	};
+	STATUS_TEXT.forEach((v, k) => {
+		if (k < 400 || 500 <= k) return;
+		Errors.push({
+			name: convert[k] || v.replace(/\s/g, ''),
+			code: k,
+		});
+	});
 
-Deno.test('Middrewares manage', async () => {
-	const Error404: { func: () => HTTPError, code: number }[] = [
-		{ func: HTTPErrors.BadRequest, code: 400 },
-		{ func: HTTPErrors.Unauthorixed, code: 401 },
-		{ func: HTTPErrors.PaymentRequired, code: 402 },
-		{ func: HTTPErrors.Forbidden, code: 403 },
-		{ func: HTTPErrors.NotFound, code: 404 },
-		{ func: HTTPErrors.MethodNotAllowed, code: 405 },
-		{ func: HTTPErrors.NotAcceptable, code: 406 },
-		{ func: HTTPErrors.ProxyAuthenticationRequired, code: 407 },
-		{ func: HTTPErrors.RequestTimeout, code: 408 },
-		{ func: HTTPErrors.Conflict, code: 409 },
-		{ func: HTTPErrors.Gone, code: 410 },
-		{ func: HTTPErrors.LengthRequired, code: 411 },
-		{ func: HTTPErrors.PreconditionFailed, code: 412 },
-		{ func: HTTPErrors.RequestEntityTooLarge, code: 413},
-		{ func: HTTPErrors.RequestURITooLarge, code: 414 },
-		{ func: HTTPErrors.UnsupportedMediaType, code: 415 },
-		{ func: HTTPErrors.RequestedRangeNotSatisfiable, code: 416},
-		{ func: HTTPErrors.ExpectationFailed, code: 417},
-	];
+	const errors: { [keys: string]: (responseInit?: ResponseInit) => HTTPError } = HTTPErrors.client;
+	for (const e of Errors) {
+		asserts.assertExists(errors[e.name], `Notfound HTTPErrors.${e.name}`);
+		const error = errors[e.name]();
+		asserts.assertEquals(error.responseInit.status, e.code);
+		asserts.assertEquals(error.message, STATUS_TEXT.get(e.code));
+	}
+});
 
-	for(const e of Error404)
-	{
-		const error = e.func();
+Deno.test('HTTPErrors server(5xx)', async () => {
+	const Errors: { name: string; code: number }[] = [];
+	const convert: { [keys: number]: string } = {};
+	STATUS_TEXT.forEach((v, k) => {
+		if (k < 500 || 600 <= k) return;
+		Errors.push({
+			name: convert[k] || v.replace(/\s/g, ''),
+			code: k,
+		});
+	});
+
+	const errors: { [keys: string]: (responseInit?: ResponseInit) => HTTPError } = HTTPErrors.server;
+	for (const e of Errors) {
+		asserts.assertExists(errors[e.name], `Notfound HTTPErrors.${e.name}`);
+		const error = errors[e.name]();
 		asserts.assertEquals(error.responseInit.status, e.code);
 		asserts.assertEquals(error.message, STATUS_TEXT.get(e.code));
 	}
