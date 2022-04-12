@@ -81,7 +81,7 @@ export class Server {
 			}
 		}
 
-		return HTTPErrors.internalServerError().createResponse();
+		return HTTPErrors.InternalServerError().createResponse();
 	}
 
 	public async upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketListener, options?: Deno.UpgradeWebSocketOptions) {
