@@ -44,7 +44,7 @@ export class StaticRoute implements Route {
 	public setNotfound(callback?: NotfoundCallback) {
 		if (!callback) {
 			this.notfound = () => {
-				return Promise.reject(HTTPErrors.notFound());
+				return Promise.reject(HTTPErrors.NotFound());
 			};
 			return this;
 		}
@@ -147,7 +147,7 @@ export class StaticRoute implements Route {
 		if (range.exists && (range.end < range.start || max < range.start || max < range.end)) {
 			return this.createHeader(filePath, stat, range.exists ? range : null).then((headers) => {
 				responseInit.headers = headers;
-				return Promise.reject(HTTPErrors.requestedRangeNotSatisfiable(responseInit));
+				return Promise.reject(HTTPErrors.RequestedRangeNotSatisfiable(responseInit));
 			});
 		}
 
@@ -201,7 +201,7 @@ export class StaticRoute implements Route {
 			case 'HEAD':
 				break;
 			default:
-				return Promise.reject(HTTPErrors.methodNotAllowed());
+				return Promise.reject(HTTPErrors.MethodNotAllowed());
 		}
 
 		return Deno.stat(path).then((stat) => {

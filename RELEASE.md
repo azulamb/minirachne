@@ -12,8 +12,6 @@ deno task check
 
 ## リリース手順
 
-* `deno run --allow-run tools/settag.ts`
-  * `git tag v{VERSION}`
-  * `vバージョン` でタグの作成を行う
 * push
 * Githubのreleaseの追加
+  * `vバージョン` でタグの作成を行う
