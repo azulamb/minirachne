@@ -39,3 +39,10 @@ https://deno.com/deploy
   * Cache clear.
 * `deno task check`
   * Release check.
+
+## TODO
+
+* テストの細分化
+  * 現在テストをある程度まとめてやっているので。
+* Routeにgetとかのを追加
+  * 実際にするかどうかも検討

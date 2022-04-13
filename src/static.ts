@@ -28,13 +28,22 @@ export class StaticRoute implements Route {
 		}
 
 		this.docs = join(docs, '/');
-		this.setBaseHeader(new Headers());
+		this.setBaseHeader(
+			new Headers({
+				'Accept-Ranges': 'bytes',
+				'Access-Control-Allow-Origin': '*',
+			}),
+		);
 		this.setNotfound();
 		this.mime = new MIMETypes();
 	}
 
 	public setBaseHeader(headers: Headers) {
 		this.headers = headers;
+	}
+
+	public getBaseHeader() {
+		return new Headers(this.headers);
 	}
 
 	/**
@@ -167,14 +176,12 @@ export class StaticRoute implements Route {
 	}
 
 	protected async createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
-		const headers = new Headers(this.headers);
+		const headers = this.getBaseHeader();
 
 		const mime = this.mime.getFromPath(filePath);
 		if (mime) {
 			headers.set('Content-Type', mime);
 		}
-
-		headers.set('Accept-Ranges', 'bytes');
 
 		if (range) {
 			headers.set('Content-Range', `bytes ${range.start}-${range.end}/${stat.size}`);

@@ -21,7 +21,6 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 
 	public async onRequest(data: Minirachne.RequestData) {
 		const headers = new Headers();
-		headers.set('Location', '/');
 
 		switch (this.getPath(data.request)) {
 			case 'login': {
@@ -36,7 +35,6 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 				break;
 			}
 			case 'user': {
-				const headers = new Headers();
 				headers.set('Content-Type', 'application/json');
 				return new Response(JSON.stringify(data.detail.user), {
 					headers: headers,
@@ -44,7 +42,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 			}
 		}
 
-		return new Response('', { headers: headers, status: 303 });
+		return Minirachne.Redirect.SeeOther('/', { headers: headers });
 	}
 
 	// Middleware
