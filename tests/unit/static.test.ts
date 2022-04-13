@@ -5,33 +5,47 @@ import { createAbsolutePath } from '../../mod.ts';
 
 const testDir = createAbsolutePath(import.meta, '../tmp');
 
+function createHeaders(base: Headers, headers: { [keys: string]: string }) {
+	const newHeaders = new Headers(base);
+
+	Object.keys(headers).forEach((key) => {
+		newHeaders.set(key, headers[key]);
+	});
+
+	return newHeaders;
+}
+
 Deno.test('Static Route', async () => {
 	const route = new StaticRoute(testDir);
 	route.pattern = new URLPattern({ pathname: '/*' });
 
 	route.setMIMETypes({ 'json2': 'application/json' });
+	const baseHeaders = new Headers({
+		'Accept-Ranges': 'bytes',
+		'Access-Control-Allow-Origin': '*',
+	});
 
 	const list: { url: string; reqInit: RequestInit; headers: Headers; status?: number }[] = [
 		{
 			url: 'http://localhost/sample.json',
 			reqInit: { method: 'HEAD' },
-			headers: new Headers({ 'Accept-Ranges': 'bytes', 'content-length': '19', 'content-type': 'application/json' }),
+			headers: createHeaders(baseHeaders, { 'content-length': '19', 'content-type': 'application/json' }),
 		},
 		{
 			url: 'http://localhost/sample.json2',
 			reqInit: { method: 'HEAD' },
-			headers: new Headers({ 'Accept-Ranges': 'bytes', 'content-length': '19', 'content-type': 'application/json' }),
+			headers: createHeaders(baseHeaders, { 'content-length': '19', 'content-type': 'application/json' }),
 		},
 		{
 			url: 'http://localhost/notfound',
 			reqInit: { method: 'HEAD' },
-			headers: new Headers({ 'content-type': 'text/plain;charset=UTF-8' }),
+			headers: createHeaders(baseHeaders, { 'content-type': 'text/plain;charset=UTF-8' }),
 			status: 404,
 		},
 		{
 			url: 'http://localhost/notfound',
 			reqInit: { method: 'POST' },
-			headers: new Headers({ 'content-type': 'text/plain;charset=UTF-8' }),
+			headers: createHeaders(baseHeaders, { 'content-type': 'text/plain;charset=UTF-8' }),
 			status: 405,
 		},
 	];

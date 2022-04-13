@@ -19,6 +19,9 @@ export function createAbsolutePath(meta: ImportMeta, path = '') {
 	return join(dirname(fromFileUrl(meta.url)), path);
 }
 
+// HTTP Redirect.
+export * from './src/redirect.ts';
+
 // HTTP Error.
 export * from './src/httperror.ts';
 

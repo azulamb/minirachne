@@ -14,8 +14,6 @@ export class HTTPError extends Error {
 	}
 }
 
-const ClientErrors = new Map<string, (responseInit?: ResponseInit) => HTTPError>();
-
 export const HTTPErrors = {
 	client: {
 		/** 400	Bad Request */
