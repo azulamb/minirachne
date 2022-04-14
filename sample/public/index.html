@@ -49,6 +49,17 @@ window.addEventListener('DOMContentLoaded', () =>
 			}
 		} );
 	} )();
+
+	( () =>
+	{
+		fetch( '/postecho', { method: 'POST', body: 'HELLO!!' } ).then( ( response ) =>
+		{
+			return response.text();
+		}).then( ( body ) =>
+		{
+			console.log( body );
+		} );
+	} )();
 } );
 </script>
 <style>

@@ -1,6 +1,7 @@
 import * as asserts from '../_setup.ts';
 import { Router } from '../../src/router.ts';
 import { RequestData, Route } from '../../types.d.ts';
+import { HTTPError } from '../../src/httperror.ts';
 
 class SampleRoute implements Route {
 	order!: number;
@@ -104,4 +105,86 @@ Deno.test('Add Route', async () => {
 		}),
 		(<SampleRoute> list[0].target).response,
 	);
+});
+
+Deno.test('Method route', async () => {
+	const url = 'https://localhost:8080/';
+	const router = new Router();
+
+	const methods = ['get', 'head', 'post', 'put', 'delete', /*'connect',*/ 'options', /*'trace',*/ 'patch'];
+	const handler = () => {
+		return Promise.resolve(new Response('ok'));
+	};
+
+	for (const method of methods) {
+		router[<'get'> method](`/method/${method}/*`, handler);
+	}
+
+	// Success
+	for (const method of methods) {
+		const requestURL = new URL(`/method/${method}/test`, url).toString();
+		const METHOD = method.replace(/[a-z]/g, (c) => {
+			return String.fromCharCode(c.charCodeAt(0) & ~32);
+		});
+		const status = await router.exec(requestURL, (route) => {
+			return route.onRequest({ request: new Request(requestURL, { method: METHOD }), detail: {} });
+		}).catch(() => {
+			return null;
+		}).then((response) => {
+			return response ? response.status : 0;
+		});
+		asserts.assertEquals(status, 200);
+	}
+
+	// Unsupported method
+	asserts.assertThrows(() => {
+		new Request(url.toString(), { method: 'CONNECT' });
+	});
+	asserts.assertThrows(() => {
+		new Request(url.toString(), { method: 'TRACE' });
+	});
+
+	// Failure
+	for (const path of methods) {
+		const requestURL = new URL(`/method/${path}/test`, url).toString();
+		for (const method of methods) {
+			if (method === path) {
+				continue;
+			}
+			const METHOD = method.replace(/[a-z]/g, (c) => {
+				return String.fromCharCode(c.charCodeAt(0) & ~32);
+			});
+			asserts.assertRejects(
+				() => {
+					return router.exec(requestURL, (route) => {
+						return route.onRequest({ request: new Request(requestURL, { method: METHOD }), detail: {} });
+					});
+				},
+				HTTPError,
+				'Method Not Allowed',
+			);
+		}
+	}
+});
+
+Deno.test('Method route(Override)', async () => {
+	const url = 'https://localhost:8080/';
+	const router = new Router();
+
+	router.put(`/method/put/*`, () => {
+		return Promise.resolve(new Response('ok'));
+	});
+
+	const requestURL = new URL(`/method/put/`, url).toString();
+	const status = await router.exec(requestURL, (route) => {
+		return route.onRequest({
+			request: new Request(requestURL, { method: 'POST', headers: { 'X-HTTP-Method-Override': 'PUT' } }),
+			detail: {},
+		});
+	}).catch(() => {
+		return null;
+	}).then((response) => {
+		return response ? response.status : 0;
+	});
+	asserts.assertEquals(status, 200);
 });

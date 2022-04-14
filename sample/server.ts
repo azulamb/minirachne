@@ -132,6 +132,13 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 	server.router.add(simpleLogin);
 
 	// API sample.
+
+	// POST only API
+	server.router.post('/postecho', async (data) => {
+		const body = await data.request.text();
+		return new Response(body);
+	});
+
 	// Add path and RouteLike.
 	server.router.add('/status', new StatusApi());
 
@@ -154,6 +161,8 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 	 * - Simple login.
 	 *     Login/Logout/Get user status api.
 	 *     Use middleware(Simple login).
+	 * - POST only API
+	 *     Do not use middleware.
 	 * - Status API
 	 *     Do not use middleware.
 	 * - EchoChat
