@@ -1,5 +1,3 @@
-import { STATUS_TEXT } from './denostd.ts';
-
 function CreateResponse(status: number, redirect: string, responseInit?: ResponseInit) {
 	if (!responseInit) {
 		responseInit = {};

@@ -92,6 +92,20 @@ window.addEventListener('DOMContentLoaded', () =>
 			}
 		} );
 	} )();
+
+	( () =>
+	{
+		fetch( '/postecho', { method: 'PUT', body: 'HELLO!!' } ).then( ( response ) =>
+		{
+			return response.text();
+		}).then( ( body ) =>
+		{
+			console.log( body );
+		} ).catch( ( error ) =>
+		{
+			console.log( error );
+		} );
+	} )();
 } );
 </script>
 <style>
