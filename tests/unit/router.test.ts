@@ -89,21 +89,32 @@ Deno.test('Add Route', async () => {
 
 	for (const item of list) {
 		const requestURL = new URL(item.path, url).toString();
-		asserts.assertEquals(
-			await router.exec(requestURL, (route) => {
-				return route.onRequest({ request: new Request(requestURL), detail: {} });
-			}),
-			item.target ? item.target.response : null,
-		);
+		if (item.target) {
+			asserts.assertEquals(
+				await router.exec(requestURL, (route) => {
+					return route.onRequest({ request: new Request(requestURL), detail: {} });
+				}),
+				item.target.response,
+			);
+		} else {
+			asserts.assertRejects(
+				() => {
+					return router.exec(requestURL, (route) => {
+						return route.onRequest({ request: new Request(requestURL), detail: {} });
+					});
+				},
+			);
+		}
 	}
 
 	router.remove(<Route> list[0].target);
 	const requestURL = new URL(list[0].path, url).toString();
-	asserts.assertNotEquals(
-		await router.exec(requestURL, (route) => {
-			return route.onRequest({ request: new Request(requestURL), detail: {} });
-		}),
-		(<SampleRoute> list[0].target).response,
+	asserts.assertRejects(
+		() => {
+			return router.exec(requestURL, (route) => {
+				return route.onRequest({ request: new Request(requestURL), detail: {} });
+			});
+		},
 	);
 });
 
@@ -128,10 +139,10 @@ Deno.test('Method route', async () => {
 		});
 		const status = await router.exec(requestURL, (route) => {
 			return route.onRequest({ request: new Request(requestURL, { method: METHOD }), detail: {} });
-		}).catch(() => {
-			return null;
 		}).then((response) => {
-			return response ? response.status : 0;
+			return response.status;
+		}).catch(() => {
+			return 0;
 		});
 		asserts.assertEquals(status, 200);
 	}
@@ -181,10 +192,10 @@ Deno.test('Method route(Override)', async () => {
 			request: new Request(requestURL, { method: 'POST', headers: { 'X-HTTP-Method-Override': 'PUT' } }),
 			detail: {},
 		});
-	}).catch(() => {
-		return null;
 	}).then((response) => {
-		return response ? response.status : 0;
+		return response.status;
+	}).catch(() => {
+		return 0;
 	});
 	asserts.assertEquals(status, 200);
 });

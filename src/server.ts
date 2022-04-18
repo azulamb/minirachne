@@ -71,9 +71,6 @@ export class Server {
 				});
 			});
 
-			if (!response) {
-				throw new Error('UNKNOWN ERROR!!');
-			}
 			return response;
 		} catch (error) {
 			if (error instanceof HTTPError) {
