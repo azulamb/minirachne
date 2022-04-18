@@ -200,7 +200,7 @@ export class Router {
 
 	public async exec(
 		url: string,
-		onMatch: (route: Route) => Promise<Response | null>,
+		onMatch: (route: Route) => Promise<Response>,
 	) {
 		let lastError: Error | null = null;
 		for (const route of this.routes) {
@@ -213,11 +213,7 @@ export class Router {
 				lastError = error;
 			}
 		}
-		if (lastError) {
-			throw lastError;
-		}
-
-		return null;
+		throw lastError || new Error('UNKNOWN ERROR!!');
 	}
 
 	protected nextOrder() {

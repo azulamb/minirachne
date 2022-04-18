@@ -44,3 +44,6 @@ https://deno.com/deploy
 
 * テストの細分化
   * 現在テストをある程度まとめてやっているので。
+* 一番最後にレスポンス制御を入れるか検討
+* `server.router.add('path', Router)` をやりたい。
+  * URLPatternとしてはURLにしないといけないので、指定をどうするかが悩みどころ。
