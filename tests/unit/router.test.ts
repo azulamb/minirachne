@@ -199,3 +199,55 @@ Deno.test('Method route(Override)', async () => {
 	});
 	asserts.assertEquals(status, 200);
 });
+
+Deno.test('Sub router', async () => {
+	const url = 'https://localhost:8080/';
+
+	const subRouter = new Router();
+	subRouter.get('/sample', () => {
+		return Promise.resolve(new Response('sub ok'));
+	});
+
+	const router = new Router();
+	router.get('/sample', () => {
+		return Promise.resolve(new Response('main ok'));
+	});
+	router.addRouter('/sub', subRouter);
+	router.add('*', () => {
+		return Promise.resolve(new Response('Notfound', { status: 404 }));
+	});
+
+	const list: { path: string; status?: number; response?: string }[] = [
+		{
+			path: '/sample',
+			response: 'main ok',
+		},
+		{
+			path: '/sub/sample',
+			response: 'sub ok',
+		},
+		{
+			path: '/notfound',
+			status: 404,
+		},
+		{
+			path: '/sub/notfound',
+			status: 404,
+		},
+	];
+
+	for (const item of list) {
+		const requestURL = new URL(item.path, url).toString();
+		const response = await router.exec(requestURL, (route) => {
+			return route.onRequest({
+				request: new Request(requestURL),
+				detail: {},
+			});
+		});
+		asserts.assertEquals(response.status, item.status || 200, `${requestURL} - ${response.status}`);
+		if (item.status !== 404) {
+			const body = await response.text();
+			asserts.assertEquals(body, item.response);
+		}
+	}
+});

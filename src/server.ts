@@ -3,6 +3,7 @@ import { serve, serveTls } from './denostd.ts';
 import { Router } from './router.ts';
 import { HTTPError, HTTPErrors } from './httperror.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
+import { onRequest } from './onrequest.ts';
 
 export class Server {
 	protected url: URL = new URL('http://localhost:8080/');
@@ -58,20 +59,8 @@ export class Server {
 	}
 
 	protected async onRequest(data: RequestData) {
-		const url = data.request.url;
-
 		try {
-			const response = await this.router.exec(url, async (route) => {
-				if (!route.middlewares) {
-					return route.onRequest(data);
-				}
-
-				return route.middlewares.exec(data).then(() => {
-					return route.onRequest(data);
-				});
-			});
-
-			return response;
+			return await onRequest(data, this.router);
 		} catch (error) {
 			if (error instanceof HTTPError) {
 				return error.createResponse();

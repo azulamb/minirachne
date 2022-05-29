@@ -1,5 +1,6 @@
 import { HTTPErrors } from './httperror.ts';
 import { Middlewares, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
+import { onRequest } from './onrequest.ts';
 
 function RouteLikeChecker(route: RouteLike, arg = 'arg1') {
 	if (typeof route !== 'object') {
@@ -43,7 +44,26 @@ class MethodRoute implements Route {
 	}
 }
 
-export class Router {
+class NextRouter implements Route {
+	router: Router;
+	order!: number;
+	pattern!: URLPattern;
+	middlewares?: Middlewares;
+
+	constructor(base: string, router: Router, middlewares?: Middlewares) {
+		this.router = router;
+		this.pattern = new URLPattern({ pathname: base + '/*' });
+		this.middlewares = middlewares;
+	}
+
+	onRequest(data: RequestData): Promise<Response> {
+		return onRequest(data, this.router);
+	}
+}
+
+class BaseRouter {
+	protected parent?: BaseRouter;
+	protected base: string = '';
 	protected routes: Route[] = [];
 
 	public path(pathname: string) {
@@ -103,6 +123,10 @@ export class Router {
 			}
 		}
 
+		if (this.parent) {
+			route.pattern = this.newPattern(route.pattern);
+		}
+
 		this.routes.push(route);
 		this.routes.sort((a, b) => {
 			return a.order - b.order;
@@ -111,6 +135,69 @@ export class Router {
 		return this;
 	}
 
+	protected nextOrder() {
+		return (this.routes[this.routes.length - 1]?.order || 0) + 1;
+	}
+
+	protected getBase(): string {
+		if (!this.parent) {
+			return this.base;
+		}
+		return this.parent.getBase() + this.base;
+	}
+
+	protected newPattern(pattern: URLPattern) {
+		return new URLPattern(Object.assign(
+			{},
+			pattern,
+			{ pathname: this.getBase() + pattern.pathname },
+		));
+	}
+
+	public addRouter(base: string, router: Router, middlewares?: Middlewares) {
+		if (this === <BaseRouter> router) {
+			return;
+		}
+
+		router.parent = this;
+		this.base = base.replace(/\/$/, '').replace(/^([^\/].*)$/, '/$1');
+
+		for (const route of router.routes) {
+			route.pattern = this.newPattern(route.pattern);
+		}
+
+		this.add(new NextRouter(base, router, middlewares));
+	}
+
+	public remove(route: Route) {
+		const index = this.routes.indexOf(route);
+		if (0 <= index) {
+			this.routes.splice(index, 1);
+		}
+
+		return this;
+	}
+
+	public async exec(
+		url: string,
+		onMatch: (route: Route) => Promise<Response>,
+	) {
+		let lastError: Error | null = null;
+		for (const route of this.routes) {
+			if (!route.pattern.test(url)) continue;
+
+			try {
+				const response = await onMatch(route);
+				return response;
+			} catch (error) {
+				lastError = error;
+			}
+		}
+		throw lastError || new Error('UNKNOWN ERROR!!');
+	}
+}
+
+export class Router extends BaseRouter {
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = GET
 	 * @param path String path ('/test', '/img/*' etc ...) or URLPattern.
@@ -187,36 +274,5 @@ export class Router {
 	 */
 	public patch(path: string | URLPattern, handler: OnRequestHandler, middlewares?: Middlewares) {
 		return this.add(path, new MethodRoute('PATCH', handler), middlewares);
-	}
-
-	public remove(route: Route) {
-		const index = this.routes.indexOf(route);
-		if (0 <= index) {
-			this.routes.splice(index, 1);
-		}
-
-		return this;
-	}
-
-	public async exec(
-		url: string,
-		onMatch: (route: Route) => Promise<Response>,
-	) {
-		let lastError: Error | null = null;
-		for (const route of this.routes) {
-			if (!route.pattern.test(url)) continue;
-
-			try {
-				const response = await onMatch(route);
-				return response;
-			} catch (error) {
-				lastError = error;
-			}
-		}
-		throw lastError || new Error('UNKNOWN ERROR!!');
-	}
-
-	protected nextOrder() {
-		return (this.routes[this.routes.length - 1]?.order || 0) + 1;
 	}
 }
