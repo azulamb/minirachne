@@ -59,7 +59,7 @@ Deno.test('Static Route', async () => {
 				throw error;
 			})
 			.then((result) => {
-				asserts.assertEquals(result.status, item.status || 200);
+				asserts.assertEquals(result.status, item.status || 200, `Error: ${item.url} - ${result.status}`);
 				for (const header of result.headers) {
 					const [key, value] = header;
 					const expected = item.headers.get(key);

@@ -26,6 +26,9 @@ export * from './src/redirect.ts';
 export * from './src/httperror.ts';
 
 // Static routes.
+export { Router } from './src/router.ts';
+
+// Static routes.
 export { StaticRoute } from './src/static.ts';
 
 // WebSocket listener.

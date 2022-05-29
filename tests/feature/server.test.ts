@@ -77,6 +77,15 @@ class PasswordMiddleware implements Minirachne.Middleware {
 	}
 }
 
+class SubRouterMiddleware implements Minirachne.Middleware {
+	handle(data: Minirachne.RequestData): Promise<unknown> {
+		if (data.request.method !== 'GET') {
+			return Promise.reject(new Error('Method Error.'));
+		}
+		return Promise.resolve();
+	}
+}
+
 class AddDataMiddleware implements Minirachne.Middleware {
 	public key: string;
 	public value: string;
@@ -249,6 +258,49 @@ Deno.test('Use middlewares(Add data)', async () => {
 	}).then((body) => {
 		asserts.assertEquals(body, { name: 'Hoge', job: 'Student' });
 	});
+
+	server.stop();
+	await p;
+});
+
+Deno.test('Use middlewares(With sub router)', async () => {
+	const url = new URL('http://localhost:18080/');
+
+	const server = new Minirachne.Server();
+	server.setURL(url);
+
+	const middlewares = new Minirachne.Middlewares();
+	middlewares.add(new SubRouterMiddleware());
+
+	const subRouter = new Minirachne.Router();
+	subRouter.add('/*', () => {
+		return Promise.resolve(new Response('sub'));
+	}, middlewares);
+
+	server.router.addRouter('/sub', subRouter, middlewares);
+	server.router.add(
+		'/test',
+		() => {
+			return Promise.resolve(new Response('main'));
+		},
+	);
+
+	const p = server.run();
+
+	const list: { url: string; status: number; body?: string; method?: string }[] = [
+		{ url: '/test', status: 200, body: 'main' },
+		{ url: '/sub/test', status: 200, body: 'sub' },
+		{ url: '/sub/test', status: 500, method: 'POST' },
+	];
+
+	for (const item of list) {
+		const response = await fetch(new URL(item.url, url), { method: item.method || 'GET' });
+		asserts.assertEquals(response.status, item.status, `${item.method || 'GET'}:${item.url} - ${response.status}`);
+		const body = await response.text();
+		if (item.status === 200) {
+			asserts.assertEquals(body, item.body);
+		}
+	}
 
 	server.stop();
 	await p;
