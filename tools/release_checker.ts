@@ -1,8 +1,9 @@
 /**
-deno run --allow-run tools/release_checker.ts
+deno run --allow-run --allow-net tools/release_checker.ts
 */
 
 import { VERSION } from '../version.ts';
+import { VERSION as STD_VERSION } from '../src/denostd.ts';
 
 function Exec(command: string[]) {
 	const process = Deno.run({
@@ -23,22 +24,42 @@ function Exit(message: string) {
 function Start(name: string) {
 	console.log(`== ${name} `.padEnd(80, '='));
 }
+
 function Complete(message: string) {
 	console.log(`\x1b[92m${message}\x1b[0m`);
 }
 
-function ImportLocalFiles(result: string) {
+function OfficialStdVersion() {
+	return fetch('https://deno.land/std', { headers: { accept: 'text/html' }, redirect: 'manual' }).then((response) => {
+		const status = response.status;
+		if (status < 200 || 400 <= status) {
+			throw new Error(`Access error: ${status}`);
+		}
+		const location = response.headers.get('location') || '';
+		const version = location.split('@')[1];
+		if (!version) {
+			throw new Error(`Get version error:`);
+		}
+		return version;
+	});
+}
+
+function ImportFiles(result: string) {
 	// deno-lint-ignore no-control-regex
 	return result.replace(/\x1b\[[0-9\;]+m/g, '')
 		.replace(/(\r\n|\r)/g, '\n')
 		.split(/\n\n/)[1].split(/\n/).map((line) => {
 			return line.replace(/^[ └│├─┬]+/, '').split(' ')[0];
-		}).filter((path) => {
-			return path && !path.match(/^https\:/);
 		});
 }
 
-const list: { name: string; command: string[]; after: (result: string) => Promise<void> }[] = [
+function ImportLocalFiles(result: string) {
+	return ImportFiles(result).filter((path) => {
+		return path && !path.match(/^https\:/);
+	});
+}
+
+const list: { name: string; command?: string[]; after: (result: string) => Promise<string | void> }[] = [
 	{
 		name: 'Sample import check (server)',
 		command: ['deno', 'info', 'sample/server.ts'],
@@ -62,6 +83,57 @@ const list: { name: string; command: string[]; after: (result: string) => Promis
 		},
 	},
 	{
+		name: 'Deno.std check(libs)',
+		command: ['deno', 'info', 'src/denostd.ts'],
+		after: (result) => {
+			return Promise.resolve(ImportFiles(result)).then((files) => {
+				if (files.length <= 0) {
+					throw new Error('std version error.');
+				}
+				for (const file of files) {
+					if (!file.match(/^https:/)) {
+						continue;
+					}
+					const version = file.replace(/^.+@([0-9.]+).+$/, '$1');
+					if (version !== STD_VERSION) {
+						throw new Error('std version error.');
+					}
+				}
+			});
+		},
+	},
+	{
+		name: 'Deno.std check(test)',
+		command: ['deno', 'info', 'tests/_setup.ts'],
+		after: (result) => {
+			return Promise.resolve(ImportFiles(result)).then((files) => {
+				if (files.length <= 0) {
+					throw new Error('std version error.');
+				}
+				for (const file of files) {
+					if (!file.match(/^https:/)) {
+						continue;
+					}
+					const version = file.replace(/^.+@([0-9.]+).+$/, '$1');
+					if (version !== STD_VERSION) {
+						throw new Error('std version error.');
+					}
+				}
+			});
+		},
+	},
+	{
+		name: 'Official Deno.std version check',
+		after: () => {
+			return OfficialStdVersion().then((version) => {
+				if (version !== STD_VERSION) {
+					throw new Error(`Use old std! (${STD_VERSION} => ${version})`);
+				}
+				return `Use std is latest. (v${version})`;
+			});
+		},
+	},
+	{
 		name: 'VERSION check',
 		command: ['git', 'describe', '--tags', '--abbrev=0'],
 		after: (result) => {
@@ -77,12 +149,13 @@ const list: { name: string; command: string[]; after: (result: string) => Promis
 
 for (const check of list) {
 	Start(check.name);
-	await Exec(check.command)
-		.then(check.after).then(() => {
-			Complete(`OK ... ${check.name}`);
-		}).catch((error) => {
-			Exit(error.message);
-		});
+	const p = check.command ? Exec(check.command).then(check.after) : check.after('');
+	await p.then((msg) => {
+		Complete(`OK ... ${check.name}${msg ? ': ' + msg : ''}`);
+	}).catch((error) => {
+		Exit(error.message);
+	});
 }
+
 console.log(''.padEnd(80, '-'));
 Complete(`Complete!!`);

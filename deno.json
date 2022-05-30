@@ -2,7 +2,7 @@
 	"tasks": {
 		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
-		"check": "deno run --allow-run tools/release_checker.ts",
+		"check": "deno run --allow-run --allow-net tools/release_checker.ts",
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
 	"lint": {
