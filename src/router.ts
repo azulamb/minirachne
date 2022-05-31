@@ -63,7 +63,7 @@ class NextRouter implements Route {
 
 class BaseRouter {
 	protected parent?: BaseRouter;
-	protected base: string = '';
+	protected base = '';
 	protected routes: Route[] = [];
 
 	public path(pathname: string) {
