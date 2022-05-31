@@ -50,4 +50,3 @@ https://deno.com/deploy
 
 * ロゴ作り直し
 * addにURLPatternを入れたままにするか検討
-* stdチェック
