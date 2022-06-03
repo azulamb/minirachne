@@ -134,6 +134,17 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		},
 	},
 	{
+		name: 'Deno version check',
+		command: ['deno', 'upgrade', '--dry-run'],
+		after: (result) => {
+			const version = result.replace(/^.+Found latest version ([0-9.]+).+$/s, '$1');
+			if (version.match(/[^0-9.]/)) {
+				return Promise.resolve('This deno version is latest');
+			}
+			return Promise.reject(new Error(`Found latest version: ${version}\nExec \`deno upgrade\``));
+		},
+	},
+	{
 		name: 'VERSION check',
 		command: ['git', 'describe', '--tags', '--abbrev=0'],
 		after: (result) => {
