@@ -184,7 +184,9 @@ class BaseRouter {
 	) {
 		let lastError: Error | null = null;
 		for (const route of this.routes) {
-			if (!route.pattern.test(url)) continue;
+			if (!route.pattern.test(url)) {
+				continue;
+			}
 
 			try {
 				const response = await onMatch(route);
