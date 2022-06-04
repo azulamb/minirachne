@@ -12,6 +12,7 @@ function CreateResponse(status: number, redirect: string, responseInit?: Respons
 	return new Response(null, responseInit);
 }
 
+/** Create Redirect Response. */
 export const Redirect = {
 	/** 300 Multiple Choice */
 	MultipleChoices: (redirect: string, responseInit?: ResponseInit) => {

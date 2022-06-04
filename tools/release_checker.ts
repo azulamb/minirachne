@@ -3,7 +3,7 @@ deno run --allow-run --allow-net tools/release_checker.ts
 */
 
 import { VERSION } from '../version.ts';
-import { VERSION as STD_VERSION } from '../src/denostd.ts';
+import { VERSION as STD_VERSION } from '../src/deno_std.ts';
 
 function Exec(command: string[]) {
 	const process = Deno.run({
@@ -99,7 +99,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 	},
 	{
 		name: 'Deno.std check(libs)',
-		command: ['deno', 'info', 'src/denostd.ts'],
+		command: ['deno', 'info', 'src/deno_std.ts'],
 		after: (result) => {
 			return Promise.resolve(ImportFiles(result)).then((files) => {
 				if (files.length <= 0) {

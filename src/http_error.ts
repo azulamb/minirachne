@@ -1,8 +1,15 @@
-import { STATUS_TEXT } from './denostd.ts';
+import { STATUS_TEXT } from './deno_std.ts';
 
+/**
+ * HTTPError
+ * HTTPError has Error response.
+ */
 export class HTTPError extends Error {
 	public responseInit: ResponseInit;
 
+	/**
+	 * @param status HTTP Status code.
+	 */
 	constructor(status: number, responseInit?: ResponseInit) {
 		super(STATUS_TEXT.get(status) || 'UNKNOWN');
 		this.name = 'HTTPError';
@@ -15,6 +22,7 @@ export class HTTPError extends Error {
 }
 
 export const HTTPErrors = {
+	/** Client error. */
 	client: {
 		/** 400	Bad Request */
 		BadRequest: (responseInit?: ResponseInit) => {
@@ -134,6 +142,7 @@ export const HTTPErrors = {
 		},
 	},
 
+	/** Server error. */
 	server: {
 		/** 500 Internal Server Error */
 		InternalServerError: (responseInit?: ResponseInit) => {

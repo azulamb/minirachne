@@ -1,9 +1,9 @@
 import { RequestData } from '../types.d.ts';
-import { serve, serveTls } from './denostd.ts';
+import { serve, serveTls } from './deno_std.ts';
 import { Router } from './router.ts';
-import { HTTPError, HTTPErrors } from './httperror.ts';
+import { HTTPError, HTTPErrors } from './http_error.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
-import { onRequest } from './onrequest.ts';
+import { onRequest } from './on_request.ts';
 
 export class Server {
 	protected url: URL = new URL('http://localhost:8080/');

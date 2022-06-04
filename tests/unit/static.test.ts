@@ -1,6 +1,6 @@
 import * as asserts from '../_setup.ts';
 import { StaticRoute } from '../../src/static.ts';
-import { HTTPError } from '../../src/httperror.ts';
+import { HTTPError } from '../../src/http_error.ts';
 import { createAbsolutePath } from '../../mod.ts';
 
 const testDir = createAbsolutePath(import.meta, '../tmp');

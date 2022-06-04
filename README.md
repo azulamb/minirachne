@@ -48,5 +48,7 @@ https://deno.com/deploy
 
 ### 1.0にむけて
 
-* ロゴ作り直し
 * addにURLPatternを入れたままにするか検討
+* deno doc用のコメント
+  * https://doc.deno.land/
+  * https://doc.deno.land/https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts

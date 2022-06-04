@@ -1,6 +1,6 @@
 import * as asserts from '../_setup.ts';
-import { HTTPError, HTTPErrors } from '../../src/httperror.ts';
-import { STATUS_TEXT } from '../../src/denostd.ts';
+import { HTTPError, HTTPErrors } from '../../src/http_error.ts';
+import { STATUS_TEXT } from '../../src/deno_std.ts';
 
 Deno.test('HTTPErrors client(4xx)', async () => {
 	const Errors: { name: string; code: number }[] = [];

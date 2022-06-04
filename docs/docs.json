@@ -1,0 +1,3182 @@
+[
+  {
+    "kind": "variable",
+    "name": "Redirect",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/redirect.ts",
+      "line": 15,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "class",
+    "name": "StaticRoute",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+      "line": 10,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [
+        {
+          "accessibility": null,
+          "name": "constructor",
+          "params": [
+            {
+              "kind": "identifier",
+              "name": "docs",
+              "optional": false,
+              "tsType": {
+                "repr": "string",
+                "kind": "keyword",
+                "keyword": "string"
+              }
+            },
+            {
+              "kind": "identifier",
+              "name": "option",
+              "optional": true,
+              "tsType": {
+                "repr": "",
+                "kind": "typeLiteral",
+                "typeLiteral": {
+                  "methods": [],
+                  "properties": [
+                    {
+                      "name": "order",
+                      "params": [],
+                      "computed": false,
+                      "optional": true,
+                      "tsType": {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "keyword": "number"
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "pattern",
+                      "params": [],
+                      "computed": false,
+                      "optional": true,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "union",
+                        "union": [
+                          {
+                            "repr": "string",
+                            "kind": "keyword",
+                            "keyword": "string"
+                          },
+                          {
+                            "repr": "URLPattern",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "URLPattern"
+                            }
+                          }
+                        ]
+                      },
+                      "typeParams": []
+                    }
+                  ],
+                  "callSignatures": [],
+                  "indexSignatures": []
+                }
+              }
+            }
+          ],
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 20,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "DEFAULT_CHUNK_SIZE",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 11,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "order",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 12,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "URLPattern",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "URLPattern"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "pattern",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 13,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "string",
+            "kind": "keyword",
+            "keyword": "string"
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "docs",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 14,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "Headers",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "Headers"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "headers",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 15,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "NotfoundCallback",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "NotfoundCallback"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "notfound",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 16,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "",
+            "kind": "array",
+            "array": {
+              "repr": "string",
+              "kind": "keyword",
+              "keyword": "string"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "directoryIndex",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 17,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "MIMETypes",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "MIMETypes"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "mime",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 18,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setBaseHeader",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "headers",
+                "optional": false,
+                "tsType": {
+                  "repr": "Headers",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Headers"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 41,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "getBaseHeader",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 45,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "tags": [
+              {
+                "kind": "param",
+                "name": "response",
+                "doc": "Callback. Set default if none."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setNotfound",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "callback",
+                "optional": true,
+                "tsType": {
+                  "repr": "NotfoundCallback",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "NotfoundCallback"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 52,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "responseNotfound",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 65,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setDirectoryIndex",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "rest",
+                "arg": {
+                  "kind": "identifier",
+                  "name": "directoryIndex",
+                  "optional": false,
+                  "tsType": null
+                },
+                "tsType": {
+                  "repr": "",
+                  "kind": "array",
+                  "array": {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 69,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setMIMETypes",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "mime",
+                "optional": false,
+                "tsType": {
+                  "repr": "MIMETYPES",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "MIMETYPES"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 75,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "responseDirectory",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "basePath",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 80,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "createReadableStream",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "filePath",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "range",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "typeLiteral",
+                  "typeLiteral": {
+                    "methods": [],
+                    "properties": [
+                      {
+                        "name": "start",
+                        "params": [],
+                        "computed": false,
+                        "optional": false,
+                        "tsType": {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        },
+                        "typeParams": []
+                      },
+                      {
+                        "name": "end",
+                        "params": [],
+                        "computed": false,
+                        "optional": false,
+                        "tsType": {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        },
+                        "typeParams": []
+                      }
+                    ],
+                    "callSignatures": [],
+                    "indexSignatures": []
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 98,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "parseRange",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "headers",
+                "optional": false,
+                "tsType": {
+                  "repr": "Headers",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Headers"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "stat",
+                "optional": false,
+                "tsType": {
+                  "repr": "Deno.FileInfo",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Deno.FileInfo"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 127,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "responseFile",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "head",
+                "optional": false,
+                "tsType": {
+                  "repr": "boolean",
+                  "kind": "keyword",
+                  "keyword": "boolean"
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "filePath",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "headers",
+                "optional": false,
+                "tsType": {
+                  "repr": "Headers",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Headers"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "stat",
+                "optional": true,
+                "tsType": {
+                  "repr": "Deno.FileInfo",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Deno.FileInfo"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 140,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "createHeader",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "filePath",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "stat",
+                "optional": false,
+                "tsType": {
+                  "repr": "Deno.FileInfo",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Deno.FileInfo"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "range",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "",
+                      "kind": "typeLiteral",
+                      "typeLiteral": {
+                        "methods": [],
+                        "properties": [
+                          {
+                            "name": "start",
+                            "params": [],
+                            "computed": false,
+                            "optional": false,
+                            "tsType": {
+                              "repr": "number",
+                              "kind": "keyword",
+                              "keyword": "number"
+                            },
+                            "typeParams": []
+                          },
+                          {
+                            "name": "end",
+                            "params": [],
+                            "computed": false,
+                            "optional": false,
+                            "tsType": {
+                              "repr": "number",
+                              "kind": "keyword",
+                              "keyword": "number"
+                            },
+                            "typeParams": []
+                          }
+                        ],
+                        "callSignatures": [],
+                        "indexSignatures": []
+                      }
+                    },
+                    {
+                      "repr": "null",
+                      "kind": "keyword",
+                      "keyword": "null"
+                    }
+                  ]
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 178,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "createPath",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "request",
+                "optional": false,
+                "tsType": {
+                  "repr": "Request",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Request"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 195,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onRequest",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
+            "line": 202,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [
+        {
+          "repr": "Route",
+          "kind": "typeRef",
+          "typeRef": {
+            "typeParams": null,
+            "typeName": "Route"
+          }
+        }
+      ],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "class",
+    "name": "WebSocketListener",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [],
+      "properties": [],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onOpen",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "Event",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Event"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 3,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onMessage",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "MessageEvent",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "MessageEvent"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 5,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onClose",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "CloseEvent",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "CloseEvent"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 7,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onError",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "Event",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "Event"
+                      }
+                    },
+                    {
+                      "repr": "ErrorEvent",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "ErrorEvent"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 9,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "Cookie",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "line": 5,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "class",
+    "name": "Server",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+      "line": 8,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [
+        {
+          "accessibility": null,
+          "name": "constructor",
+          "params": [],
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 17,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "URL",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "URL"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "url",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 9,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "",
+            "kind": "typeLiteral",
+            "typeLiteral": {
+              "methods": [],
+              "properties": [
+                {
+                  "name": "keyFile",
+                  "params": [],
+                  "computed": false,
+                  "optional": false,
+                  "tsType": {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  },
+                  "typeParams": []
+                },
+                {
+                  "name": "certFile",
+                  "params": [],
+                  "computed": false,
+                  "optional": false,
+                  "tsType": {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  },
+                  "typeParams": []
+                }
+              ],
+              "callSignatures": [],
+              "indexSignatures": []
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "files",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 10,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "AbortController",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "AbortController"
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "controller",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 14,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "Router",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "Router"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "router",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 15,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "getURL",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 22,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setURL",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "url",
+                "optional": false,
+                "tsType": {
+                  "repr": "URL",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "URL"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 26,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setCertFile",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "keyFile",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "certFile",
+                "optional": false,
+                "tsType": {
+                  "repr": "string",
+                  "kind": "keyword",
+                  "keyword": "string"
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 32,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "stop",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 38,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "run",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 42,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onRequest",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 61,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "upgradeWebSocket",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "webSocketEvent",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocketListener",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocketListener"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "options",
+                "optional": true,
+                "tsType": {
+                  "repr": "Deno.UpgradeWebSocketOptions",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Deno.UpgradeWebSocketOptions"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 73,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "typeAlias",
+    "name": "RequestData",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 3,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [],
+          "properties": [
+            {
+              "name": "request",
+              "params": [],
+              "readonly": true,
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "Request",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "Request"
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "connection",
+              "params": [],
+              "readonly": true,
+              "computed": false,
+              "optional": true,
+              "tsType": {
+                "repr": "ConnInfo",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "ConnInfo"
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "detail",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "typeLiteral",
+                "typeLiteral": {
+                  "methods": [],
+                  "properties": [],
+                  "callSignatures": [],
+                  "indexSignatures": [
+                    {
+                      "readonly": false,
+                      "params": [
+                        {
+                          "kind": "identifier",
+                          "name": "keys",
+                          "optional": false,
+                          "tsType": {
+                            "repr": "string",
+                            "kind": "keyword",
+                            "keyword": "string"
+                          }
+                        }
+                      ],
+                      "tsType": {
+                        "repr": "any",
+                        "kind": "keyword",
+                        "keyword": "any"
+                      }
+                    }
+                  ]
+                }
+              },
+              "typeParams": []
+            }
+          ],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "interface",
+    "name": "OnRequestHandler",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 10,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "interfaceDef": {
+      "extends": [],
+      "methods": [],
+      "properties": [],
+      "callSignatures": [
+        {
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 11,
+            "col": 4
+          },
+          "params": [
+            {
+              "kind": "identifier",
+              "name": "this",
+              "optional": false,
+              "tsType": {
+                "repr": "Route",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "Route"
+                }
+              }
+            },
+            {
+              "kind": "identifier",
+              "name": "data",
+              "optional": false,
+              "tsType": {
+                "repr": "RequestData",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "RequestData"
+                }
+              }
+            }
+          ],
+          "tsType": {
+            "repr": "Promise",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": [
+                {
+                  "repr": "Response",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Response"
+                  }
+                }
+              ],
+              "typeName": "Promise"
+            }
+          },
+          "typeParams": []
+        }
+      ],
+      "indexSignatures": [],
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "interface",
+    "name": "RouteLike",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 14,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "interfaceDef": {
+      "extends": [],
+      "methods": [
+        {
+          "name": "onRequest",
+          "kind": "method",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 41,
+            "col": 4
+          },
+          "jsDoc": {
+            "doc": "Return server Response.\n\nExec next route when return Promise.reject or throw Error.\nThis object is Route when called this method.\nYou can use order and pattern.\n",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "data",
+                "doc": "Request data etc ..."
+              }
+            ]
+          },
+          "optional": false,
+          "params": [
+            {
+              "kind": "identifier",
+              "name": "this",
+              "optional": false,
+              "tsType": {
+                "repr": "Route",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "Route"
+                }
+              }
+            },
+            {
+              "kind": "identifier",
+              "name": "data",
+              "optional": false,
+              "tsType": {
+                "repr": "RequestData",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "RequestData"
+                }
+              }
+            }
+          ],
+          "returnType": {
+            "repr": "Promise",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": [
+                {
+                  "repr": "Response",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Response"
+                  }
+                }
+              ],
+              "typeName": "Promise"
+            }
+          },
+          "typeParams": []
+        }
+      ],
+      "properties": [
+        {
+          "name": "order",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 20,
+            "col": 4
+          },
+          "params": [],
+          "computed": false,
+          "optional": true,
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "typeParams": []
+        },
+        {
+          "name": "pattern",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 25,
+            "col": 4
+          },
+          "jsDoc": {
+            "doc": "Match URL pattern."
+          },
+          "params": [],
+          "computed": false,
+          "optional": true,
+          "tsType": {
+            "repr": "URLPattern",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "URLPattern"
+            }
+          },
+          "typeParams": []
+        },
+        {
+          "name": "middlewares",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 30,
+            "col": 4
+          },
+          "jsDoc": {
+            "doc": "Exec before onRequext."
+          },
+          "params": [],
+          "computed": false,
+          "optional": true,
+          "tsType": {
+            "repr": "Middlewares",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "Middlewares"
+            }
+          },
+          "typeParams": []
+        }
+      ],
+      "callSignatures": [],
+      "indexSignatures": [],
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "interface",
+    "name": "Route",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 44,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "interfaceDef": {
+      "extends": [
+        {
+          "repr": "RouteLike",
+          "kind": "typeRef",
+          "typeRef": {
+            "typeParams": null,
+            "typeName": "RouteLike"
+          }
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "order",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 50,
+            "col": 4
+          },
+          "params": [],
+          "computed": false,
+          "optional": false,
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "typeParams": []
+        },
+        {
+          "name": "pattern",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+            "line": 55,
+            "col": 4
+          },
+          "jsDoc": {
+            "doc": "Match URL pattern."
+          },
+          "params": [],
+          "computed": false,
+          "optional": false,
+          "tsType": {
+            "repr": "URLPattern",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "URLPattern"
+            }
+          },
+          "typeParams": []
+        }
+      ],
+      "callSignatures": [],
+      "indexSignatures": [],
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "typeAlias",
+    "name": "Middleware",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 58,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [
+            {
+              "name": "handle",
+              "kind": "method",
+              "params": [
+                {
+                  "kind": "identifier",
+                  "name": "data",
+                  "optional": false,
+                  "tsType": {
+                    "repr": "RequestData",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "RequestData"
+                    }
+                  }
+                }
+              ],
+              "optional": false,
+              "returnType": {
+                "repr": "Promise",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": [
+                    {
+                      "repr": "unknown",
+                      "kind": "keyword",
+                      "keyword": "unknown"
+                    }
+                  ],
+                  "typeName": "Promise"
+                }
+              },
+              "typeParams": []
+            }
+          ],
+          "properties": [],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "typeAlias",
+    "name": "Middlewares",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 71,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [
+            {
+              "name": "add",
+              "kind": "method",
+              "params": [
+                {
+                  "kind": "rest",
+                  "arg": {
+                    "kind": "identifier",
+                    "name": "middlewares",
+                    "optional": false,
+                    "tsType": null
+                  },
+                  "tsType": {
+                    "repr": "",
+                    "kind": "array",
+                    "array": {
+                      "repr": "Middleware",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "Middleware"
+                      }
+                    }
+                  }
+                }
+              ],
+              "optional": false,
+              "returnType": {
+                "repr": "Middlewares",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "Middlewares"
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "exec",
+              "kind": "method",
+              "params": [
+                {
+                  "kind": "identifier",
+                  "name": "data",
+                  "optional": false,
+                  "tsType": {
+                    "repr": "RequestData",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "RequestData"
+                    }
+                  }
+                }
+              ],
+              "optional": false,
+              "returnType": {
+                "repr": "Promise",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": [
+                    {
+                      "repr": "unknown",
+                      "kind": "keyword",
+                      "keyword": "unknown"
+                    }
+                  ],
+                  "typeName": "Promise"
+                }
+              },
+              "typeParams": []
+            }
+          ],
+          "properties": [],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "import",
+    "name": "ConnInfo",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "ConnInfo"
+    }
+  },
+  {
+    "kind": "class",
+    "name": "HTTPError",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+      "line": 3,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [
+        {
+          "accessibility": null,
+          "name": "constructor",
+          "params": [
+            {
+              "kind": "identifier",
+              "name": "status",
+              "optional": false,
+              "tsType": {
+                "repr": "number",
+                "kind": "keyword",
+                "keyword": "number"
+              }
+            },
+            {
+              "kind": "identifier",
+              "name": "responseInit",
+              "optional": true,
+              "tsType": {
+                "repr": "ResponseInit",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "ResponseInit"
+                }
+              }
+            }
+          ],
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+            "line": 6,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "ResponseInit",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "ResponseInit"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "responseInit",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+            "line": 4,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "createResponse",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+            "line": 12,
+            "col": 4
+          }
+        }
+      ],
+      "extends": "Error",
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "HTTPErrors",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+      "line": 17,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "STATUS_TEXT",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/httperror.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "STATUS_TEXT"
+    }
+  },
+  {
+    "kind": "class",
+    "name": "Router",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+      "line": 202,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [],
+      "properties": [],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = GET",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "get",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 209,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = HEAD",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "head",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 219,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = POST",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "post",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 229,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = PUT",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "put",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 239,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = DELETE",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "delete",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 249,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = OPTIONS",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "options",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 263,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Only Request.method or X-HTTP-Method-Override = PATCH",
+            "tags": [
+              {
+                "kind": "param",
+                "name": "path",
+                "doc": "String path ('/test', '/img/*' etc ...) or URLPattern."
+              },
+              {
+                "kind": "param",
+                "name": "handler",
+                "doc": "Call when route accessed."
+              },
+              {
+                "kind": "param",
+                "name": "middlewares",
+                "doc": "Set middlewares in route if exists."
+              }
+            ]
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "patch",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "path",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "kind": "keyword",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "URLPattern",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "URLPattern"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "handler",
+                "optional": false,
+                "tsType": {
+                  "repr": "OnRequestHandler",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "OnRequestHandler"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "middlewares",
+                "optional": true,
+                "tsType": {
+                  "repr": "Middlewares",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Middlewares"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
+            "line": 277,
+            "col": 4
+          }
+        }
+      ],
+      "extends": "BaseRouter",
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "class",
+    "name": "Middlewares",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+      "line": 3,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "",
+            "kind": "array",
+            "array": {
+              "repr": "Middleware",
+              "kind": "typeRef",
+              "typeRef": {
+                "typeParams": null,
+                "typeName": "Middleware"
+              }
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "middlewares",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 8,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": true,
+          "name": "create",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "rest",
+                "arg": {
+                  "kind": "identifier",
+                  "name": "middlewares",
+                  "optional": false,
+                  "tsType": null
+                },
+                "tsType": {
+                  "repr": "",
+                  "kind": "array",
+                  "array": {
+                    "repr": "Middleware",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Middleware"
+                    }
+                  }
+                }
+              }
+            ],
+            "returnType": {
+              "repr": "Middlewares",
+              "kind": "typeRef",
+              "typeRef": {
+                "typeParams": null,
+                "typeName": "Middlewares"
+              }
+            },
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 4,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "add",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "rest",
+                "arg": {
+                  "kind": "identifier",
+                  "name": "middlewares",
+                  "optional": false,
+                  "tsType": null
+                },
+                "tsType": {
+                  "repr": "",
+                  "kind": "array",
+                  "array": {
+                    "repr": "Middleware",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Middleware"
+                    }
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 10,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "exec",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 15,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [
+        {
+          "repr": "m",
+          "kind": "typeRef",
+          "typeRef": {
+            "typeParams": null,
+            "typeName": "m"
+          }
+        }
+      ],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "NAME",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 2,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "jsDoc": {
+      "doc": "Framework name."
+    },
+    "variableDef": {
+      "tsType": {
+        "repr": "Minirachne",
+        "kind": "literal",
+        "literal": {
+          "kind": "string",
+          "string": "Minirachne"
+        }
+      },
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "VERSION",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 7,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "jsDoc": {
+      "doc": "Framework version."
+    },
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "STD_VERSION",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 14,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "jsDoc": {
+      "doc": "Use Deno std version."
+    },
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "function",
+    "name": "createAbsolutePath",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 24,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "functionDef": {
+      "params": [
+        {
+          "kind": "identifier",
+          "name": "meta",
+          "optional": false,
+          "tsType": {
+            "repr": "ImportMeta",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "ImportMeta"
+            }
+          }
+        },
+        {
+          "kind": "assign",
+          "left": {
+            "kind": "identifier",
+            "name": "path",
+            "optional": false,
+            "tsType": null
+          },
+          "right": "[UNSUPPORTED]",
+          "tsType": null
+        }
+      ],
+      "returnType": null,
+      "isAsync": false,
+      "isGenerator": false,
+      "typeParams": []
+    }
+  },
+  {
+    "kind": "import",
+    "name": "MINIRACHNE_VERSION",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 4,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/version.ts",
+      "imported": "VERSION"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "dirname",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 11,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "dirname"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "fromFileUrl",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 11,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "fromFileUrl"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "join",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 11,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "join"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "DENO_STD_VERSION",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
+      "line": 11,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/denostd.ts",
+      "imported": "VERSION"
+    }
+  }
+]
