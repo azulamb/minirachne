@@ -1,6 +1,6 @@
 import * as asserts from '../_setup.ts';
 import { Redirect } from '../../src/redirect.ts';
-import { STATUS_TEXT } from '../../src/denostd.ts';
+import { STATUS_TEXT } from '../../src/deno_std.ts';
 
 Deno.test('Redirect', async () => {
 	const Redirects: { name: string; code: number }[] = [];

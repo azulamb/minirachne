@@ -1,35 +1,47 @@
 /** Framework name. */
 export const NAME = 'Minirachne';
 
-export * from './version.ts';
+import { VERSION as MINIRACHNE_VERSION } from './version.ts';
+
+/** Framework version. */
+export const VERSION = MINIRACHNE_VERSION;
 
 export * from './types.d.ts';
 
-import { dirname, fromFileUrl, join, VERSION } from './src/denostd.ts';
-/** Use Deno std version. */
-export const STD_VERSION = VERSION;
+import { dirname, fromFileUrl, join, VERSION as DENO_STD_VERSION } from './src/deno_std.ts';
 
+/** Use Deno std version. */
+export const STD_VERSION = DENO_STD_VERSION;
+
+/** HTTP Server. */
 export { Server } from './src/server.ts';
 
+/** Minirachne Middleware manager. */
 export { Middlewares } from './src/middleware.ts';
 
-export { Cookie } from './src/denostd.ts';
+export { Cookie } from './src/deno_std.ts';
 
+/**
+ * Create absolute path.
+ * Minirachne.createAbsolutePath(import.meta, './docs'); // C:\DIR\minirachne\docs
+ * @param path Relative path
+ * @returns Absolute path
+ */
 export function createAbsolutePath(meta: ImportMeta, path = '') {
 	return join(dirname(fromFileUrl(meta.url)), path);
 }
 
-// HTTP Redirect.
+/** HTTP Redirect. */
 export * from './src/redirect.ts';
 
-// HTTP Error.
-export * from './src/httperror.ts';
+/** HTTP Error. */
+export * from './src/http_error.ts';
 
-// Static routes.
+/** Static routes. */
 export { Router } from './src/router.ts';
 
-// Static routes.
+/** Static routes. */
 export { StaticRoute } from './src/static.ts';
 
-// WebSocket listener.
+/** WebSocket listener. */
 export { WebSocketListener } from './src/ws.ts';

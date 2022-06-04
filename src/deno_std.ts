@@ -1,3 +1,4 @@
+/** Use Deno.std version. */
 export const VERSION = '0.142.0';
 export * from 'https://deno.land/std@0.142.0/http/server.ts';
 export { dirname, extname, fromFileUrl, join } from 'https://deno.land/std@0.142.0/path/mod.ts';

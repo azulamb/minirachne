@@ -1,4 +1,4 @@
-import { extname } from './denostd.ts';
+import { extname } from './deno_std.ts';
 
 export interface MIMETYPES {
 	[keys: string]: string;
@@ -73,6 +73,7 @@ const DEFAULT: MIMETYPES = {
 	'7z': 'application/x-7z-compressed',
 };
 
+/** MIMEType manager. */
 export class MIMETypes {
 	protected mime: MIMETYPES = {};
 
@@ -80,6 +81,9 @@ export class MIMETypes {
 		this.set(mime || DEFAULT);
 	}
 
+	/**
+	 * Add MIMEType
+	 */
 	public set(mime: MIMETYPES): this;
 	public set(ext: string, value: string): this;
 	set(mime: MIMETYPES | string, value?: string) {

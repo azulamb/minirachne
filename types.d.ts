@@ -1,8 +1,11 @@
-import { ConnInfo } from './src/denostd.ts';
+import { ConnInfo } from './src/deno_std.ts';
 
+/** Request data. */
 export type RequestData = {
+	/** Request */
 	readonly request: Request;
 	readonly connection?: ConnInfo;
+	/** Data added by middleware. */
 	// deno-lint-ignore no-explicit-any
 	detail: { [keys: string]: any };
 };
@@ -57,7 +60,7 @@ export interface Route extends RouteLike {
 
 export type Middleware = {
 	/**
-	 * Exec before onRequext.
+	 * Exec before onRequest.
 	 *
 	 * `data` is used in later middleware and onRequest.
 	 * You can add any data to `data`.

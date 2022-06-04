@@ -1,12 +1,13 @@
-import { join } from './denostd.ts';
+import { join } from './deno_std.ts';
 import { RequestData, Route } from '../types.d.ts';
 import { MIMETYPES, MIMETypes } from './mime.ts';
-import { HTTPError, HTTPErrors } from './httperror.ts';
+import { HTTPError, HTTPErrors } from './http_error.ts';
 
 interface NotfoundCallback {
 	(data: RequestData): Promise<Response>;
 }
 
+/** Create Static file server route. */
 export class StaticRoute implements Route {
 	public DEFAULT_CHUNK_SIZE = 16640;
 	public order!: number;
@@ -47,7 +48,7 @@ export class StaticRoute implements Route {
 	}
 
 	/**
-	 * @param response Callback. Set default if none.
+	 * @param callback Callback. Set default if none.
 	 */
 	public setNotfound(callback?: NotfoundCallback) {
 		if (!callback) {

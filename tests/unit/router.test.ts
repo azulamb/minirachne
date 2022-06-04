@@ -1,7 +1,7 @@
 import * as asserts from '../_setup.ts';
 import { Router } from '../../src/router.ts';
 import { RequestData, Route } from '../../types.d.ts';
-import { HTTPError } from '../../src/httperror.ts';
+import { HTTPError } from '../../src/http_error.ts';
 
 class SampleRoute implements Route {
 	order!: number;
