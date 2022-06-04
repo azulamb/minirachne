@@ -59,6 +59,21 @@ function ImportLocalFiles(result: string) {
 	});
 }
 
+function VersionCheck(nowTag: string, noeVer: string) {
+	const v1 = nowTag.split('.').map((v) => {
+		return parseInt(v);
+	});
+	const v2 = noeVer.split('.').map((v) => {
+		return parseInt(v);
+	});
+	for (let i = 0; i < 3; ++i) {
+		if (v1[i] < v2[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
 const list: { name: string; command?: string[]; after: (result: string) => Promise<string | void> }[] = [
 	{
 		name: 'Sample import check (server)',
@@ -149,8 +164,8 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		command: ['git', 'describe', '--tags', '--abbrev=0'],
 		after: (result) => {
 			return Promise.resolve(result.replace(/\s/g, '')).then((tag) => {
-				console.log(`Now tag: ${tag}`);
-				if (tag === `v${VERSION}`) {
+				console.log(`Now tag: ${tag} Now ver: ${VERSION}`);
+				if (!VersionCheck(tag, VERSION)) {
 					throw new Error('VERSION not updated.');
 				}
 			});
