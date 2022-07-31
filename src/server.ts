@@ -4,6 +4,7 @@ import { Router } from './router.ts';
 import { HTTPError, HTTPErrors } from './http_error.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
 import { onRequest } from './on_request.ts';
+import { ServerResponse } from './response.ts';
 
 export class Server {
 	protected url: URL = new URL('http://localhost:8080/');
@@ -13,10 +14,12 @@ export class Server {
 	};
 	protected controller!: AbortController;
 	public router!: Router;
+	public response!: ServerResponse;
 
 	constructor() {
 		this.controller = new AbortController();
 		this.router = new Router();
+		this.response = new ServerResponse();
 	}
 
 	public getURL() {

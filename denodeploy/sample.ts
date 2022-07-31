@@ -21,8 +21,8 @@ server.router.add('/*', (data) => {
 		std: Minirachne.STD_VERSION,
 	});
 	const headers = new Headers();
-	headers.set('Content-Type', 'application/json');
-	headers.set('Content-Length', encodeURI(body).replace(/%../g, '*').length + '');
+	headers.set('content-type', 'application/json');
+	headers.set('content-length', encodeURI(body).replace(/%../g, '*').length + '');
 	const response = new Response(body, { headers: headers });
 	return Promise.resolve(response);
 });

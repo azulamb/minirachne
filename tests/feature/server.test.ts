@@ -28,10 +28,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 				break;
 			}
 			case 'user': {
-				headers.set('Content-Type', 'application/json');
-				return new Response(JSON.stringify(data.detail.user), {
-					headers: headers,
-				});
+				return Minirachne.Response.JSON(data.detail.user);
 			}
 		}
 
