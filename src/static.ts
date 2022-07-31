@@ -181,13 +181,13 @@ export class StaticRoute implements Route {
 
 		const mime = this.mime.getFromPath(filePath);
 		if (mime) {
-			headers.set('Content-Type', mime);
+			headers.set('content-type', mime);
 		}
 
 		if (range) {
-			headers.set('Content-Range', `bytes ${range.start}-${range.end}/${stat.size}`);
+			headers.set('content-range', `bytes ${range.start}-${range.end}/${stat.size}`);
 		} else {
-			headers.set('Content-Length', stat.size + '');
+			headers.set('content-length', stat.size + '');
 		}
 
 		return headers;

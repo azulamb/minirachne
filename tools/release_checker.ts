@@ -103,7 +103,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		after: (result) => {
 			return Promise.resolve(ImportFiles(result)).then((files) => {
 				if (files.length <= 0) {
-					throw new Error('std version error.');
+					throw new Error('libs std version error.');
 				}
 				for (const file of files) {
 					if (!file.match(/^https:/)) {
@@ -111,7 +111,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 					}
 					const version = file.replace(/^.+@([0-9.]+).+$/, '$1');
 					if (version !== STD_VERSION) {
-						throw new Error('std version error.');
+						throw new Error('libs std version error.');
 					}
 				}
 			});
@@ -123,7 +123,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		after: (result) => {
 			return Promise.resolve(ImportFiles(result)).then((files) => {
 				if (files.length <= 0) {
-					throw new Error('std version error.');
+					throw new Error('test std version error.');
 				}
 				for (const file of files) {
 					if (!file.match(/^https:/)) {
@@ -131,7 +131,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 					}
 					const version = file.replace(/^.+@([0-9.]+).+$/, '$1');
 					if (version !== STD_VERSION) {
-						throw new Error('std version error.');
+						throw new Error('test std version error.');
 					}
 				}
 			});

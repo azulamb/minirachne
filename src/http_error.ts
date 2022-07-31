@@ -1,23 +1,32 @@
-import { STATUS_TEXT } from './deno_std.ts';
+import { STATUS_TEXT, Status } from './deno_std.ts';
 
 /**
- * HTTPError
  * HTTPError has Error response.
  */
 export class HTTPError extends Error {
 	public responseInit: ResponseInit;
+	protected propagation = true;
 
 	/**
 	 * @param status HTTP Status code.
 	 */
 	constructor(status: number, responseInit?: ResponseInit) {
-		super(STATUS_TEXT.get(status) || 'UNKNOWN');
+		super(STATUS_TEXT[<Status>status] || 'UNKNOWN');
 		this.name = 'HTTPError';
 		this.responseInit = createResponseInit(status, responseInit);
 	}
 
 	public createResponse() {
 		return Promise.resolve(new Response(this.message, this.responseInit));
+	}
+
+	public setPropagation(propagation: boolean) {
+		this.propagation = propagation;
+		return this;
+	}
+
+	public getPropagation() {
+		return this.propagation;
 	}
 }
 
@@ -48,12 +57,16 @@ export const HTTPErrors = {
 		MethodNotAllowed: (responseInit?: ResponseInit) => {
 			return new HTTPError(405, responseInit);
 		},
-		/** 406 Method Not Allowed */
+		/** 406 Not Acceptable */
 		NotAcceptable: (responseInit?: ResponseInit) => {
 			return new HTTPError(406, responseInit);
 		},
-		/** 407 Method Not Allowed */
+		/** 407 Proxy Auth Required */
 		ProxyAuthenticationRequired: (responseInit?: ResponseInit) => {
+			return new HTTPError(407, responseInit);
+		},
+		/** 407 Proxy Auth Required */
+		ProxyAuthRequired: (responseInit?: ResponseInit) => {
 			return new HTTPError(407, responseInit);
 		},
 		/** 408	Request Time-out */
@@ -194,7 +207,7 @@ export const HTTPErrors = {
 function createResponseInit(status: number, responseInit?: ResponseInit): ResponseInit {
 	responseInit = responseInit ? responseInit : {};
 	responseInit.status = status;
-	responseInit.statusText = STATUS_TEXT.get(responseInit.status);
+	responseInit.statusText = STATUS_TEXT[<Status>responseInit.status];
 
 	return responseInit;
 }

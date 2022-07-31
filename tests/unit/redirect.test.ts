@@ -1,17 +1,20 @@
 import * as asserts from '../_setup.ts';
 import { Redirect } from '../../src/redirect.ts';
-import { STATUS_TEXT } from '../../src/deno_std.ts';
+import { STATUS_TEXT, Status } from '../../src/deno_std.ts';
 
 Deno.test('Redirect', async () => {
-	const Redirects: { name: string; code: number }[] = [];
-	const exclude = [305];
-	STATUS_TEXT.forEach((v, k) => {
-		if (k < 300 || 400 <= k || exclude.includes(k)) return;
+	const Redirects: { name: string; code: Status }[] = [];
+	for(const key in STATUS_TEXT) {
+		const code: Status = typeof key === 'number' ? key : parseInt(key);
+		if (code < 300 || 400 <= code) {
+			continue;
+		}
+		const value = STATUS_TEXT[code];
 		Redirects.push({
-			name: v.replace(/\s/g, ''),
-			code: k,
+			name: value.replace(/\s/g, ''),
+			code: code,
 		});
-	});
+	}
 
 	const redirects: { [keys: string]: (redirect: string, responseInit?: ResponseInit) => Response } = Redirect;
 	for (const redirect of Redirects) {
