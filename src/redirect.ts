@@ -34,6 +34,10 @@ export const Redirect = {
 	NotModified: (redirect: string, responseInit?: ResponseInit) => {
 		return CreateResponse(304, redirect, responseInit);
 	},
+	/** 305 Use Proxy */
+	UseProxy: (redirect: string, responseInit?: ResponseInit) => {
+		return CreateResponse(305, redirect, responseInit);
+	},
 	/** 307 Temporary Redirect */
 	TemporaryRedirect: (redirect: string, responseInit?: ResponseInit) => {
 		return CreateResponse(307, redirect, responseInit);

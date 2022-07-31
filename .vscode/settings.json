@@ -4,6 +4,8 @@
 		"https://deno.land": false
 	},
 	"cSpell.words": [
+		"Deno",
+		"denodeploy",
 		"Middlewares",
 		"MIMETYPES",
 		"Minirachne"

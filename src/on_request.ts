@@ -1,5 +1,6 @@
 import { RequestData } from '../types.d.ts';
 import { Router } from './router.ts';
+import { HTTPError } from './http_error.ts';
 
 export function onRequest(data: RequestData, router: Router) {
 	const url = data.request.url;
@@ -11,5 +12,10 @@ export function onRequest(data: RequestData, router: Router) {
 		return route.middlewares.exec(data).then(() => {
 			return route.onRequest(data);
 		});
+	}).catch((error) => {
+		if (error instanceof HTTPError && !error.getPropagation()) {
+			return error.createResponse();
+		}
+		throw error;
 	});
 }
