@@ -161,9 +161,22 @@ class BaseRouter {
 
 		for (const route of router.routes) {
 			route.pattern = this.newPattern(route.pattern);
+			if (route instanceof NextRouter) {
+				route.router.updatePattern(this);
+			}
 		}
 
 		this.add(new NextRouter(base, router, middlewares));
+	}
+
+	protected updatePattern(parent: BaseRouter) {
+		for (const route of this.routes) {
+			route.pattern = new URLPattern(Object.assign(
+				{},
+				route.pattern,
+				{ pathname: parent.getBase() + route.pattern.pathname },
+			));
+		}
 	}
 
 	public remove(route: Route) {

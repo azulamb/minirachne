@@ -1,4 +1,4 @@
-import { STATUS_TEXT, Status } from './deno_std.ts';
+import { Status, STATUS_TEXT } from './deno_std.ts';
 
 /**
  * HTTPError has Error response.
@@ -11,7 +11,7 @@ export class HTTPError extends Error {
 	 * @param status HTTP Status code.
 	 */
 	constructor(status: number, responseInit?: ResponseInit) {
-		super(STATUS_TEXT[<Status>status] || 'UNKNOWN');
+		super(STATUS_TEXT[<Status> status] || 'UNKNOWN');
 		this.name = 'HTTPError';
 		this.responseInit = createResponseInit(status, responseInit);
 	}
@@ -207,7 +207,7 @@ export const HTTPErrors = {
 function createResponseInit(status: number, responseInit?: ResponseInit): ResponseInit {
 	responseInit = responseInit ? responseInit : {};
 	responseInit.status = status;
-	responseInit.statusText = STATUS_TEXT[<Status>responseInit.status];
+	responseInit.statusText = STATUS_TEXT[<Status> responseInit.status];
 
 	return responseInit;
 }

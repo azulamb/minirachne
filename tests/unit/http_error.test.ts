@@ -1,13 +1,13 @@
 import * as asserts from '../_setup.ts';
 import { HTTPError, HTTPErrors } from '../../src/http_error.ts';
-import { STATUS_TEXT, Status } from '../../src/deno_std.ts';
+import { Status, STATUS_TEXT } from '../../src/deno_std.ts';
 
 Deno.test('HTTPErrors client(4xx)', async () => {
 	const Errors: { name: string; code: Status }[] = [];
 	const convert: { [keys: number]: string } = {
 		418: 'Teapot',
 	};
-	for(const key in STATUS_TEXT) {
+	for (const key in STATUS_TEXT) {
 		const code: Status = typeof key === 'number' ? key : parseInt(key);
 		if (code < 400 || 500 <= code) {
 			continue;
@@ -31,7 +31,7 @@ Deno.test('HTTPErrors client(4xx)', async () => {
 Deno.test('HTTPErrors server(5xx)', async () => {
 	const Errors: { name: string; code: Status }[] = [];
 	const convert: { [keys: number]: string } = {};
-	for(const key in STATUS_TEXT) {
+	for (const key in STATUS_TEXT) {
 		const code: Status = typeof key === 'number' ? key : parseInt(key);
 		if (code < 500 || 600 <= code) {
 			continue;
