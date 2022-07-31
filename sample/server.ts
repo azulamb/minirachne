@@ -35,10 +35,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 				break;
 			}
 			case 'user': {
-				headers.set('Content-Type', 'application/json');
-				return new Response(JSON.stringify(data.detail.user), {
-					headers: headers,
-				});
+				return Minirachne.Response.JSON(data.detail.user);
 			}
 		}
 
@@ -80,8 +77,7 @@ class StatusApi implements Minirachne.RouteLike {
 			std: Minirachne.STD_VERSION,
 		});
 		const headers = new Headers();
-		headers.set('Content-Type', 'application/json');
-		headers.set('Content-Length', encodeURI(body).replace(/%../g, '*').length + '');
+		headers.set('content-length', encodeURI(body).replace(/%../g, '*').length + '');
 		const response = new Response(body, { headers: headers });
 		return Promise.resolve(response);
 	}

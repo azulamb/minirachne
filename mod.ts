@@ -45,3 +45,5 @@ export { StaticRoute } from './src/static.ts';
 
 /** WebSocket listener. */
 export { WebSocketListener } from './src/ws.ts';
+
+export { ServerResponse as Response } from './src/response.ts';
