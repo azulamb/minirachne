@@ -1,6 +1,6 @@
 import * as asserts from '../_setup.ts';
 import { Middleware, RequestData } from '../../types.d.ts';
-import { Middlewares } from '../../src/middleware.ts';
+import { MiddlewareManager } from '../../src/middleware.ts';
 
 class MiddlewareSample implements Middleware {
 	private sample: RequestData;
@@ -36,10 +36,10 @@ Deno.test('Middrewares manage', async () => {
 		list.push(new MiddlewareSample(data));
 	}
 
-	const middlewares = Middlewares.create(list[0], list[1]);
-	middlewares.add(list[2], list[3]);
+	const middleware = MiddlewareManager.create(list[0], list[1]);
+	middleware.add(list[2], list[3]);
 
-	await middlewares.exec(data);
+	await middleware.exec(data);
 
 	for (let i = 0; i < 4; ++i) {
 		asserts.assertEquals(list[i].called, true);
@@ -52,11 +52,11 @@ Deno.test('Middreware failure', async () => {
 		request: new Request('http://localhost:8080/'),
 		detail: {},
 	};
-	const middleware = new ErrorMiddleware();
+	const errorMiddleware = new ErrorMiddleware();
 
-	const middlewares = Middlewares.create(middleware);
+	const middleware = MiddlewareManager.create(errorMiddleware);
 
 	asserts.assertRejects(() => {
-		return middlewares.exec(data);
+		return middleware.exec(data);
 	});
 });

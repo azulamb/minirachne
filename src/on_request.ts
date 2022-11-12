@@ -5,11 +5,11 @@ import { HTTPError } from './http_error.ts';
 export function onRequest(data: RequestData, router: Router) {
 	const url = data.request.url;
 	return router.exec(url, async (route) => {
-		if (!route.middlewares) {
+		if (!route.middleware) {
 			return route.onRequest(data);
 		}
 
-		return route.middlewares.exec(data).then(() => {
+		return route.middleware.exec(data).then(() => {
 			return route.onRequest(data);
 		});
 	}).catch((error) => {

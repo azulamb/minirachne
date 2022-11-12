@@ -7,11 +7,11 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	// Route
 	public order!: number;
 	public pattern!: URLPattern;
-	public middlewares: Minirachne.Middlewares;
+	public middleware: Minirachne.MiddlewareManager;
 
 	constructor(server: Minirachne.Server, base = '') {
 		this.pattern = server.router.path(`${base}/(login|logout|user)`);
-		this.middlewares = Minirachne.Middlewares.create(this);
+		this.middleware = Minirachne.MiddlewareManager.create(this);
 	}
 
 	public async onRequest(data: Minirachne.RequestData) {
@@ -146,7 +146,7 @@ Deno.test('Use middleware', async () => {
 	server.router.add(simpleLogin);
 
 	const privateDir = Minirachne.createAbsolutePath(import.meta, '../tmp/private');
-	server.router.add('/*', new Minirachne.StaticRoute(privateDir), simpleLogin.middlewares);
+	server.router.add('/*', new Minirachne.StaticRoute(privateDir), simpleLogin.middleware);
 
 	const publicDir = Minirachne.createAbsolutePath(import.meta, '../tmp/public');
 	server.router.add('/*', new Minirachne.StaticRoute(publicDir));
@@ -184,18 +184,18 @@ Deno.test('Use middleware', async () => {
 	await p;
 });
 
-Deno.test('Use middlewares(Failure)', async () => {
+Deno.test('Use middleware(Failure)', async () => {
 	const url = new URL('http://localhost:18080/');
 
 	const server = new Minirachne.Server();
 	server.setURL(url);
 
-	const middlewares = new Minirachne.Middlewares();
-	middlewares.add(new PasswordMiddleware('pass1'));
-	middlewares.add(new PasswordMiddleware('pass2'));
+	const middleware = new Minirachne.MiddlewareManager();
+	middleware.add(new PasswordMiddleware('pass1'));
+	middleware.add(new PasswordMiddleware('pass2'));
 
 	const privateDir = Minirachne.createAbsolutePath(import.meta, '../tmp/private');
-	server.router.add('/*', new Minirachne.StaticRoute(privateDir), middlewares);
+	server.router.add('/*', new Minirachne.StaticRoute(privateDir), middleware);
 
 	const publicDir = Minirachne.createAbsolutePath(import.meta, '../tmp/public');
 	server.router.add('/*', new Minirachne.StaticRoute(publicDir));
@@ -227,15 +227,15 @@ Deno.test('Use middlewares(Failure)', async () => {
 	await p;
 });
 
-Deno.test('Use middlewares(Add data)', async () => {
+Deno.test('Use middleware(Add data)', async () => {
 	const url = new URL('http://localhost:18080/');
 
 	const server = new Minirachne.Server();
 	server.setURL(url);
 
-	const middlewares = new Minirachne.Middlewares();
-	middlewares.add(new AddDataMiddleware('name', 'Hoge'));
-	middlewares.add(new AddDataMiddleware('job', 'Student'));
+	const middleware = new Minirachne.MiddlewareManager();
+	middleware.add(new AddDataMiddleware('name', 'Hoge'));
+	middleware.add(new AddDataMiddleware('job', 'Student'));
 
 	server.router.add(
 		'/*',
@@ -244,7 +244,7 @@ Deno.test('Use middlewares(Add data)', async () => {
 				return Promise.resolve(new Response(JSON.stringify(data.detail)));
 			}
 		}(),
-		middlewares,
+		middleware,
 	);
 
 	const p = server.run();
@@ -260,21 +260,21 @@ Deno.test('Use middlewares(Add data)', async () => {
 	await p;
 });
 
-Deno.test('Use middlewares(With sub router)', async () => {
+Deno.test('Use middleware(With sub router)', async () => {
 	const url = new URL('http://localhost:18080/');
 
 	const server = new Minirachne.Server();
 	server.setURL(url);
 
-	const middlewares = new Minirachne.Middlewares();
-	middlewares.add(new SubRouterMiddleware());
+	const middleware = new Minirachne.MiddlewareManager();
+	middleware.add(new SubRouterMiddleware());
 
 	const subRouter = new Minirachne.Router();
 	subRouter.add('/*', () => {
 		return Promise.resolve(new Response('sub'));
-	}, middlewares);
+	}, middleware);
 
-	server.router.addRouter('/sub', subRouter, middlewares);
+	server.router.addRouter('/sub', subRouter, middleware);
 	server.router.add(
 		'/test',
 		() => {

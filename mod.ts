@@ -17,7 +17,7 @@ export const STD_VERSION = DENO_STD_VERSION;
 export { Server } from './src/server.ts';
 
 /** Minirachne Middleware manager. */
-export { Middlewares } from './src/middleware.ts';
+export { MiddlewareManager } from './src/middleware.ts';
 
 export { Cookie } from './src/deno_std.ts';
 
