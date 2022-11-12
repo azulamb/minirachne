@@ -138,6 +138,12 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 	// Add path and RouteLike.
 	server.router.add('/status', new StatusApi());
 
+	// Basic auth root.
+	const basicAuth = new Minirachne.BasicAuth().addUser('USER', 'PASS');
+	const basicDocs = Minirachne.createAbsolutePath(import.meta, './basic');
+	server.router.add('/basic/*', new Minirachne.StaticRoute(basicDocs), basicAuth);
+	server.router.add('/basic/*', basicAuth);
+
 	// EchoChat. (WebSocket)
 	// Add path and RouteLike with Middleware.
 	server.router.add('/echochat', new EchoChat(server), simpleLogin.middleware);

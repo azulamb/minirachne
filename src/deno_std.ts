@@ -1,7 +1,7 @@
 /** Use Deno.std version. */
-export const VERSION = '0.162.0';
-export * from 'https://deno.land/std@0.162.0/http/server.ts';
-export { dirname, extname, fromFileUrl, join } from 'https://deno.land/std@0.162.0/path/mod.ts';
-import { deleteCookie, getCookies, setCookie } from 'https://deno.land/std@0.162.0/http/cookie.ts';
+export const VERSION = '0.163.0';
+export * from 'https://deno.land/std@0.163.0/http/server.ts';
+export { dirname, extname, fromFileUrl, join } from 'https://deno.land/std@0.163.0/path/mod.ts';
+import { deleteCookie, getCookies, setCookie } from 'https://deno.land/std@0.163.0/http/cookie.ts';
 export const Cookie = { get: getCookies, set: setCookie, delete: deleteCookie };
-export { Status, STATUS_TEXT } from 'https://deno.land/std@0.162.0/http/http_status.ts';
+export { Status, STATUS_TEXT } from 'https://deno.land/std@0.163.0/http/http_status.ts';

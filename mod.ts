@@ -46,4 +46,7 @@ export { StaticRoute } from './src/static.ts';
 /** WebSocket listener. */
 export { WebSocketListener } from './src/ws.ts';
 
+/** Middleware. */
+export { BasicAuth } from './src/middleware/basic_auth.ts';
+
 export { ServerResponse as Response } from './src/response.ts';
