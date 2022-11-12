@@ -66,11 +66,28 @@ window.addEventListener('DOMContentLoaded', () =>
 <style>
 #submit::before { content: 'Send'; }
 #message:disabled + #submit::before { content: 'Connect'; }
+.user::before { content: "username:"; color: gray; }
+.pass::before { content: "password:"; color: gray; }
 </style>
 </head>
 <body>
 	<h1>Public</h1>
-	<button id="button">Login</button>
+	<ul>
+		<li>
+			Simple login
+			<ul>
+				<li><button id="button">Login</button></li>
+			</ul>
+		</li>
+		<li>
+			Basic auth
+			<ul>
+				<li><a href="./basic/">Basic auth page.</a></li>
+				<li class="user">USER</li>
+				<li class="pass">PASS</li>
+			</ul>
+		</li>
+	</ul>
 	<div>Status: <span id="status"></span></div>
 	<div>Range test: <span id="range"></span></div>
 	<div>
