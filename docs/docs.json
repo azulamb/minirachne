@@ -1,197 +1,6 @@
 [
   {
     "kind": "class",
-    "name": "Middlewares",
-    "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
-      "line": 4,
-      "col": 0
-    },
-    "declarationKind": "export",
-    "jsDoc": {
-      "doc": "Middleware manager."
-    },
-    "classDef": {
-      "isAbstract": false,
-      "constructors": [],
-      "properties": [
-        {
-          "tsType": {
-            "repr": "",
-            "kind": "array",
-            "array": {
-              "repr": "Middleware",
-              "kind": "typeRef",
-              "typeRef": {
-                "typeParams": null,
-                "typeName": "Middleware"
-              }
-            }
-          },
-          "readonly": false,
-          "accessibility": "protected",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "middlewares",
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
-            "line": 13,
-            "col": 4
-          }
-        }
-      ],
-      "indexSignatures": [],
-      "methods": [
-        {
-          "jsDoc": {
-            "doc": "Create Middlewares.\nMiddlewares.create(middleware1, middleware2, ...);"
-          },
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": true,
-          "name": "create",
-          "kind": "method",
-          "functionDef": {
-            "params": [
-              {
-                "kind": "rest",
-                "arg": {
-                  "kind": "identifier",
-                  "name": "middlewares",
-                  "optional": false,
-                  "tsType": null
-                },
-                "tsType": {
-                  "repr": "",
-                  "kind": "array",
-                  "array": {
-                    "repr": "Middleware",
-                    "kind": "typeRef",
-                    "typeRef": {
-                      "typeParams": null,
-                      "typeName": "Middleware"
-                    }
-                  }
-                }
-              }
-            ],
-            "returnType": {
-              "repr": "Middlewares",
-              "kind": "typeRef",
-              "typeRef": {
-                "typeParams": null,
-                "typeName": "Middlewares"
-              }
-            },
-            "isAsync": false,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
-            "line": 9,
-            "col": 4
-          }
-        },
-        {
-          "jsDoc": {
-            "doc": "Add middleware."
-          },
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "add",
-          "kind": "method",
-          "functionDef": {
-            "params": [
-              {
-                "kind": "rest",
-                "arg": {
-                  "kind": "identifier",
-                  "name": "middlewares",
-                  "optional": false,
-                  "tsType": null
-                },
-                "tsType": {
-                  "repr": "",
-                  "kind": "array",
-                  "array": {
-                    "repr": "Middleware",
-                    "kind": "typeRef",
-                    "typeRef": {
-                      "typeParams": null,
-                      "typeName": "Middleware"
-                    }
-                  }
-                }
-              }
-            ],
-            "returnType": null,
-            "isAsync": false,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
-            "line": 16,
-            "col": 4
-          }
-        },
-        {
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "exec",
-          "kind": "method",
-          "functionDef": {
-            "params": [
-              {
-                "kind": "identifier",
-                "name": "data",
-                "optional": false,
-                "tsType": {
-                  "repr": "RequestData",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "RequestData"
-                  }
-                }
-              }
-            ],
-            "returnType": null,
-            "isAsync": true,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
-            "line": 21,
-            "col": 4
-          }
-        }
-      ],
-      "extends": null,
-      "implements": [
-        {
-          "repr": "m",
-          "kind": "typeRef",
-          "typeRef": {
-            "typeParams": null,
-            "typeName": "m"
-          }
-        }
-      ],
-      "typeParams": [],
-      "superTypeParams": []
-    }
-  },
-  {
-    "kind": "class",
     "name": "StaticRoute",
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/src/static.ts",
@@ -207,6 +16,7 @@
       "constructors": [
         {
           "accessibility": null,
+          "hasBody": true,
           "name": "constructor",
           "params": [
             {
@@ -469,6 +279,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -489,6 +300,7 @@
           "functionDef": {
             "params": [],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -532,6 +344,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -566,6 +379,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -605,6 +419,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -639,6 +454,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -683,6 +499,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
@@ -754,6 +571,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
@@ -801,6 +619,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -868,6 +687,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
@@ -963,6 +783,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
@@ -997,6 +818,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
@@ -1031,6 +853,7 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
@@ -1059,10 +882,238 @@
   },
   {
     "kind": "class",
+    "name": "WebSocketListener",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [],
+      "properties": [],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onOpen",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "Event",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Event"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 3,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onMessage",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "MessageEvent",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "MessageEvent"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 5,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onClose",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "CloseEvent",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "CloseEvent"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 7,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "onError",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "ws",
+                "optional": false,
+                "tsType": {
+                  "repr": "WebSocket",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "WebSocket"
+                  }
+                }
+              },
+              {
+                "kind": "identifier",
+                "name": "event",
+                "optional": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "Event",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "Event"
+                      }
+                    },
+                    {
+                      "repr": "ErrorEvent",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "ErrorEvent"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+            "line": 9,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "class",
     "name": "Router",
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-      "line": 199,
+      "line": 212,
       "col": 0
     },
     "declarationKind": "export",
@@ -1088,8 +1139,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1126,26 +1177,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 206,
+            "line": 219,
             "col": 4
           }
         },
@@ -1165,8 +1217,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1203,26 +1255,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 216,
+            "line": 229,
             "col": 4
           }
         },
@@ -1242,8 +1295,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1280,26 +1333,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 226,
+            "line": 239,
             "col": 4
           }
         },
@@ -1319,8 +1373,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1357,26 +1411,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 236,
+            "line": 249,
             "col": 4
           }
         },
@@ -1396,8 +1451,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set middleware in route if exists."
               }
             ]
           },
@@ -1434,26 +1489,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 246,
+            "line": 259,
             "col": 4
           }
         },
@@ -1473,8 +1529,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1511,26 +1567,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 260,
+            "line": 273,
             "col": 4
           }
         },
@@ -1550,8 +1607,8 @@
               },
               {
                 "kind": "param",
-                "name": "middlewares",
-                "doc": "Set middlewares in route if exists."
+                "name": "middleware",
+                "doc": "Set MiddlewareManager in route if exists."
               }
             ]
           },
@@ -1588,26 +1645,27 @@
               },
               {
                 "kind": "identifier",
-                "name": "middlewares",
+                "name": "middleware",
                 "optional": true,
                 "tsType": {
-                  "repr": "Middlewares",
+                  "repr": "MiddlewareManager",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Middlewares"
+                    "typeName": "MiddlewareManager"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/router.ts",
-            "line": 274,
+            "line": 287,
             "col": 4
           }
         }
@@ -1619,34 +1677,197 @@
     }
   },
   {
-    "kind": "variable",
-    "name": "Redirect",
+    "kind": "class",
+    "name": "MiddlewareManager",
     "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/redirect.ts",
-      "line": 16,
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+      "line": 4,
       "col": 0
     },
     "declarationKind": "export",
     "jsDoc": {
-      "doc": "Create Redirect Response."
+      "doc": "Middleware manager."
     },
-    "variableDef": {
-      "tsType": null,
-      "kind": "const"
-    }
-  },
-  {
-    "kind": "variable",
-    "name": "Cookie",
-    "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/deno_std.ts",
-      "line": 6,
-      "col": 0
-    },
-    "declarationKind": "export",
-    "variableDef": {
-      "tsType": null,
-      "kind": "const"
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "",
+            "kind": "array",
+            "array": {
+              "repr": "Middleware",
+              "kind": "typeRef",
+              "typeRef": {
+                "typeParams": null,
+                "typeName": "Middleware"
+              }
+            }
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "middleware",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 13,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "jsDoc": {
+            "doc": "Create MiddlewareManager.\nMiddlewareManager.create(middleware1, middleware2, ...);"
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": true,
+          "name": "create",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "rest",
+                "arg": {
+                  "kind": "identifier",
+                  "name": "middleware",
+                  "optional": false,
+                  "tsType": null
+                },
+                "tsType": {
+                  "repr": "",
+                  "kind": "array",
+                  "array": {
+                    "repr": "Middleware",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Middleware"
+                    }
+                  }
+                }
+              }
+            ],
+            "returnType": {
+              "repr": "MiddlewareManager",
+              "kind": "typeRef",
+              "typeRef": {
+                "typeParams": null,
+                "typeName": "MiddlewareManager"
+              }
+            },
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 9,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": {
+            "doc": "Add middleware."
+          },
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "add",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "rest",
+                "arg": {
+                  "kind": "identifier",
+                  "name": "middleware",
+                  "optional": false,
+                  "tsType": null
+                },
+                "tsType": {
+                  "repr": "",
+                  "kind": "array",
+                  "array": {
+                    "repr": "Middleware",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Middleware"
+                    }
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 16,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "exec",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "data",
+                "optional": false,
+                "tsType": {
+                  "repr": "RequestData",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "RequestData"
+                  }
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": true,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/middleware.ts",
+            "line": 21,
+            "col": 4
+          }
+        }
+      ],
+      "extends": null,
+      "implements": [
+        {
+          "repr": "m",
+          "kind": "typeRef",
+          "typeRef": {
+            "typeParams": null,
+            "typeName": "m"
+          }
+        }
+      ],
+      "typeParams": [],
+      "superTypeParams": []
     }
   },
   {
@@ -1939,7 +2160,7 @@
           "typeParams": []
         },
         {
-          "name": "middlewares",
+          "name": "middleware",
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
             "line": 33,
@@ -1952,11 +2173,11 @@
           "computed": false,
           "optional": true,
           "tsType": {
-            "repr": "Middlewares",
+            "repr": "MiddlewareManager",
             "kind": "typeRef",
             "typeRef": {
               "typeParams": null,
-              "typeName": "Middlewares"
+              "typeName": "MiddlewareManager"
             }
           },
           "typeParams": []
@@ -2096,7 +2317,7 @@
   },
   {
     "kind": "typeAlias",
-    "name": "Middlewares",
+    "name": "MiddlewareManager",
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/types.d.ts",
       "line": 74,
@@ -2117,7 +2338,7 @@
                   "kind": "rest",
                   "arg": {
                     "kind": "identifier",
-                    "name": "middlewares",
+                    "name": "middleware",
                     "optional": false,
                     "tsType": null
                   },
@@ -2137,11 +2358,11 @@
               ],
               "optional": false,
               "returnType": {
-                "repr": "Middlewares",
+                "repr": "MiddlewareManager",
                 "kind": "typeRef",
                 "typeRef": {
                   "typeParams": null,
-                  "typeName": "Middlewares"
+                  "typeName": "MiddlewareManager"
                 }
               },
               "typeParams": []
@@ -2206,63 +2427,95 @@
   },
   {
     "kind": "class",
-    "name": "WebSocketListener",
+    "name": "Response",
     "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/response.ts",
       "line": 1,
       "col": 0
     },
     "declarationKind": "export",
     "classDef": {
       "isAbstract": false,
-      "constructors": [],
-      "properties": [],
+      "constructors": [
+        {
+          "accessibility": null,
+          "hasBody": true,
+          "name": "constructor",
+          "params": [],
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/response.ts",
+            "line": 11,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "Headers",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "Headers"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "jsonHeader",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/response.ts",
+            "line": 16,
+            "col": 4
+          }
+        }
+      ],
       "indexSignatures": [],
       "methods": [
         {
-          "accessibility": "public",
+          "accessibility": null,
           "optional": false,
           "isAbstract": false,
-          "isStatic": false,
-          "name": "onOpen",
+          "isStatic": true,
+          "name": "JSON",
           "kind": "method",
           "functionDef": {
             "params": [
               {
                 "kind": "identifier",
-                "name": "ws",
+                "name": "data",
                 "optional": false,
                 "tsType": {
-                  "repr": "WebSocket",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "WebSocket"
-                  }
+                  "repr": "any",
+                  "kind": "keyword",
+                  "keyword": "any"
                 }
               },
               {
                 "kind": "identifier",
-                "name": "event",
-                "optional": false,
+                "name": "init",
+                "optional": true,
                 "tsType": {
-                  "repr": "Event",
+                  "repr": "ResponseInit",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "Event"
+                    "typeName": "ResponseInit"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
-            "line": 3,
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/response.ts",
+            "line": 2,
             "col": 4
           }
         },
@@ -2271,153 +2524,43 @@
           "optional": false,
           "isAbstract": false,
           "isStatic": false,
-          "name": "onMessage",
+          "name": "json",
           "kind": "method",
           "functionDef": {
             "params": [
               {
                 "kind": "identifier",
-                "name": "ws",
+                "name": "data",
                 "optional": false,
                 "tsType": {
-                  "repr": "WebSocket",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "WebSocket"
-                  }
+                  "repr": "any",
+                  "kind": "keyword",
+                  "keyword": "any"
                 }
               },
               {
                 "kind": "identifier",
-                "name": "event",
-                "optional": false,
+                "name": "init",
+                "optional": true,
                 "tsType": {
-                  "repr": "MessageEvent",
+                  "repr": "ResponseInit",
                   "kind": "typeRef",
                   "typeRef": {
                     "typeParams": null,
-                    "typeName": "MessageEvent"
+                    "typeName": "ResponseInit"
                   }
                 }
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
-            "line": 5,
-            "col": 4
-          }
-        },
-        {
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "onClose",
-          "kind": "method",
-          "functionDef": {
-            "params": [
-              {
-                "kind": "identifier",
-                "name": "ws",
-                "optional": false,
-                "tsType": {
-                  "repr": "WebSocket",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "WebSocket"
-                  }
-                }
-              },
-              {
-                "kind": "identifier",
-                "name": "event",
-                "optional": false,
-                "tsType": {
-                  "repr": "CloseEvent",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "CloseEvent"
-                  }
-                }
-              }
-            ],
-            "returnType": null,
-            "isAsync": false,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
-            "line": 7,
-            "col": 4
-          }
-        },
-        {
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "onError",
-          "kind": "method",
-          "functionDef": {
-            "params": [
-              {
-                "kind": "identifier",
-                "name": "ws",
-                "optional": false,
-                "tsType": {
-                  "repr": "WebSocket",
-                  "kind": "typeRef",
-                  "typeRef": {
-                    "typeParams": null,
-                    "typeName": "WebSocket"
-                  }
-                }
-              },
-              {
-                "kind": "identifier",
-                "name": "event",
-                "optional": false,
-                "tsType": {
-                  "repr": "",
-                  "kind": "union",
-                  "union": [
-                    {
-                      "repr": "Event",
-                      "kind": "typeRef",
-                      "typeRef": {
-                        "typeParams": null,
-                        "typeName": "Event"
-                      }
-                    },
-                    {
-                      "repr": "ErrorEvent",
-                      "kind": "typeRef",
-                      "typeRef": {
-                        "typeParams": null,
-                        "typeName": "ErrorEvent"
-                      }
-                    }
-                  ]
-                }
-              }
-            ],
-            "returnType": null,
-            "isAsync": false,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/ws.ts",
-            "line": 9,
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/response.ts",
+            "line": 17,
             "col": 4
           }
         }
@@ -2430,149 +2573,10 @@
   },
   {
     "kind": "class",
-    "name": "HTTPError",
-    "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-      "line": 6,
-      "col": 0
-    },
-    "declarationKind": "export",
-    "jsDoc": {
-      "doc": "HTTPError has Error response."
-    },
-    "classDef": {
-      "isAbstract": false,
-      "constructors": [
-        {
-          "jsDoc": {
-            "tags": [
-              {
-                "kind": "param",
-                "name": "status",
-                "doc": "HTTP Status code."
-              }
-            ]
-          },
-          "accessibility": null,
-          "name": "constructor",
-          "params": [
-            {
-              "kind": "identifier",
-              "name": "status",
-              "optional": false,
-              "tsType": {
-                "repr": "number",
-                "kind": "keyword",
-                "keyword": "number"
-              }
-            },
-            {
-              "kind": "identifier",
-              "name": "responseInit",
-              "optional": true,
-              "tsType": {
-                "repr": "ResponseInit",
-                "kind": "typeRef",
-                "typeRef": {
-                  "typeParams": null,
-                  "typeName": "ResponseInit"
-                }
-              }
-            }
-          ],
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-            "line": 12,
-            "col": 4
-          }
-        }
-      ],
-      "properties": [
-        {
-          "tsType": {
-            "repr": "ResponseInit",
-            "kind": "typeRef",
-            "typeRef": {
-              "typeParams": null,
-              "typeName": "ResponseInit"
-            }
-          },
-          "readonly": false,
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "responseInit",
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-            "line": 7,
-            "col": 4
-          }
-        }
-      ],
-      "indexSignatures": [],
-      "methods": [
-        {
-          "accessibility": "public",
-          "optional": false,
-          "isAbstract": false,
-          "isStatic": false,
-          "name": "createResponse",
-          "kind": "method",
-          "functionDef": {
-            "params": [],
-            "returnType": null,
-            "isAsync": false,
-            "isGenerator": false,
-            "typeParams": []
-          },
-          "location": {
-            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-            "line": 18,
-            "col": 4
-          }
-        }
-      ],
-      "extends": "Error",
-      "implements": [],
-      "typeParams": [],
-      "superTypeParams": []
-    }
-  },
-  {
-    "kind": "variable",
-    "name": "HTTPErrors",
-    "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-      "line": 23,
-      "col": 0
-    },
-    "declarationKind": "export",
-    "variableDef": {
-      "tsType": null,
-      "kind": "const"
-    }
-  },
-  {
-    "kind": "import",
-    "name": "STATUS_TEXT",
-    "location": {
-      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
-      "line": 1,
-      "col": 0
-    },
-    "declarationKind": "private",
-    "importDef": {
-      "src": "file:///C:/Personal/GitHub/minirachne/src/deno_std.ts",
-      "imported": "STATUS_TEXT"
-    }
-  },
-  {
-    "kind": "class",
     "name": "Server",
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-      "line": 8,
+      "line": 9,
       "col": 0
     },
     "declarationKind": "export",
@@ -2581,11 +2585,12 @@
       "constructors": [
         {
           "accessibility": null,
+          "hasBody": true,
           "name": "constructor",
           "params": [],
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 17,
+            "line": 19,
             "col": 4
           }
         }
@@ -2608,7 +2613,7 @@
           "name": "url",
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 9,
+            "line": 10,
             "col": 4
           }
         },
@@ -2656,7 +2661,7 @@
           "name": "files",
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 10,
+            "line": 11,
             "col": 4
           }
         },
@@ -2677,7 +2682,7 @@
           "name": "controller",
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 14,
+            "line": 15,
             "col": 4
           }
         },
@@ -2698,7 +2703,28 @@
           "name": "router",
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 15,
+            "line": 16,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "ServerResponse",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "ServerResponse"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "response",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
+            "line": 17,
             "col": 4
           }
         }
@@ -2715,13 +2741,14 @@
           "functionDef": {
             "params": [],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 22,
+            "line": 25,
             "col": 4
           }
         },
@@ -2749,13 +2776,14 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 26,
+            "line": 29,
             "col": 4
           }
         },
@@ -2790,13 +2818,14 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 32,
+            "line": 35,
             "col": 4
           }
         },
@@ -2810,13 +2839,14 @@
           "functionDef": {
             "params": [],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 38,
+            "line": 41,
             "col": 4
           }
         },
@@ -2830,13 +2860,14 @@
           "functionDef": {
             "params": [],
             "returnType": null,
+            "hasBody": true,
             "isAsync": false,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 42,
+            "line": 45,
             "col": 4
           }
         },
@@ -2864,13 +2895,14 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 61,
+            "line": 64,
             "col": 4
           }
         },
@@ -2924,13 +2956,14 @@
               }
             ],
             "returnType": null,
+            "hasBody": true,
             "isAsync": true,
             "isGenerator": false,
             "typeParams": []
           },
           "location": {
             "filename": "file:///C:/Personal/GitHub/minirachne/src/server.ts",
-            "line": 73,
+            "line": 76,
             "col": 4
           }
         }
@@ -2943,11 +2976,2153 @@
   },
   {
     "kind": "variable",
+    "name": "Cookie",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/deno_std.ts",
+      "line": 6,
+      "col": 13
+    },
+    "declarationKind": "export",
+    "variableDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [],
+          "properties": [
+            {
+              "name": "get",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": null,
+              "typeParams": []
+            },
+            {
+              "name": "set",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": null,
+              "typeParams": []
+            },
+            {
+              "name": "delete",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": null,
+              "typeParams": []
+            }
+          ],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "Redirect",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/redirect.ts",
+      "line": 16,
+      "col": 13
+    },
+    "declarationKind": "export",
+    "jsDoc": {
+      "doc": "Create Redirect Response."
+    },
+    "variableDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [],
+          "properties": [
+            {
+              "name": "MultipleChoices",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "MovedPermanently",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "Found",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "SeeOther",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "NotModified",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "UseProxy",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "TemporaryRedirect",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "PermanentRedirect",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "fnOrConstructor",
+                "fnOrConstructor": {
+                  "constructor": false,
+                  "tsType": {
+                    "repr": "unknown",
+                    "kind": "keyword",
+                    "keyword": "unknown"
+                  },
+                  "params": [
+                    {
+                      "kind": "identifier",
+                      "name": "redirect",
+                      "optional": false,
+                      "tsType": {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    },
+                    {
+                      "kind": "identifier",
+                      "name": "responseInit",
+                      "optional": true,
+                      "tsType": {
+                        "repr": "ResponseInit",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "ResponseInit"
+                        }
+                      }
+                    }
+                  ],
+                  "typeParams": []
+                }
+              },
+              "typeParams": []
+            }
+          ],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "class",
+    "name": "HTTPError",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+      "line": 6,
+      "col": 0
+    },
+    "declarationKind": "export",
+    "jsDoc": {
+      "doc": "HTTPError has Error response."
+    },
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [
+        {
+          "jsDoc": {
+            "tags": [
+              {
+                "kind": "param",
+                "name": "status",
+                "doc": "HTTP Status code."
+              }
+            ]
+          },
+          "accessibility": null,
+          "hasBody": true,
+          "name": "constructor",
+          "params": [
+            {
+              "kind": "identifier",
+              "name": "status",
+              "optional": false,
+              "tsType": {
+                "repr": "number",
+                "kind": "keyword",
+                "keyword": "number"
+              }
+            },
+            {
+              "kind": "identifier",
+              "name": "responseInit",
+              "optional": true,
+              "tsType": {
+                "repr": "ResponseInit",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": null,
+                  "typeName": "ResponseInit"
+                }
+              }
+            }
+          ],
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 13,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "tsType": {
+            "repr": "ResponseInit",
+            "kind": "typeRef",
+            "typeRef": {
+              "typeParams": null,
+              "typeName": "ResponseInit"
+            }
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "responseInit",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 7,
+            "col": 4
+          }
+        },
+        {
+          "tsType": {
+            "repr": "boolean",
+            "kind": "keyword",
+            "keyword": "boolean"
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "propagation",
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 8,
+            "col": 4
+          }
+        }
+      ],
+      "indexSignatures": [],
+      "methods": [
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "createResponse",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 19,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "setPropagation",
+          "kind": "method",
+          "functionDef": {
+            "params": [
+              {
+                "kind": "identifier",
+                "name": "propagation",
+                "optional": false,
+                "tsType": {
+                  "repr": "boolean",
+                  "kind": "keyword",
+                  "keyword": "boolean"
+                }
+              }
+            ],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 23,
+            "col": 4
+          }
+        },
+        {
+          "accessibility": "public",
+          "optional": false,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "getPropagation",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": null,
+            "hasBody": true,
+            "isAsync": false,
+            "isGenerator": false,
+            "typeParams": []
+          },
+          "location": {
+            "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+            "line": 28,
+            "col": 4
+          }
+        }
+      ],
+      "extends": "Error",
+      "implements": [],
+      "typeParams": [],
+      "superTypeParams": []
+    }
+  },
+  {
+    "kind": "variable",
+    "name": "HTTPErrors",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+      "line": 33,
+      "col": 13
+    },
+    "declarationKind": "export",
+    "variableDef": {
+      "tsType": {
+        "repr": "",
+        "kind": "typeLiteral",
+        "typeLiteral": {
+          "methods": [],
+          "properties": [
+            {
+              "name": "client",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "typeLiteral",
+                "typeLiteral": {
+                  "methods": [],
+                  "properties": [
+                    {
+                      "name": "BadRequest",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Unauthorized",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "PaymentRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Forbidden",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "NotFound",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "MethodNotAllowed",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "NotAcceptable",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "ProxyAuthenticationRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "ProxyAuthRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "RequestTimeout",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Conflict",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Gone",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "LengthRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "PreconditionFailed",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "RequestEntityTooLarge",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "RequestURITooLong",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "UnsupportedMediaType",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "RequestedRangeNotSatisfiable",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "ExpectationFailed",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Teapot",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "MisdirectedRequest",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "UnprocessableEntity",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "Locked",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "FailedDependency",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "TooEarly",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "UpgradeRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "PreconditionRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "TooManyRequests",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "RequestHeaderFieldsTooLarge",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "UnavailableForLegalReasons",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    }
+                  ],
+                  "callSignatures": [],
+                  "indexSignatures": []
+                }
+              },
+              "typeParams": []
+            },
+            {
+              "name": "server",
+              "params": [],
+              "computed": false,
+              "optional": false,
+              "tsType": {
+                "repr": "",
+                "kind": "typeLiteral",
+                "typeLiteral": {
+                  "methods": [],
+                  "properties": [
+                    {
+                      "name": "InternalServerError",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "NotImplemented",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "BadGateway",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "ServiceUnavailable",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "GatewayTimeout",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "HTTPVersionNotSupported",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "VariantAlsoNegotiates",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "InsufficientStorage",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "LoopDetected",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "NotExtended",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    },
+                    {
+                      "name": "NetworkAuthenticationRequired",
+                      "params": [],
+                      "computed": false,
+                      "optional": false,
+                      "tsType": {
+                        "repr": "",
+                        "kind": "fnOrConstructor",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "unknown",
+                            "kind": "keyword",
+                            "keyword": "unknown"
+                          },
+                          "params": [
+                            {
+                              "kind": "identifier",
+                              "name": "responseInit",
+                              "optional": true,
+                              "tsType": {
+                                "repr": "ResponseInit",
+                                "kind": "typeRef",
+                                "typeRef": {
+                                  "typeParams": null,
+                                  "typeName": "ResponseInit"
+                                }
+                              }
+                            }
+                          ],
+                          "typeParams": []
+                        }
+                      },
+                      "typeParams": []
+                    }
+                  ],
+                  "callSignatures": [],
+                  "indexSignatures": []
+                }
+              },
+              "typeParams": []
+            }
+          ],
+          "callSignatures": [],
+          "indexSignatures": []
+        }
+      },
+      "kind": "const"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "Status",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/deno_std.ts",
+      "imported": "Status"
+    }
+  },
+  {
+    "kind": "import",
+    "name": "STATUS_TEXT",
+    "location": {
+      "filename": "file:///C:/Personal/GitHub/minirachne/src/http_error.ts",
+      "line": 1,
+      "col": 0
+    },
+    "declarationKind": "private",
+    "importDef": {
+      "src": "file:///C:/Personal/GitHub/minirachne/src/deno_std.ts",
+      "imported": "STATUS_TEXT"
+    }
+  },
+  {
+    "kind": "variable",
     "name": "NAME",
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
       "line": 2,
-      "col": 0
+      "col": 13
     },
     "declarationKind": "export",
     "jsDoc": {
@@ -2971,7 +5146,7 @@
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
       "line": 7,
-      "col": 0
+      "col": 13
     },
     "declarationKind": "export",
     "jsDoc": {
@@ -2988,7 +5163,7 @@
     "location": {
       "filename": "file:///C:/Personal/GitHub/minirachne/mod.ts",
       "line": 14,
-      "col": 0
+      "col": 13
     },
     "declarationKind": "export",
     "jsDoc": {
@@ -3050,6 +5225,7 @@
         }
       ],
       "returnType": null,
+      "hasBody": true,
       "isAsync": false,
       "isGenerator": false,
       "typeParams": []

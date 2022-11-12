@@ -30,7 +30,7 @@ export interface RouteLike {
 	/**
 	 * Exec before onRequext.
 	 */
-	middlewares?: Middlewares;
+	middleware?: MiddlewareManager;
 
 	/**
 	 * Return server Response.
@@ -71,7 +71,7 @@ export type Middleware = {
 	handle(data: RequestData): Promise<unknown>;
 };
 
-export type Middlewares = {
-	add(...middlewares: Middleware[]): Middlewares;
+export type MiddlewareManager = {
+	add(...middleware: Middleware[]): MiddlewareManager;
 	exec(data: RequestData): Promise<unknown>;
 };

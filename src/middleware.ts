@@ -1,25 +1,25 @@
-import { Middleware, Middlewares as m, RequestData } from '../types.d.ts';
+import { Middleware, MiddlewareManager as m, RequestData } from '../types.d.ts';
 
 /** Middleware manager. */
-export class Middlewares implements m {
+export class MiddlewareManager implements m {
 	/**
-	 * Create Middlewares.
-	 * Middlewares.create(middleware1, middleware2, ...);
+	 * Create MiddlewareManager.
+	 * MiddlewareManager.create(middleware1, middleware2, ...);
 	 */
-	public static create(...middlewares: Middleware[]): Middlewares {
-		return new Middlewares().add(...middlewares);
+	public static create(...middleware: Middleware[]): MiddlewareManager {
+		return new MiddlewareManager().add(...middleware);
 	}
 
-	protected middlewares: Middleware[] = [];
+	protected middleware: Middleware[] = [];
 
 	/** Add middleware. */
-	public add(...middlewares: Middleware[]) {
-		this.middlewares.push(...middlewares);
+	public add(...middleware: Middleware[]) {
+		this.middleware.push(...middleware);
 		return this;
 	}
 
 	public async exec(data: RequestData) {
-		for (const middleware of this.middlewares) {
+		for (const middleware of this.middleware) {
 			await middleware.handle(data);
 		}
 	}

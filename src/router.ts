@@ -1,5 +1,5 @@
 import { HTTPErrors } from './http_error.ts';
-import { Middlewares, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
+import { MiddlewareManager, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
 import { onRequest } from './on_request.ts';
 
 function RouteLikeChecker(route: RouteLike, arg = 'arg1') {
@@ -48,12 +48,12 @@ class NextRouter implements Route {
 	router: Router;
 	order!: number;
 	pattern!: URLPattern;
-	middlewares?: Middlewares;
+	middleware?: MiddlewareManager;
 
-	constructor(base: string, router: Router, middlewares?: Middlewares) {
+	constructor(base: string, router: Router, middleware?: MiddlewareManager) {
 		this.router = router;
 		this.pattern = new URLPattern({ pathname: base + '/*' });
-		this.middlewares = middlewares;
+		this.middleware = middleware;
 	}
 
 	onRequest(data: RequestData): Promise<Response> {
@@ -73,21 +73,21 @@ class BaseRouter {
 	/**
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param route Call onRequest() when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public add(path: string, route: RouteLike, middlewares?: Middlewares): this;
+	public add(path: string, route: RouteLike, middleware?: MiddlewareManager): this;
 	/**
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public add(path: string, handler: OnRequestHandler, middlewares?: Middlewares): this;
+	public add(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager): this;
 	/**
 	 * @param route Add route.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public add(route: Route, middlewares?: Middlewares): this;
-	add(arg0: string | Route, arg1: RouteLike | Middlewares | OnRequestHandler | undefined, arg2?: Middlewares) {
+	public add(route: Route, middleware?: MiddlewareManager): this;
+	add(arg0: string | Route, arg1: RouteLike | MiddlewareManager | OnRequestHandler | undefined, arg2?: MiddlewareManager) {
 		let route: Route;
 
 		if (typeof arg0 === 'string') {
@@ -106,7 +106,7 @@ class BaseRouter {
 			route.pattern = this.path(arg0);
 
 			if (arg2) {
-				route.middlewares = arg2;
+				route.middleware = arg2;
 			}
 		} else {
 			// Route
@@ -116,7 +116,7 @@ class BaseRouter {
 			}
 
 			if (arg1) {
-				route.middlewares = <Middlewares> arg1;
+				route.middleware = <MiddlewareManager> arg1;
 			}
 		}
 
@@ -151,7 +151,7 @@ class BaseRouter {
 		));
 	}
 
-	public addRouter(base: string, router: Router, middlewares?: Middlewares) {
+	public addRouter(base: string, router: Router, middleware?: MiddlewareManager) {
 		if (this === <BaseRouter> router) {
 			return;
 		}
@@ -166,7 +166,7 @@ class BaseRouter {
 			}
 		}
 
-		this.add(new NextRouter(base, router, middlewares));
+		this.add(new NextRouter(base, router, middleware));
 	}
 
 	protected updatePattern(parent: BaseRouter) {
@@ -214,77 +214,77 @@ export class Router extends BaseRouter {
 	 * Only Request.method or X-HTTP-Method-Override = GET
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public get(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('GET', handler), middlewares);
+	public get(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('GET', handler), middleware);
 	}
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = HEAD
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public head(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('HEAD', handler), middlewares);
+	public head(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('HEAD', handler), middleware);
 	}
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = POST
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public post(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('POST', handler), middlewares);
+	public post(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('POST', handler), middleware);
 	}
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = PUT
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public put(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('PUT', handler), middlewares);
+	public put(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('PUT', handler), middleware);
 	}
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = DELETE
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set middleware in route if exists.
 	 */
-	public delete(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('DELETE', handler), middlewares);
+	public delete(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('DELETE', handler), middleware);
 	}
 
-	/*public connect(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('CONNECT', handler), middlewares);
+	/*public connect(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('CONNECT', handler), middleware);
 	}*/
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = OPTIONS
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public options(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('OPTIONS', handler), middlewares);
+	public options(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('OPTIONS', handler), middleware);
 	}
 
-	/*public trace(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('TRACE', handler), middlewares);
+	/*public trace(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('TRACE', handler), middleware);
 	}*/
 
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = PATCH
 	 * @param path String path ('/test', '/img/*' etc ...).
 	 * @param handler Call when route accessed.
-	 * @param middlewares Set middlewares in route if exists.
+	 * @param middleware Set MiddlewareManager in route if exists.
 	 */
-	public patch(path: string, handler: OnRequestHandler, middlewares?: Middlewares) {
-		return this.add(path, new MethodRoute('PATCH', handler), middlewares);
+	public patch(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager) {
+		return this.add(path, new MethodRoute('PATCH', handler), middleware);
 	}
 }

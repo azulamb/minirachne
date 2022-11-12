@@ -12,11 +12,11 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 	// Route
 	public order!: number;
 	public pattern!: URLPattern;
-	public middlewares: Minirachne.Middlewares;
+	public middleware: Minirachne.MiddlewareManager;
 
 	constructor(server: Minirachne.Server, base = '') {
 		this.pattern = server.router.path(`${base}/(login|logout|user)`);
-		this.middlewares = Minirachne.Middlewares.create(this);
+		this.middleware = Minirachne.MiddlewareManager.create(this);
 	}
 
 	public async onRequest(data: Minirachne.RequestData) {
@@ -140,11 +140,11 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 
 	// EchoChat. (WebSocket)
 	// Add path and RouteLike with Middleware.
-	server.router.add('/echochat', new EchoChat(server), simpleLogin.middlewares);
+	server.router.add('/echochat', new EchoChat(server), simpleLogin.middleware);
 
 	// Private document root.
 	const privateDocs = Minirachne.createAbsolutePath(import.meta, './private');
-	server.router.add('/*', new Minirachne.StaticRoute(privateDocs), simpleLogin.middlewares);
+	server.router.add('/*', new Minirachne.StaticRoute(privateDocs), simpleLogin.middleware);
 
 	// Public document root.
 	const publicDocs = Minirachne.createAbsolutePath(import.meta, './public');
