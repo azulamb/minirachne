@@ -1,5 +1,5 @@
-import { HTTPErrors } from './http_error.ts';
-import { Middleware, MiddlewareManager as MiddlewareManagerType, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
+import { HTTPErrors, HTTPError } from './http_error.ts';
+import { Middleware, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
 import { onRequest } from './on_request.ts';
 import { MiddlewareManager } from './middleware.ts';
 
@@ -225,10 +225,12 @@ class BaseRouter {
 			}
 
 			try {
-				const response = await onMatch(route);
-				return response;
+				return await onMatch(route);
 			} catch (error) {
 				lastError = error;
+				if (error instanceof HTTPError && !error.getPropagation()) {
+					return error.createResponse();
+				}
 			}
 		}
 		throw lastError || new Error('UNKNOWN ERROR!!');

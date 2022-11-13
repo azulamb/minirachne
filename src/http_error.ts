@@ -6,6 +6,7 @@ import { Status, STATUS_TEXT } from './deno_std.ts';
 export class HTTPError extends Error {
 	public responseInit: ResponseInit;
 	protected propagation = true;
+	// TODO: response body.
 
 	/**
 	 * @param status HTTP Status code.
