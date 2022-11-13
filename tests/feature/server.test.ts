@@ -302,3 +302,39 @@ Deno.test('Use middleware(With sub router)', async () => {
 	server.stop();
 	await p;
 });
+
+Deno.test('Use middleware(Basic auth)', async () => {
+	const url = new URL('http://localhost:18080/');
+	const user = 'root';
+	const password = 'password';
+	const base64 = btoa(`${user}:${password}`);
+
+	const server = new Minirachne.Server();
+	server.setURL(url);
+
+	const message = 'SECRET PAGE';
+	const middleware = new Minirachne.BasicAuth(message);
+	middleware.addUser(user, password);
+
+	server.router.add('/*', new Minirachne.StaticRoute(testDir), middleware);
+
+	const p = server.run();
+
+	await fetch(url).then((response) => {
+		asserts.assertEquals(response.status, 401);
+		asserts.assertEquals(response.headers.get('WWW-Authenticate'), `Basic realm="${message}"`);
+		return response.text();
+	}).then((body) => {
+		asserts.assertNotEquals(body, 'Test page');
+	});
+
+	await fetch(url, { headers: { 'Authorization': `Basic ${base64}` } }).then((response) => {
+		asserts.assertEquals(response.status, 200);
+		return response.text();
+	}).then((body) => {
+		asserts.assertEquals(body, 'Test page');
+	});
+
+	server.stop();
+	await p;
+});
