@@ -1,28 +1,12 @@
 import { Middleware, MiddlewareManager, RequestData, Route } from '../../types.d.ts';
 import { HTTPErrors } from '../http_error.ts';
 
-export class BasicAuth implements Route, Middleware {
+export class BasicAuth implements Middleware {
 	protected message: string;
 	protected users: { [keys: string]: string } = {};
 
-	// Route
-	public order!: number;
-	public pattern!: URLPattern;
-	public middleware?: MiddlewareManager;
-
 	constructor(message = 'SECRET AREA') {
 		this.message = message;
-	}
-
-	onRequest(data: RequestData): Promise<Response> {
-		// TODO: body.
-		return Promise.resolve(
-			HTTPErrors.client.Unauthorized({
-				headers: {
-					'WWW-Authenticate': `Basic realm="${this.message}"`,
-				},
-			}).createResponse(),
-		);
 	}
 
 	// Middleware
@@ -36,7 +20,11 @@ export class BasicAuth implements Route, Middleware {
 				throw new Error('Invalid password.');
 			}
 		} catch (error) {
-			return Promise.reject(error);
+			return Promise.reject(HTTPErrors.client.Unauthorized({
+				headers: {
+					'WWW-Authenticate': `Basic realm="${this.message}"`,
+				},
+			}).setPropagation(false));
 		}
 
 		return Promise.resolve();
