@@ -1,4 +1,4 @@
-import { HTTPErrors, HTTPError } from './http_error.ts';
+import { HTTPError, HTTPErrors } from './http_error.ts';
 import { Middleware, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
 import { onRequest } from './on_request.ts';
 import { MiddlewareManager } from './middleware.ts';

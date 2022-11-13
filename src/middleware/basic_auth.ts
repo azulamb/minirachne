@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareManager, RequestData, Route } from '../../types.d.ts';
+import { Middleware, RequestData } from '../../types.d.ts';
 import { HTTPErrors } from '../http_error.ts';
 
 export class BasicAuth implements Middleware {
@@ -20,11 +20,13 @@ export class BasicAuth implements Middleware {
 				throw new Error('Invalid password.');
 			}
 		} catch (error) {
-			return Promise.reject(HTTPErrors.client.Unauthorized({
-				headers: {
-					'WWW-Authenticate': `Basic realm="${this.message}"`,
-				},
-			}).setPropagation(false));
+			return Promise.reject(
+				HTTPErrors.client.Unauthorized({
+					headers: {
+						'WWW-Authenticate': `Basic realm="${this.message}"`,
+					},
+				}).setPropagation(false),
+			);
 		}
 
 		return Promise.resolve();
