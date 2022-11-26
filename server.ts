@@ -67,6 +67,7 @@ const server = new Minirachne.Server();
 if (config.url) {
 	server.setURL(new URL(config.url));
 }
-const publicDocs = Minirachne.createAbsolutePath(import.meta, config.docs);
+
+const publicDocs = config.docs;
 server.router.add('/*', new Minirachne.StaticRoute(publicDocs));
 server.run();
