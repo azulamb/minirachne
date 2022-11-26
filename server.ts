@@ -1,27 +1,50 @@
 /**
  * Static server.
- *
- * USAGE:
- * deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts [OPTIONS] [CONFIG_FILE]
- *
- * OPTIONS:
- *   --url
- *     Set URL.
- *     Default: http://localhost/
- *     Env: MINIRACHNE_URL
- *
- *   --docs
- *     Set document root.
- *     Default: docs/
- *     Env: MINIRACHNE_DOCUMENT_ROOT
- *
- * CONFIG_FILE:
- *   Config file is JSON.
- *   {
- *     "url": "http://localhost/",
- *     "docs": "docs/"
- *   }
  */
+
+import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+
+const VERSIONS = `Minirachne: v${Minirachne.VERSION}
+Use deno std: v${Minirachne.STD_VERSION}`;
+
+const HELP = `Start local static server.
+${VERSIONS}
+
+USAGE:
+    deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts [OPTIONS] [CONFIG_FILE]
+
+OPTIONS:
+    --help
+        Print help information
+
+    --url
+        Set URL.
+        Default: http://localhost/
+        Env: MINIRACHNE_URL
+
+    --docs
+        Set document root.
+        Default: docs/
+        Env: MINIRACHNE_DOCUMENT_ROOT
+
+CONFIG_FILE:
+    Config file is JSON file.
+{
+    "url": "http://localhost/",
+    "docs": "docs/"
+}
+`;
+
+for (let i = 0; i < Deno.args.length; ++i) {
+	switch (Deno.args[i]) {
+		case '--help':
+			console.log(HELP);
+			Deno.exit(0);
+		case '--version':
+			console.log(VERSIONS);
+			Deno.exit(0);
+	}
+}
 
 const config: {
 	url: string;
@@ -60,8 +83,6 @@ for (let i = 0; i < Deno.args.length; ++i) {
 		break;
 	}
 }
-
-import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
 const server = new Minirachne.Server();
 if (config.url) {

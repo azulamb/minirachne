@@ -10,6 +10,16 @@ Minirachne is a Web API server made with Deno.
   - Use [Deno task runner](https://deno.land/manual@v1.20.1/tools/task_runner). (`^v1.20.1`)
   - Use [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern). (`^v1.15`)
 
+## Usage static web server.
+
+```sh
+deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts
+```
+
+Start local static web server.
+
+See for options: [server.ts](https://github.com/Azulamb/minirachne/blob/main/server.ts) or `deno run https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --help`
+
 ## Sample
 
 ### Server
