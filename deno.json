@@ -4,6 +4,7 @@
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
 		"check": "deno run --allow-run --allow-net tools/release_checker.ts",
 		"docs": "deno doc --json mod.ts > docs/docs.json",
+		"server": "deno run --allow-read --allow-net --allow-env server.ts",
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
 	"lint": {
