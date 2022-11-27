@@ -20,6 +20,12 @@ Start local static web server.
 
 See for options: [server.ts](https://github.com/Azulamb/minirachne/blob/main/server.ts) or `deno run https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --help`
 
+### Update
+
+```sh
+deno run -r https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --help
+```
+
 ## Sample
 
 ### Server
