@@ -35,7 +35,7 @@ See [server.ts](https://github.com/Azulamb/minirachne/blob/main/server.ts) or `d
 ### Update
 
 ```sh
-deno run -r https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --help
+deno run -r https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --version
 ```
 
 ## Sample
