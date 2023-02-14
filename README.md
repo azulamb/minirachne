@@ -30,19 +30,19 @@ deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/
 
 ### Option.
 
-See [server.ts](https://github.com/Azulamb/minirachne/blob/main/server.ts) or `deno run https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --help`
+See [server.ts](https://github.com/azulamb/minirachne/blob/main/server.ts) or `deno run https://raw.githubusercontent.com/azulamb/minirachne/main/server.ts --help`
 
 ### Update
 
 ```sh
-deno run -r https://raw.githubusercontent.com/Azulamb/minirachne/main/server.ts --version
+deno run -r https://raw.githubusercontent.com/azulamb/minirachne/main/server.ts --version
 ```
 
 ## Sample
 
 ### Server
 
-See [sample/server.ts](https://github.com/Azulamb/minirachne/blob/main/sample/server.ts) and [sample/](https://github.com/Azulamb/minirachne/blob/main/sample/)
+See [sample/server.ts](https://github.com/azulamb/minirachne/blob/main/sample/server.ts) and [sample/](https://github.com/azulamb/minirachne/blob/main/sample/)
 
 Exec `deno task sample`
 
@@ -52,7 +52,7 @@ https://deno.com/deploy
 
 + New Playground.
 + Copy sample code.
-  * See [denodeploy/sample.ts](https://github.com/Azulamb/minirachne/tree/main/denodeploy/sample.ts).
+  * See [denodeploy/sample.ts](https://github.com/azulamb/minirachne/tree/main/denodeploy/sample.ts).
 + Save & Deploy.
 
 ## Command
@@ -73,10 +73,11 @@ https://deno.com/deploy
 * テストの細分化
   * 現在テストをある程度まとめてやっているので。
 * 一番最後にレスポンス制御を入れるか検討
+* Digest
 
 ### 1.0にむけて
 
 * addにURLPatternを入れたままにするか検討
 * deno doc用のコメント
   * https://doc.deno.land/
-  * https://doc.deno.land/https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts
+  * https://doc.deno.land/https://raw.githubusercontent.com/azulamb/minirachne/main/mod.ts

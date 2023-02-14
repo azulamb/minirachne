@@ -1,6 +1,9 @@
 import { Middleware, RequestData } from '../../types.d.ts';
 import { HTTPErrors } from '../http_error.ts';
 
+/**
+ * Basic authentication.
+ */
 export class BasicAuth implements Middleware {
 	protected message: string;
 	protected users: { [keys: string]: string } = {};
@@ -19,6 +22,7 @@ export class BasicAuth implements Middleware {
 			if (this.users[info.user] !== info.password) {
 				throw new Error('Invalid password.');
 			}
+			// deno-lint-ignore no-unused-vars
 		} catch (error) {
 			return Promise.reject(
 				HTTPErrors.client.Unauthorized({

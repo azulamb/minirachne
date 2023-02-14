@@ -28,4 +28,4 @@ server.router.add('/*', (data) => {
 });
 
 console.log(`Start: ${server.getURL()}`);
-await server.run();
+await server.start();

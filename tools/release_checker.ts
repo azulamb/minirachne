@@ -9,11 +9,21 @@ function Exec(command: string[]) {
 	const process = Deno.run({
 		cmd: command,
 		stdout: 'piped',
-		//stderr: "piped",
+		stderr: "piped",
 	});
-	return process.output().then((result) => {
-		return new TextDecoder().decode(result);
-	});
+	return Promise.all([
+		process.output().then((result) => {
+			return new TextDecoder().decode(result);
+		}),
+		process.stderrOutput().then((result) => {
+			return new TextDecoder().decode(result);
+		})
+	]).then((result) => {
+		return {
+			stdout: result[0],
+			stderr: result[1],
+		};
+	})
 }
 
 function Exit(message: string) {
@@ -74,12 +84,12 @@ function VersionCheck(nowTag: string, noeVer: string) {
 	return false;
 }
 
-const list: { name: string; command?: string[]; after: (result: string) => Promise<string | void> }[] = [
+const list: { name: string; command?: string[]; after: (result: {stdout: string; stderr: string; }) => Promise<string | void> }[] = [
 	{
 		name: 'Sample import check (server)',
 		command: ['deno', 'info', 'sample/server.ts'],
 		after: (result) => {
-			return Promise.resolve(ImportLocalFiles(result)).then((imports) => {
+			return Promise.resolve(ImportLocalFiles(result.stdout)).then((imports) => {
 				if (1 < imports.length) {
 					throw new Error('Sample import local file.');
 				}
@@ -90,7 +100,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		name: 'Sample import check (Deno Deploy)',
 		command: ['deno', 'info', 'denodeploy/sample.ts'],
 		after: (result) => {
-			return Promise.resolve(ImportLocalFiles(result)).then((imports) => {
+			return Promise.resolve(ImportLocalFiles(result.stdout)).then((imports) => {
 				if (1 < imports.length) {
 					throw new Error('Sample import local file.');
 				}
@@ -101,7 +111,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		name: 'Deno.std check(libs)',
 		command: ['deno', 'info', 'src/deno_std.ts'],
 		after: (result) => {
-			return Promise.resolve(ImportFiles(result)).then((files) => {
+			return Promise.resolve(ImportFiles(result.stdout)).then((files) => {
 				if (files.length <= 0) {
 					throw new Error('libs std version error.');
 				}
@@ -121,7 +131,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		name: 'Deno.std check(test)',
 		command: ['deno', 'info', 'tests/_setup.ts'],
 		after: (result) => {
-			return Promise.resolve(ImportFiles(result)).then((files) => {
+			return Promise.resolve(ImportFiles(result.stdout)).then((files) => {
 				if (files.length <= 0) {
 					throw new Error('test std version error.');
 				}
@@ -152,7 +162,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		name: 'Deno version check',
 		command: ['deno', 'upgrade', '--dry-run'],
 		after: (result) => {
-			const version = result.replace(/^.+Found latest version ([0-9.]+).+$/s, '$1');
+			const version = result.stderr.replace(/^Local deno version ([0-9.]+).+$/s, '$1');
 			if (version.match(/[^0-9.]/)) {
 				return Promise.resolve('This deno version is latest');
 			}
@@ -163,7 +173,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 		name: 'VERSION check',
 		command: ['git', 'describe', '--tags', '--abbrev=0'],
 		after: (result) => {
-			return Promise.resolve(result.replace(/\s/g, '')).then((tag) => {
+			return Promise.resolve(result.stdout.replace(/\s/g, '')).then((tag) => {
 				console.log(`Now tag: ${tag} Now ver: ${VERSION}`);
 				if (!VersionCheck(tag, VERSION)) {
 					throw new Error('VERSION not updated.');
@@ -175,7 +185,7 @@ const list: { name: string; command?: string[]; after: (result: string) => Promi
 
 for (const check of list) {
 	Start(check.name);
-	const p = check.command ? Exec(check.command).then(check.after) : check.after('');
+	const p = check.command ? Exec(check.command).then(check.after) : check.after({ stdout: '', stderr: ''});
 	await p.then((msg) => {
 		Complete(`OK ... ${check.name}${msg ? ': ' + msg : ''}`);
 	}).catch((error) => {

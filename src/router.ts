@@ -237,6 +237,9 @@ class BaseRouter {
 	}
 }
 
+/**
+ * Minirachne router.
+ */
 export class Router extends BaseRouter {
 	/**
 	 * Only Request.method or X-HTTP-Method-Override = GET

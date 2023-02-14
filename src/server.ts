@@ -6,6 +6,9 @@ import { SetupWebSocket, WebSocketListener } from './ws.ts';
 import { onRequest } from './on_request.ts';
 import { ServerResponse } from './response.ts';
 
+/**
+ * Minirachne server.
+ */
 export class Server {
 	protected url: URL = new URL('http://localhost:8080/');
 	protected files: { keyFile: string; certFile: string } = {
@@ -13,6 +16,7 @@ export class Server {
 		certFile: '',
 	};
 	protected controller!: AbortController;
+	protected status = false;
 	public router!: Router;
 	public response!: ServerResponse;
 
@@ -42,7 +46,12 @@ export class Server {
 		this.controller.abort();
 	}
 
-	public run() {
+	public start() {
+		if (this.status) {
+			return Promise.reject(new Error('Server started.'));
+		}
+		this.status = true;
+
 		return (this.url.protocol === 'https:' ? serveTls : serve)(
 			(request, connInfo) => {
 				return this.onRequest({
