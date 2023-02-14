@@ -22,10 +22,10 @@ deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/
 
 ### Fix version.
 
-Sample version is `v0.13.0`
+Sample version is `v0.14.0`
 
 ```sh
-deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.13.0/server.ts
+deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.14.0/server.ts
 ```
 
 ### Option.
