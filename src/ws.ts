@@ -1,3 +1,6 @@
+/**
+ * Minirachne WebSocket listener.
+ */
 export class WebSocketListener {
 	// deno-lint-ignore no-unused-vars
 	public onOpen(ws: WebSocket, event: Event) {}

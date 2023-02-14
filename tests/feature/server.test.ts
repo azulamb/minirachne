@@ -102,7 +102,7 @@ Deno.test('File server', async () => {
 	const server = new Minirachne.Server();
 	server.setURL(url);
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(url).then((response) => {
 		asserts.assertEquals(response.status, 500);
@@ -151,7 +151,7 @@ Deno.test('Use middleware', async () => {
 	const publicDir = Minirachne.createAbsolutePath(import.meta, '../tmp/public');
 	server.router.add('/*', new Minirachne.StaticRoute(publicDir));
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(url).then((response) => {
 		asserts.assertEquals(response.status, 200);
@@ -200,7 +200,7 @@ Deno.test('Use middleware(Failure)', async () => {
 	const publicDir = Minirachne.createAbsolutePath(import.meta, '../tmp/public');
 	server.router.add('/*', new Minirachne.StaticRoute(publicDir));
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(url).then((response) => {
 		asserts.assertEquals(response.status, 200);
@@ -247,7 +247,7 @@ Deno.test('Use middleware(Add data)', async () => {
 		middleware,
 	);
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(url).then((response) => {
 		asserts.assertEquals(response.status, 200);
@@ -282,7 +282,7 @@ Deno.test('Use middleware(With sub router)', async () => {
 		},
 	);
 
-	const p = server.run();
+	const p = server.start();
 
 	const list: { url: string; status: number; body?: string; method?: string }[] = [
 		{ url: '/test', status: 200, body: 'main' },
@@ -318,7 +318,7 @@ Deno.test('Use middleware(Basic auth)', async () => {
 
 	server.router.add('/*', new Minirachne.StaticRoute(testDir), middleware);
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(url).then((response) => {
 		asserts.assertEquals(response.status, 401);

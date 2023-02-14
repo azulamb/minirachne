@@ -1,3 +1,6 @@
+/**
+ * Minirachne server response.
+ */
 export class ServerResponse {
 	static JSON(data: any, init?: ResponseInit) {
 		if (!init) {

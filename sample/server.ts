@@ -174,7 +174,7 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 	 *     Do not use middleware.
 	 */
 	console.log(`Start: ${server.getURL()}`);
-	return server.run();
+	return server.start();
 })().then(() => {
 	console.log('Exit.');
 }).catch((error) => {

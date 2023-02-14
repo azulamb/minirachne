@@ -30,7 +30,7 @@ Deno.test('Multistage router', async () => {
 
 	server.router.addRouter('/api', ApiRouter());
 
-	const p = server.run();
+	const p = server.start();
 
 	await fetch(new URL('/api/test', url)).then((response) => {
 		asserts.assertEquals(response.status, 400);

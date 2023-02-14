@@ -91,4 +91,4 @@ if (config.url) {
 
 const publicDocs = config.docs;
 server.router.add('/*', new Minirachne.StaticRoute(publicDocs));
-server.run();
+server.start();
