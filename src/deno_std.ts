@@ -1,5 +1,4 @@
 /** Use Deno.std version. */
-export * from '$std/http/server.ts';
 export { dirname, extname, fromFileUrl, join } from '$std/path/mod.ts';
 import { deleteCookie, getCookies, setCookie } from '$std/http/cookie.ts';
 export const Cookie = { get: getCookies, set: setCookie, delete: deleteCookie };

@@ -1,10 +1,8 @@
-import { ConnInfo } from './src/deno_std.ts';
-
 /** Request data. */
 export type RequestData = {
 	/** Request */
 	readonly request: Request;
-	readonly connection?: ConnInfo;
+	readonly info?: Deno.ServeHandlerInfo;
 	/** Data added by middleware. */
 	// deno-lint-ignore no-explicit-any
 	detail: { [keys: string]: any };

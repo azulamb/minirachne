@@ -34,7 +34,7 @@ Deno.test('Static Route', async () => {
 		{
 			url: 'http://localhost/sample.json2',
 			reqInit: { method: 'HEAD' },
-			headers: createHeaders(baseHeaders, { 'content-length': '19', 'content-type': 'application/json' }),
+			headers: createHeaders(baseHeaders, { 'content-length': '20', 'content-type': 'application/json' }),
 		},
 		{
 			url: 'http://localhost/notfound',

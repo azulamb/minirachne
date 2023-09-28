@@ -3,28 +3,21 @@ deno run --allow-run --allow-net tools/release_checker.ts
 */
 
 import { VERSION } from '../version.ts';
-import DENO_JSON from '../deno.json' with { type: "json" };
+import DENO_JSON from '../deno.json' with { type: 'json' };
 const STD_VERSION = DENO_JSON.imports['$std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
 
-function Exec(command: string[]) {
-	const process = Deno.run({
-		cmd: command,
-		stdout: 'piped',
-		stderr: 'piped',
-	});
-	return Promise.all([
-		process.output().then((result) => {
-			return new TextDecoder().decode(result);
-		}),
-		process.stderrOutput().then((result) => {
-			return new TextDecoder().decode(result);
-		}),
-	]).then((result) => {
-		return {
-			stdout: result[0],
-			stderr: result[1],
-		};
-	});
+async function Exec(command: string[]) {
+	const { stdout, stderr } = await new Deno.Command(
+		command.shift() as string,
+		{
+			args: command,
+		},
+	).output();
+
+	return {
+		stdout: new TextDecoder().decode(stdout),
+		stderr: new TextDecoder().decode(stderr),
+	};
 }
 
 function Exit(message: string) {
