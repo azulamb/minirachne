@@ -3,13 +3,14 @@ deno run --allow-run --allow-net tools/release_checker.ts
 */
 
 import { VERSION } from '../version.ts';
-import { VERSION as STD_VERSION } from '../src/deno_std.ts';
+import DENO_JSON from '../deno.json' with { type: "json" };
+const STD_VERSION = DENO_JSON.imports['$std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
 
 function Exec(command: string[]) {
 	const process = Deno.run({
 		cmd: command,
 		stdout: 'piped',
-		stderr: "piped",
+		stderr: 'piped',
 	});
 	return Promise.all([
 		process.output().then((result) => {
@@ -17,13 +18,13 @@ function Exec(command: string[]) {
 		}),
 		process.stderrOutput().then((result) => {
 			return new TextDecoder().decode(result);
-		})
+		}),
 	]).then((result) => {
 		return {
 			stdout: result[0],
 			stderr: result[1],
 		};
-	})
+	});
 }
 
 function Exit(message: string) {
@@ -84,7 +85,7 @@ function VersionCheck(nowTag: string, noeVer: string) {
 	return false;
 }
 
-const list: { name: string; command?: string[]; after: (result: {stdout: string; stderr: string; }) => Promise<string | void> }[] = [
+const list: { name: string; command?: string[]; after: (result: { stdout: string; stderr: string }) => Promise<string | void> }[] = [
 	{
 		name: 'Sample import check (server)',
 		command: ['deno', 'info', 'sample/server.ts'],
@@ -185,7 +186,7 @@ const list: { name: string; command?: string[]; after: (result: {stdout: string;
 
 for (const check of list) {
 	Start(check.name);
-	const p = check.command ? Exec(check.command).then(check.after) : check.after({ stdout: '', stderr: ''});
+	const p = check.command ? Exec(check.command).then(check.after) : check.after({ stdout: '', stderr: '' });
 	await p.then((msg) => {
 		Complete(`OK ... ${check.name}${msg ? ': ' + msg : ''}`);
 	}).catch((error) => {

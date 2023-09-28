@@ -1,4 +1,5 @@
 {
+	"lock": false,
 	"tasks": {
 		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
@@ -7,20 +8,19 @@
 		"server": "deno run --allow-read --allow-net --allow-env server.ts",
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
+	"imports": {
+		"$std/": "https://deno.land/std@0.177.0/"
+	},
 	"lint": {
-		"files": {
-			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"]
-		},
+		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"],
 		"rules": {
-		  "tags": ["recommended"],
-		  "include": [],
-		  "exclude": ["require-await"]
+			"tags": ["recommended"],
+			"include": [],
+			"exclude": ["require-await"]
 		}
 	},
 	"fmt": {
-		"files": {
-			"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/", "denodeploy/"]
-		},
+		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/", "denodeploy/"],
 		"options": {
 			"useTabs": true,
 			"indentWidth": 4,
