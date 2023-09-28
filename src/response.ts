@@ -6,8 +6,9 @@ export class ServerResponse {
 		if (!init) {
 			init = {};
 		}
-		init.headers = new Headers(init.headers);
-		init.headers.set('content-type', 'application/json');
+		const headers = new Headers(init.headers);
+		headers.set('content-type', 'application/json');
+		init.headers = headers;
 		return Promise.resolve(new Response(JSON.stringify(data), init));
 	}
 
@@ -23,11 +24,11 @@ export class ServerResponse {
 		}
 		const headers = new Headers(this.jsonHeader);
 		if (init.headers) {
-			init.headers = new Headers(init.headers);
+			const headers = new Headers(init.headers);
 			// Merge
 			for (const key in headers) {
-				if (!init.headers.get(key)) {
-					init.headers.set(key, <string> headers.get(key));
+				if (!headers.get(key)) {
+					headers.set(key, <string> headers.get(key));
 				}
 			}
 		} else {

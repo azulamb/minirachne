@@ -3,29 +3,24 @@
 	"tasks": {
 		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
-		"check": "deno run --allow-run --allow-net tools/release_checker.ts",
+		"check": "deno run --allow-run --allow-net --allow-read tools/release_checker.ts",
 		"docs": "deno doc --json mod.ts > docs/docs.json",
 		"server": "deno run --allow-read --allow-net --allow-env server.ts",
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
 	"imports": {
-		"$std/": "https://deno.land/std@0.177.0/"
+		"$std/": "https://deno.land/std@0.203.0/"
 	},
 	"lint": {
 		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"],
-		"rules": {
-			"tags": ["recommended"],
-			"include": [],
-			"exclude": ["require-await"]
-		}
+		"tags": ["recommended"],
+		"exclude": ["require-await"]
 	},
 	"fmt": {
 		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/", "denodeploy/"],
-		"options": {
-			"useTabs": true,
-			"indentWidth": 4,
-			"lineWidth": 160,
-			"singleQuote": true
-		}
+		"useTabs": true,
+		"indentWidth": 4,
+		"lineWidth": 160,
+		"singleQuote": true
 	}
 }

@@ -8,10 +8,10 @@ export const VERSION = MINIRACHNE_VERSION;
 
 export * from './types.d.ts';
 
-import { dirname, fromFileUrl, join, VERSION as DENO_STD_VERSION } from './src/deno_std.ts';
+import { dirname, fromFileUrl, join } from './src/deno_std.ts';
 
-/** Use Deno std version. */
-export const STD_VERSION = DENO_STD_VERSION;
+import DENO_JSON from './deno.json' with { type: 'json' };
+export const STD_VERSION = DENO_JSON.imports['$std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
 
 /** HTTP Server. */
 export { Server } from './src/server.ts';

@@ -1,5 +1,5 @@
 import { RequestData } from '../types.d.ts';
-import { serve, serveTls } from './deno_std.ts';
+//import { serve, serveTls } from './deno_std.ts';
 import { Router } from './router.ts';
 import { HTTPError, HTTPErrors } from './http_error.ts';
 import { SetupWebSocket, WebSocketListener } from './ws.ts';
@@ -52,22 +52,22 @@ export class Server {
 		}
 		this.status = true;
 
-		return (this.url.protocol === 'https:' ? serveTls : serve)(
-			(request, connInfo) => {
-				return this.onRequest({
-					request: request,
-					connection: connInfo,
-					detail: {},
-				});
-			},
+		return Deno.serve(
 			{
 				port: parseInt(this.url.port),
 				signal: this.controller.signal,
 				hostname: this.url.hostname,
-				keyFile: this.files.keyFile,
-				certFile: this.files.certFile,
+				key: this.files.keyFile,
+				cert: this.files.certFile,
 			},
-		);
+			(request, info) => {
+				return this.onRequest({
+					request: request,
+					info: info,
+					detail: {},
+				});
+			},
+		).finished;
 	}
 
 	protected async onRequest(data: RequestData) {
