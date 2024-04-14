@@ -11,7 +11,7 @@ export * from './types.d.ts';
 import { dirname, fromFileUrl, join } from './src/deno_std.ts';
 
 import DENO_JSON from './deno.json' with { type: 'json' };
-export const STD_VERSION = DENO_JSON.imports['$std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
+export const STD_VERSION = DENO_JSON.imports['$minirachne_std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
 
 /** HTTP Server. */
 export { Server } from './src/server.ts';

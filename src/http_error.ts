@@ -1,4 +1,4 @@
-import { Status, STATUS_TEXT } from './deno_std.ts';
+import { GetHttpStatusText } from './deno_std.ts';
 
 /**
  * HTTPError has Error response.
@@ -12,7 +12,7 @@ export class HTTPError extends Error {
 	 * @param status HTTP Status code.
 	 */
 	constructor(status: number, responseInit?: ResponseInit) {
-		super(STATUS_TEXT[<Status> status] || 'UNKNOWN');
+		super(GetHttpStatusText(status) || 'UNKNOWN');
 		this.name = 'HTTPError';
 		this.responseInit = createResponseInit(status, responseInit);
 	}
@@ -91,11 +91,11 @@ export const HTTPErrors = {
 			return new HTTPError(412, responseInit);
 		},
 		/** 413	Request Entity Too Large */
-		RequestEntityTooLarge: (responseInit?: ResponseInit) => {
+		ContentTooLarge: (responseInit?: ResponseInit) => {
 			return new HTTPError(413, responseInit);
 		},
 		/** 414	URI Too Long */
-		RequestURITooLong: (responseInit?: ResponseInit) => {
+		URITooLong: (responseInit?: ResponseInit) => {
 			return new HTTPError(414, responseInit);
 		},
 		/** 415	Unsupported Media Type */
@@ -103,7 +103,7 @@ export const HTTPErrors = {
 			return new HTTPError(415, responseInit);
 		},
 		/** 416 Requested Range Not Satisfiable */
-		RequestedRangeNotSatisfiable: (responseInit?: ResponseInit) => {
+		RangeNotSatisfiable: (responseInit?: ResponseInit) => {
 			return new HTTPError(416, responseInit);
 		},
 		/** 417	Expectation Failed */
@@ -208,7 +208,7 @@ export const HTTPErrors = {
 function createResponseInit(status: number, responseInit?: ResponseInit): ResponseInit {
 	responseInit = responseInit ? responseInit : {};
 	responseInit.status = status;
-	responseInit.statusText = STATUS_TEXT[<Status> responseInit.status];
+	responseInit.statusText = GetHttpStatusText(responseInit.status);
 
 	return responseInit;
 }

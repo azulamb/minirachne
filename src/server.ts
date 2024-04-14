@@ -46,6 +46,23 @@ export class Server {
 		this.controller.abort();
 	}
 
+	protected getConfig() {
+		if (this.files.keyFile && this.files.certFile) {
+			return {
+				port: parseInt(this.url.port),
+				signal: this.controller.signal,
+				hostname: this.url.hostname,
+				key: this.files.keyFile,
+				cert: this.files.certFile,
+			};
+		}
+		return {
+			port: parseInt(this.url.port),
+			signal: this.controller.signal,
+			hostname: this.url.hostname,
+		};
+	}
+
 	public start() {
 		if (this.status) {
 			return Promise.reject(new Error('Server started.'));
@@ -53,13 +70,7 @@ export class Server {
 		this.status = true;
 
 		return Deno.serve(
-			{
-				port: parseInt(this.url.port),
-				signal: this.controller.signal,
-				hostname: this.url.hostname,
-				key: this.files.keyFile,
-				cert: this.files.certFile,
-			},
+			this.getConfig(),
 			(request, info) => {
 				return this.onRequest({
 					request: request,

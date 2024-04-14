@@ -1,15 +1,15 @@
 import * as asserts from '../_setup.ts';
 import { Redirect } from '../../src/redirect.ts';
-import { Status, STATUS_TEXT } from '../../src/deno_std.ts';
+import { STATUS_TEXT } from '../../src/deno_std.ts';
 
 Deno.test('Redirect', async () => {
-	const Redirects: { name: string; code: Status }[] = [];
+	const Redirects: { name: string; code: number }[] = [];
 	for (const key in STATUS_TEXT) {
-		const code: Status = typeof key === 'number' ? key : parseInt(key);
+		const code = typeof key === 'number' ? key : parseInt(key);
 		if (code < 300 || 400 <= code) {
 			continue;
 		}
-		const value = STATUS_TEXT[code];
+		const value = STATUS_TEXT[<200> code];
 		Redirects.push({
 			name: value.replace(/\s/g, ''),
 			code: code,

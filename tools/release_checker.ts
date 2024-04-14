@@ -4,7 +4,7 @@ deno run --allow-run --allow-net tools/release_checker.ts
 
 import { VERSION } from '../version.ts';
 import DENO_JSON from '../deno.json' with { type: 'json' };
-const STD_VERSION = DENO_JSON.imports['$std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
+const STD_VERSION = DENO_JSON.imports['$minirachne_std/'].replace(/^.+std@([0-9.]+).+$/, '$1');
 
 async function Exec(command: string[]) {
 	const { stdout, stderr } = await new Deno.Command(
@@ -59,7 +59,7 @@ function ImportFiles(result: string) {
 
 function ImportLocalFiles(result: string) {
 	return ImportFiles(result).filter((path) => {
-		return path && !path.match(/^https\:/);
+		return path && !path.match(/^https\:/) && path !== 'Relative';
 	});
 }
 

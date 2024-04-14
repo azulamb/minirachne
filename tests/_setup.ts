@@ -1,1 +1,1 @@
-export * from '$std/testing/asserts.ts';
+export * from '$minirachne_std/assert/mod.ts';

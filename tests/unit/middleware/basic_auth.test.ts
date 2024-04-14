@@ -1,6 +1,6 @@
 import * as asserts from '../../_setup.ts';
 import { HTTPError } from '../../../src/http_error.ts';
-import { Status, STATUS_TEXT } from '../../../src/deno_std.ts';
+import { STATUS_TEXT } from '../../../src/deno_std.ts';
 import { BasicAuth } from '../../../src/middleware/basic_auth.ts';
 import { RequestData } from '../../../types.d.ts';
 
@@ -16,7 +16,7 @@ Deno.test('Basic auth: Unauthorized', async () => {
 			return basicAuth.handle(data);
 		},
 		HTTPError,
-		STATUS_TEXT[<Status> 401],
+		STATUS_TEXT[401],
 	).then((result) => {
 		asserts.assertFalse(result.getPropagation());
 	});
@@ -67,7 +67,7 @@ Deno.test('Basic auth: Failure', async () => {
 			return basicAuth.handle(data);
 		},
 		HTTPError,
-		STATUS_TEXT[<Status> 401],
+		STATUS_TEXT[401],
 	).then((result) => {
 		asserts.assertFalse(result.getPropagation());
 	});
