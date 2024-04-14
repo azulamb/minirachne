@@ -9,11 +9,10 @@
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
 	"imports": {
-		"$std/": "https://deno.land/std@0.203.0/"
+		"$minirachne_std/": "https://deno.land/std@0.222.1/"
 	},
 	"lint": {
 		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"],
-		"tags": ["recommended"],
 		"exclude": ["require-await"]
 	},
 	"fmt": {

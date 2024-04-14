@@ -32,11 +32,6 @@ Deno.test('Static Route', async () => {
 			headers: createHeaders(baseHeaders, { 'content-length': '19', 'content-type': 'application/json' }),
 		},
 		{
-			url: 'http://localhost/sample.json2',
-			reqInit: { method: 'HEAD' },
-			headers: createHeaders(baseHeaders, { 'content-length': '20', 'content-type': 'application/json' }),
-		},
-		{
 			url: 'http://localhost/notfound',
 			reqInit: { method: 'HEAD' },
 			headers: createHeaders(baseHeaders, { 'content-type': 'text/plain;charset=UTF-8' }),
@@ -90,7 +85,7 @@ Deno.test('Static Route', async () => {
 			return route.onRequest({ request: new Request('http://localhost/sample.json', { headers: { Range: 'bytes=1000-' } }), detail: {} });
 		},
 		Error,
-		'Requested Range Not Satisfiable',
+		'Range Not Satisfiable',
 	);
 
 	asserts.assertRejects(

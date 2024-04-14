@@ -29,6 +29,9 @@ export class StaticRoute implements Route {
 		}
 
 		this.docs = join(docs, '/');
+		// Check if the directory exists.
+		Deno.statSync(this.docs);
+
 		this.setBaseHeader(
 			new Headers({
 				'Accept-Ranges': 'bytes',
@@ -156,7 +159,7 @@ export class StaticRoute implements Route {
 		if (range.exists && (range.end < range.start || max < range.start || max < range.end)) {
 			return this.createHeader(filePath, stat, range.exists ? range : null).then((headers) => {
 				responseInit.headers = headers;
-				return Promise.reject(HTTPErrors.client.RequestedRangeNotSatisfiable(responseInit));
+				return Promise.reject(HTTPErrors.client.RangeNotSatisfiable(responseInit));
 			});
 		}
 
