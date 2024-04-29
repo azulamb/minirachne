@@ -47,7 +47,7 @@ Deno.test('Middrewares manage', async () => {
 	asserts.assertEquals(list[4].called, false);
 });
 
-Deno.test('Middreware failure', async () => {
+Deno.test('Middreware failure', () => {
 	const data: RequestData = {
 		request: new Request('http://localhost:8080/'),
 		detail: {},

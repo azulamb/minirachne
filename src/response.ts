@@ -2,6 +2,7 @@
  * Minirachne server response.
  */
 export class ServerResponse {
+	// deno-lint-ignore no-explicit-any
 	static JSON(data: any, init?: ResponseInit) {
 		if (!init) {
 			init = {};
@@ -18,6 +19,7 @@ export class ServerResponse {
 	}
 
 	public jsonHeader: Headers;
+	// deno-lint-ignore no-explicit-any
 	public json(data: any, init?: ResponseInit) {
 		if (!init) {
 			init = {};

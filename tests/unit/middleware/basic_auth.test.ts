@@ -4,7 +4,7 @@ import { STATUS_TEXT } from '../../../src/deno_std.ts';
 import { BasicAuth } from '../../../src/middleware/basic_auth.ts';
 import { RequestData } from '../../../types.d.ts';
 
-Deno.test('Basic auth: Unauthorized', async () => {
+Deno.test('Basic auth: Unauthorized', () => {
 	const basicAuth = new BasicAuth();
 
 	const data: RequestData = {
@@ -42,7 +42,7 @@ Deno.test('Basic auth: Success', async () => {
 	asserts.assertEquals(result, undefined);
 });
 
-Deno.test('Basic auth: Failure', async () => {
+Deno.test('Basic auth: Failure', () => {
 	const user = Math.random().toString(32).substring(2);
 	const password = Math.random().toString(32).substring(2);
 	const base64 = btoa(`${user}:${password}`);

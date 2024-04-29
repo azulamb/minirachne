@@ -41,7 +41,7 @@ export * from './src/http_error.ts';
 export { Router } from './src/router.ts';
 
 /** Static routes. */
-export { StaticRoute } from './src/static.ts';
+export { ResponseFile, StaticRoute } from './src/static.ts';
 
 /** WebSocket listener. */
 export { WebSocketListener } from './src/ws.ts';
