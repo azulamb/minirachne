@@ -14,7 +14,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 		this.middleware = Minirachne.MiddlewareManager.create(this);
 	}
 
-	public async onRequest(data: Minirachne.RequestData) {
+	public onRequest(data: Minirachne.RequestData) {
 		const headers = new Headers();
 
 		switch (this.getPath(data.request)) {
@@ -32,11 +32,11 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 			}
 		}
 
-		return Minirachne.Redirect.SeeOther('/', { headers: headers });
+		return Promise.resolve(Minirachne.Redirect.SeeOther('/', { headers: headers }));
 	}
 
 	// Middleware
-	public async handle(data: Minirachne.RequestData) {
+	public handle(data: Minirachne.RequestData) {
 		const path = this.getPath(data.request);
 		const user = this.getUser(data.request);
 		if (path !== 'login' && !user) {
@@ -44,6 +44,7 @@ class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
 		}
 		// Add user data.
 		data.detail.user = user;
+		return Promise.resolve();
 	}
 
 	// Common

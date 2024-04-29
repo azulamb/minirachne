@@ -7,9 +7,11 @@ interface NotfoundCallback {
 	(data: RequestData): Promise<Response>;
 }
 
+const DEFAULT_CHUNK_SIZE = 16640;
+
 /** Create Static file server route. */
 export class StaticRoute implements Route {
-	public DEFAULT_CHUNK_SIZE = 16640;
+	public DEFAULT_CHUNK_SIZE = DEFAULT_CHUNK_SIZE;
 	public order!: number;
 	public pattern!: URLPattern;
 	protected docs!: string;
@@ -179,7 +181,7 @@ export class StaticRoute implements Route {
 		);
 	}
 
-	protected async createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
+	protected createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
 		const headers = this.getBaseHeader();
 
 		const mime = this.mime.getFromPath(filePath);
@@ -193,7 +195,7 @@ export class StaticRoute implements Route {
 			headers.set('content-length', stat.size + '');
 		}
 
-		return headers;
+		return Promise.resolve(headers);
 	}
 
 	protected createPath(request: Request) {
@@ -203,7 +205,7 @@ export class StaticRoute implements Route {
 		return join(this.docs, path || '');
 	}
 
-	public async onRequest(data: RequestData) {
+	public onRequest(data: RequestData) {
 		const path = this.createPath(data.request);
 
 		switch (data.request.method) {
@@ -224,4 +226,54 @@ export class StaticRoute implements Route {
 			return this.responseNotfound(data);
 		});
 	}
+}
+
+const defaultMimeType = new MIMETypes();
+
+export async function ResponseFile(filePath: string, responseInit?: ResponseInit, mime?: MIMETypes) {
+	const stat = await Deno.stat(filePath);
+	const file = await Deno.open(filePath);
+
+	const bytes = new Uint8Array(DEFAULT_CHUNK_SIZE);
+	const contentLength = stat.size;
+	let bytesSent = 0;
+	const readableStream = new ReadableStream({
+		async start() {
+			await file.seek(0, Deno.SeekMode.Start);
+		},
+		async pull(controller) {
+			const bytesRead = await file.read(bytes);
+			if (bytesRead === null) {
+				file.close();
+				controller.close();
+				return;
+			}
+			controller.enqueue(
+				bytes.slice(0, Math.min(bytesRead, contentLength - bytesSent)),
+			);
+			bytesSent += bytesRead;
+			if (contentLength < bytesSent) {
+				file.close();
+				controller.close();
+			}
+		},
+	});
+
+	if (!responseInit) {
+		responseInit = {};
+	}
+	const headers = new Headers(responseInit.headers);
+	if (!mime) {
+		mime = defaultMimeType;
+	}
+
+	const mimeType = mime.getFromPath(filePath);
+	if (mimeType) {
+		headers.set('content-type', mimeType);
+	}
+
+	headers.set('content-length', stat.size + '');
+	responseInit.headers = headers;
+
+	return new Response(readableStream, responseInit);
 }

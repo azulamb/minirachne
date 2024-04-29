@@ -2,7 +2,7 @@ import * as asserts from '../_setup.ts';
 import { Redirect } from '../../src/redirect.ts';
 import { STATUS_TEXT } from '../../src/deno_std.ts';
 
-Deno.test('Redirect', async () => {
+Deno.test('Redirect', () => {
 	const Redirects: { name: string; code: number }[] = [];
 	for (const key in STATUS_TEXT) {
 		const code = typeof key === 'number' ? key : parseInt(key);

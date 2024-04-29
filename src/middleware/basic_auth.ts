@@ -13,7 +13,7 @@ export class BasicAuth implements Middleware {
 	}
 
 	// Middleware
-	public async handle(data: RequestData) {
+	public handle(data: RequestData) {
 		try {
 			const info = this.parseAuthorization(data.request.headers);
 			if (!this.users[info.user]) {

@@ -2,7 +2,7 @@ import * as asserts from '../_setup.ts';
 import { HTTPError, HTTPErrors } from '../../src/http_error.ts';
 import { STATUS_TEXT } from '../../src/deno_std.ts';
 
-Deno.test('HTTPErrors client(4xx)', async () => {
+Deno.test('HTTPErrors client(4xx)', () => {
 	const Errors: { name: string; code: number }[] = [];
 	const convert: { [keys: number]: string } = {
 		418: 'Teapot',
@@ -29,7 +29,7 @@ Deno.test('HTTPErrors client(4xx)', async () => {
 	}
 });
 
-Deno.test('HTTPErrors server(5xx)', async () => {
+Deno.test('HTTPErrors server(5xx)', () => {
 	const Errors: { name: string; code: number }[] = [];
 	const convert: { [keys: number]: string } = {};
 	for (const key in STATUS_TEXT) {
