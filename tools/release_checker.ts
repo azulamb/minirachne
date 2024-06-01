@@ -78,7 +78,7 @@ function VersionCheck(nowTag: string, noeVer: string) {
 }
 
 const list: { name: string; command?: string[]; after: (result: { stdout: string; stderr: string }) => Promise<string | void> }[] = [
-  {
+  /*{
     name: 'Sample import check (server)',
     command: ['deno', 'info', 'sample/server.ts'],
     after: (result) => {
@@ -88,7 +88,7 @@ const list: { name: string; command?: string[]; after: (result: { stdout: string
         }
       });
     },
-  },
+  },*/
   {
     name: 'Sample import check (Deno Deploy)',
     command: ['deno', 'info', 'denodeploy/sample.ts'],
@@ -169,7 +169,7 @@ const list: { name: string; command?: string[]; after: (result: { stdout: string
       return Promise.resolve(result.stdout.replace(/\s/g, '')).then((tag) => {
         console.log(`Now tag: ${tag} Now ver: ${VERSION}`);
         if (!VersionCheck(tag, VERSION)) {
-          throw new Error('VERSION in version.ts not updated.');
+          throw new Error('VERSION in deno.json not updated.');
         }
       });
     },

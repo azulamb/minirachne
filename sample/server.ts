@@ -4,9 +4,8 @@
  * deno run --allow-read --allow-net --allow-env ./sample/server.ts
  */
 
-//import * as Minirachne from '../mod.ts';
-//import * as Minirachne from "@minirachne/minirachne";
-import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+//import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+import * as Minirachne from 'jsr:@minirachne/minirachne';
 
 // Middleware & Route
 class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
@@ -75,7 +74,6 @@ class StatusApi implements Minirachne.RouteLike {
     const body = JSON.stringify({
       framework: Minirachne.NAME,
       version: Minirachne.VERSION,
-      std: Minirachne.STD_VERSION,
     });
     const headers = new Headers();
     headers.set('content-length', encodeURI(body).replace(/%../g, '*').length + '');
@@ -178,8 +176,9 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
    * - Public static file server.
    *     Do not use middleware.
    */
-  console.log(`Start: ${server.getURL()}`);
-  return server.start();
+  return server.start(() => {
+    console.log(`Start: ${server.getURL()}`);
+  });
 })().then(() => {
   console.log('Exit.');
 }).catch((error) => {
