@@ -22,10 +22,10 @@ deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/
 
 ### Fix version.
 
-Sample version is `v0.14.0`
+Sample version is `v0.18.0`
 
 ```sh
-deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.14.0/server.ts
+deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.18.0/server.ts
 ```
 
 ### Option.
@@ -80,6 +80,6 @@ https://deno.com/deploy
 * addにURLPatternを入れたままにするか検討
 * deno doc用のコメント
   * https://doc.deno.land/
-  * https://doc.deno.land/https://raw.githubusercontent.com/azulamb/minirachne/main/mod.ts
+  * https://raw.githubusercontent.com/azulamb/minirachne/main/mod.ts
 * JSR
 * std version check.

@@ -1,10 +1,10 @@
 /** Framework name. */
 export const NAME = 'Minirachne';
 
-import { VERSION as MINIRACHNE_VERSION } from './version.ts';
+import DENO_JSON from './deno.json' with { type: 'json' };
 
 /** Framework version. */
-export const VERSION = MINIRACHNE_VERSION;
+export const VERSION = DENO_JSON.version;
 
 export * from './types.d.ts';
 

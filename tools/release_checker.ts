@@ -2,8 +2,8 @@
 deno run --allow-run --allow-net tools/release_checker.ts
 */
 
-import { VERSION } from '../version.ts';
-//import DENO_JSON from '../deno.json' with { type: 'json' };
+import DENO_JSON from '../deno.json' with { type: 'json' };
+export const VERSION = DENO_JSON.version;
 
 async function Exec(command: string[]) {
   const { stdout, stderr } = await new Deno.Command(
