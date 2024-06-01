@@ -26,7 +26,7 @@ export { Cookie } from './src/deno_std.ts';
  * @param path Relative path
  * @returns Absolute path
  */
-export function createAbsolutePath(meta: ImportMeta, path = '') {
+export function createAbsolutePath(meta: ImportMeta, path = ''): string {
   return join(dirname(fromFileUrl(meta.url)), path);
 }
 

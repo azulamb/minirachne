@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareManager as m, RequestData } from '../types.d.ts';
+import type { Middleware, MiddlewareManager as m, RequestData } from '../types.d.ts';
 
 /** Middleware manager. */
 export class MiddlewareManager implements m {
@@ -13,12 +13,12 @@ export class MiddlewareManager implements m {
   protected middleware: Middleware[] = [];
 
   /** Add middleware. */
-  public add(...middleware: Middleware[]) {
+  public add(...middleware: Middleware[]): this {
     this.middleware.push(...middleware);
     return this;
   }
 
-  public async exec(data: RequestData) {
+  public async exec(data: RequestData): Promise<void> {
     for (const middleware of this.middleware) {
       await middleware.handle(data);
     }

@@ -86,7 +86,7 @@ export class MIMETypes {
    */
   public set(mime: MIMETYPES): this;
   public set(ext: string, value: string): this;
-  set(mime: MIMETYPES | string, value?: string) {
+  set(mime: MIMETYPES | string, value?: string): this {
     const m = (typeof mime === 'string') ? { mime: <string> value } : mime;
     Object.keys(m).forEach((key) => {
       const v = m[key];
@@ -104,7 +104,7 @@ export class MIMETypes {
    * @param path File path. ex: dir/image.png
    * @returns MIMEType or empty string.
    */
-  public getFromPath(path: string) {
+  public getFromPath(path: string): string {
     const ext = extname(path);
     return this.get(ext.substr(1));
   }
@@ -114,7 +114,7 @@ export class MIMETypes {
    * @param extension Filename extension. ex: png
    * @returns MIMEType or empty string.
    */
-  public get(ext: string) {
+  public get(ext: string): string {
     return this.mime[ext] || '';
   }
 }

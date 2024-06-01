@@ -1,4 +1,4 @@
-import { Middleware, RequestData } from '../../types.d.ts';
+import type { Middleware, RequestData } from '../../types.d.ts';
 import { HTTPErrors } from '../http_error.ts';
 
 /**
@@ -13,7 +13,7 @@ export class BasicAuth implements Middleware {
   }
 
   // Middleware
-  public handle(data: RequestData) {
+  public handle(data: RequestData): Promise<void> {
     try {
       const info = this.parseAuthorization(data.request.headers);
       if (!this.users[info.user]) {
@@ -36,7 +36,7 @@ export class BasicAuth implements Middleware {
     return Promise.resolve();
   }
 
-  protected parseAuthorization(headers: Headers) {
+  protected parseAuthorization(headers: Headers): { user: string; password: string } {
     const auth = headers.get('Authorization');
     if (!auth || !auth.match(/^Basic /)) {
       throw new Error('No Basic Authorization.');
@@ -51,7 +51,7 @@ export class BasicAuth implements Middleware {
     return { user: user, password: password };
   }
 
-  public addUsers(users: { [keys: string]: string } | { user: string; password: string }[]) {
+  public addUsers(users: { [keys: string]: string } | { user: string; password: string }[]): this {
     if (Array.isArray(users)) {
       for (const info of users) {
         this.addUser(info.user, info.password);
@@ -65,17 +65,17 @@ export class BasicAuth implements Middleware {
     return this;
   }
 
-  public addUser(user: string, password: string) {
+  public addUser(user: string, password: string): this {
     this.users[user] = password;
     return this;
   }
 
-  public removeAllUsers() {
+  public removeAllUsers(): this {
     this.users = {};
     return this;
   }
 
-  public removeUser(user: string) {
+  public removeUser(user: string): this {
     delete this.users[user];
     return this;
   }

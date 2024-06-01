@@ -1,5 +1,5 @@
 import { HTTPError, HTTPErrors } from './http_error.ts';
-import { Middleware, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
+import type { Middleware, OnRequestHandler, RequestData, Route, RouteLike } from '../types.d.ts';
 import { onRequest } from './on_request.ts';
 import { MiddlewareManager } from './middleware.ts';
 
@@ -79,7 +79,7 @@ class BaseRouter {
   protected base = '';
   protected routes: Route[] = [];
 
-  public path(pathname: string) {
+  public path(pathname: string): URLPattern {
     return new URLPattern({ pathname: pathname });
   }
 
@@ -104,7 +104,7 @@ class BaseRouter {
     arg0: string | Route,
     arg1: RouteLike | (MiddlewareManager | Middleware | Middleware[]) | OnRequestHandler | undefined,
     arg2?: MiddlewareManager | Middleware | Middleware[],
-  ) {
+  ): this {
     let route: Route;
 
     if (typeof arg0 === 'string') {
@@ -158,7 +158,7 @@ class BaseRouter {
     return this;
   }
 
-  protected nextOrder() {
+  protected nextOrder(): number {
     return (this.routes[this.routes.length - 1]?.order || 0) + 1;
   }
 
@@ -169,7 +169,7 @@ class BaseRouter {
     return this.parent.getBase() + this.base;
   }
 
-  protected newPattern(pattern: URLPattern) {
+  protected newPattern(pattern: URLPattern): URLPattern {
     return new URLPattern(Object.assign(
       {},
       pattern,
@@ -177,9 +177,9 @@ class BaseRouter {
     ));
   }
 
-  public addRouter(base: string, router: Router, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public addRouter(base: string, router: Router, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     if (this === <BaseRouter> router) {
-      return;
+      return this;
     }
 
     router.parent = this;
@@ -192,10 +192,10 @@ class BaseRouter {
       }
     }
 
-    this.add(new NextRouter(base, router, middleware));
+    return this.add(new NextRouter(base, router, middleware));
   }
 
-  protected updatePattern(parent: BaseRouter) {
+  protected updatePattern(parent: BaseRouter): this {
     for (const route of this.routes) {
       route.pattern = new URLPattern(Object.assign(
         {},
@@ -203,9 +203,11 @@ class BaseRouter {
         { pathname: parent.getBase() + route.pattern.pathname },
       ));
     }
+
+    return this;
   }
 
-  public remove(route: Route) {
+  public remove(route: Route): this {
     const index = this.routes.indexOf(route);
     if (0 <= index) {
       this.routes.splice(index, 1);
@@ -217,7 +219,7 @@ class BaseRouter {
   public async exec(
     url: string,
     onMatch: (route: Route) => Promise<Response>,
-  ) {
+  ): Promise<Response> {
     let lastError: Error | null = null;
     for (const route of this.routes) {
       if (!route.pattern.test(url)) {
@@ -247,7 +249,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public get(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public get(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('GET', handler), middleware);
   }
 
@@ -257,7 +259,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public head(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public head(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('HEAD', handler), middleware);
   }
 
@@ -267,7 +269,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public post(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public post(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('POST', handler), middleware);
   }
 
@@ -277,7 +279,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public put(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public put(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('PUT', handler), middleware);
   }
 
@@ -287,7 +289,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set middleware in route if exists.
    */
-  public delete(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public delete(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('DELETE', handler), middleware);
   }
 
@@ -301,7 +303,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public options(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public options(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('OPTIONS', handler), middleware);
   }
 
@@ -315,7 +317,7 @@ export class Router extends BaseRouter {
    * @param handler Call when route accessed.
    * @param middleware Set MiddlewareManager in route if exists.
    */
-  public patch(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]) {
+  public patch(path: string, handler: OnRequestHandler, middleware?: MiddlewareManager | Middleware | Middleware[]): this {
     return this.add(path, new MethodRoute('PATCH', handler), middleware);
   }
 }
