@@ -63,13 +63,13 @@ export class Server {
     };
   }
 
-  public start(): Promise<void> {
+  public start(onStart?: (server: Server) => unknown): Promise<void> {
     if (this.status) {
       return Promise.reject(new Error('Server started.'));
     }
     this.status = true;
 
-    return Deno.serve(
+    const server = Deno.serve(
       this.getConfig(),
       (request, info) => {
         return this.onRequest({
@@ -78,7 +78,12 @@ export class Server {
           detail: {},
         });
       },
-    ).finished;
+    );
+    this.url.port = server.addr.port.toString();
+    if (onStart) {
+      onStart(this);
+    }
+    return server.finished;
   }
 
   protected async onRequest(data: RequestData): Promise<Response> {
