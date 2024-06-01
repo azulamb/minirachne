@@ -14,17 +14,17 @@ server.router.add('/*', (data) => {
 });
 */
 server.router.add('/*', (data) => {
-	console.log(data.request.url);
-	const body = JSON.stringify({
-		framework: Minirachne.NAME,
-		version: Minirachne.VERSION,
-		std: Minirachne.STD_VERSION,
-	});
-	const headers = new Headers();
-	headers.set('content-type', 'application/json');
-	headers.set('content-length', encodeURI(body).replace(/%../g, '*').length + '');
-	const response = new Response(body, { headers: headers });
-	return Promise.resolve(response);
+  console.log(data.request.url);
+  const body = JSON.stringify({
+    framework: Minirachne.NAME,
+    version: Minirachne.VERSION,
+    std: Minirachne.STD_VERSION,
+  });
+  const headers = new Headers();
+  headers.set('content-type', 'application/json');
+  headers.set('content-length', encodeURI(body).replace(/%../g, '*').length + '');
+  const response = new Response(body, { headers: headers });
+  return Promise.resolve(response);
 });
 
 console.log(`Start: ${server.getURL()}`);

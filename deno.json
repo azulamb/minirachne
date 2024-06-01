@@ -8,17 +8,15 @@
 		"server": "deno run --allow-read --allow-net --allow-env server.ts",
 		"tests": "deno test tests/ --allow-read --allow-net"
 	},
-	"imports": {
-		"$minirachne_std/": "https://deno.land/std@0.224.0/"
-	},
+	"imports": {},
 	"lint": {
 		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/"],
 		"exclude": ["require-await"]
 	},
 	"fmt": {
 		"include": ["src/", "types.d.ts", "mod.ts", "version.ts", "tests/", "tools/", "sample/", "denodeploy/"],
-		"useTabs": true,
-		"indentWidth": 4,
+		"useTabs": false,
+		"indentWidth": 2,
 		"lineWidth": 160,
 		"singleQuote": true
 	}
