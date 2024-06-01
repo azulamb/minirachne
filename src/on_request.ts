@@ -1,8 +1,8 @@
-import { RequestData } from '../types.d.ts';
-import { Router } from './router.ts';
+import type { RequestData } from '../types.d.ts';
+import type { Router } from './router.ts';
 import { HTTPError } from './http_error.ts';
 
-export function onRequest(data: RequestData, router: Router) {
+export function onRequest(data: RequestData, router: Router): Promise<Response> {
   const url = data.request.url;
   return router.exec(url, (route) => {
     if (!route.middleware) {

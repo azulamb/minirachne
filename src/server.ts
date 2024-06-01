@@ -1,8 +1,8 @@
-import { RequestData } from '../types.d.ts';
+import type { RequestData } from '../types.d.ts';
 //import { serve, serveTls } from './deno_std.ts';
 import { Router } from './router.ts';
 import { HTTPError, HTTPErrors } from './http_error.ts';
-import { SetupWebSocket, WebSocketListener } from './ws.ts';
+import { SetupWebSocket, type WebSocketListener } from './ws.ts';
 import { onRequest } from './on_request.ts';
 import { ServerResponse } from './response.ts';
 
@@ -26,17 +26,17 @@ export class Server {
     this.response = new ServerResponse();
   }
 
-  public getURL() {
+  public getURL(): URL {
     return new URL(this.url.toString());
   }
 
-  public setURL(url: URL) {
+  public setURL(url: URL): this {
     this.url = new URL(url.toString());
 
     return this;
   }
 
-  public setCertFile(keyFile: string, certFile: string) {
+  public setCertFile(keyFile: string, certFile: string): this {
     this.files.keyFile = keyFile;
     this.files.certFile = certFile;
     return this;
@@ -46,7 +46,7 @@ export class Server {
     this.controller.abort();
   }
 
-  protected getConfig() {
+  protected getConfig(): Deno.ServeOptions | Deno.ServeTlsOptions {
     if (this.files.keyFile && this.files.certFile) {
       return {
         port: parseInt(this.url.port),
@@ -63,7 +63,7 @@ export class Server {
     };
   }
 
-  public start() {
+  public start(): Promise<void> {
     if (this.status) {
       return Promise.reject(new Error('Server started.'));
     }
@@ -81,7 +81,7 @@ export class Server {
     ).finished;
   }
 
-  protected async onRequest(data: RequestData) {
+  protected async onRequest(data: RequestData): Promise<Response> {
     try {
       return await onRequest(data, this.router);
     } catch (error) {
@@ -93,7 +93,7 @@ export class Server {
     return HTTPErrors.server.InternalServerError().createResponse();
   }
 
-  public upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketListener, options?: Deno.UpgradeWebSocketOptions) {
+  public upgradeWebSocket(data: RequestData, webSocketEvent: WebSocketListener, options?: Deno.UpgradeWebSocketOptions): Response {
     return SetupWebSocket(data.request, webSocketEvent, options);
   }
 }

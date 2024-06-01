@@ -1,4 +1,4 @@
-function CreateResponse(status: number, redirect: string, responseInit?: ResponseInit) {
+function CreateResponse(status: number, redirect: string, responseInit?: ResponseInit): Response {
   if (!responseInit) {
     responseInit = {};
   }
@@ -15,35 +15,35 @@ function CreateResponse(status: number, redirect: string, responseInit?: Respons
 /** Create Redirect Response. */
 export const Redirect = {
   /** 300 Multiple Choice */
-  MultipleChoices: (redirect: string, responseInit?: ResponseInit) => {
+  MultipleChoices: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(300, redirect, responseInit);
   },
   /** 301 Moved Permanently */
-  MovedPermanently: (redirect: string, responseInit?: ResponseInit) => {
+  MovedPermanently: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(301, redirect, responseInit);
   },
   /** 302 Found */
-  Found: (redirect: string, responseInit?: ResponseInit) => {
+  Found: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(302, redirect, responseInit);
   },
   /** 303 See Other */
-  SeeOther: (redirect: string, responseInit?: ResponseInit) => {
+  SeeOther: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(303, redirect, responseInit);
   },
   /** 304 Not Modified */
-  NotModified: (redirect: string, responseInit?: ResponseInit) => {
+  NotModified: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(304, redirect, responseInit);
   },
   /** 305 Use Proxy */
-  UseProxy: (redirect: string, responseInit?: ResponseInit) => {
+  UseProxy: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(305, redirect, responseInit);
   },
   /** 307 Temporary Redirect */
-  TemporaryRedirect: (redirect: string, responseInit?: ResponseInit) => {
+  TemporaryRedirect: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(307, redirect, responseInit);
   },
   /** 308 Permanent Redirect */
-  PermanentRedirect: (redirect: string, responseInit?: ResponseInit) => {
+  PermanentRedirect: (redirect: string, responseInit?: ResponseInit): Response => {
     return CreateResponse(308, redirect, responseInit);
   },
 };

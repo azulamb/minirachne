@@ -7,9 +7,24 @@
 		"https://deno.land": false
 	},
 	"cSpell.words": [
+		"abiword",
 		"Deno",
 		"denodeploy",
+		"epub",
+		"fontobject",
+		"freearc",
+		"jsonld",
 		"MIMETYPES",
-		"Minirachne"
+		"Minirachne",
+		"msvideo",
+		"officedocument",
+		"opendocument",
+		"openxmlformats",
+		"presentationml",
+		"spreadsheetml",
+		"svgz",
+		"visio",
+		"weba",
+		"wordprocessingml"
 	]
 }

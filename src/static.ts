@@ -1,6 +1,6 @@
 import { join } from './deno_std.ts';
-import { RequestData, Route } from '../types.d.ts';
-import { MIMETYPES, MIMETypes } from './mime.ts';
+import type { RequestData, Route } from '../types.d.ts';
+import { type MIMETYPES, MIMETypes } from './mime.ts';
 import { HTTPError, HTTPErrors } from './http_error.ts';
 
 interface NotfoundCallback {
@@ -44,18 +44,19 @@ export class StaticRoute implements Route {
     this.mime = new MIMETypes();
   }
 
-  public setBaseHeader(headers: Headers) {
+  public setBaseHeader(headers: Headers): this {
     this.headers = headers;
+    return this;
   }
 
-  public getBaseHeader() {
+  public getBaseHeader(): Headers {
     return new Headers(this.headers);
   }
 
   /**
    * @param callback Callback. Set default if none.
    */
-  public setNotfound(callback?: NotfoundCallback) {
+  public setNotfound(callback?: NotfoundCallback): this {
     if (!callback) {
       this.notfound = () => {
         return Promise.reject(HTTPErrors.client.NotFound());
@@ -68,22 +69,22 @@ export class StaticRoute implements Route {
     return this;
   }
 
-  protected responseNotfound(data: RequestData) {
+  protected responseNotfound(data: RequestData): Promise<Response> {
     return this.notfound(data);
   }
 
-  public setDirectoryIndex(...directoryIndex: string[]) {
+  public setDirectoryIndex(...directoryIndex: string[]): this {
     this.directoryIndex = directoryIndex;
 
     return this;
   }
 
-  public setMIMETypes(mime: MIMETYPES) {
+  public setMIMETypes(mime: MIMETYPES): this {
     this.mime.set(mime);
     return this;
   }
 
-  protected async responseDirectory(data: RequestData, basePath: string) {
+  protected async responseDirectory(data: RequestData, basePath: string): Promise<Response> {
     for (const index of this.directoryIndex) {
       try {
         const response = await this.responseFile(
@@ -101,7 +102,8 @@ export class StaticRoute implements Route {
     return this.responseNotfound(data);
   }
 
-  protected async createReadableStream(filePath: string, range: { start: number; end: number }) {
+  // deno-lint-ignore no-explicit-any
+  protected async createReadableStream(filePath: string, range: { start: number; end: number }): Promise<ReadableStream<any>> {
     const file = await Deno.open(filePath);
 
     const bytes = new Uint8Array(this.DEFAULT_CHUNK_SIZE);
@@ -130,7 +132,7 @@ export class StaticRoute implements Route {
     });
   }
 
-  protected parseRange(headers: Headers, stat: Deno.FileInfo) {
+  protected parseRange(headers: Headers, stat: Deno.FileInfo): { start: number; end: number; full: boolean; exists: boolean } {
     const result = /bytes=(\d+)-(\d+)?/.exec(headers.get('range') || '');
     const size = stat.size - 1;
     const range = { start: 0, end: size, full: false, exists: !!result };
@@ -148,7 +150,7 @@ export class StaticRoute implements Route {
     filePath: string,
     headers: Headers,
     stat?: Deno.FileInfo,
-  ) {
+  ): Promise<Response> {
     if (!stat) {
       stat = await Deno.stat(filePath);
     }
@@ -181,7 +183,7 @@ export class StaticRoute implements Route {
     );
   }
 
-  protected createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null) {
+  protected createHeader(filePath: string, stat: Deno.FileInfo, range: { start: number; end: number } | null): Promise<Headers> {
     const headers = this.getBaseHeader();
 
     const mime = this.mime.getFromPath(filePath);
@@ -198,14 +200,14 @@ export class StaticRoute implements Route {
     return Promise.resolve(headers);
   }
 
-  protected createPath(request: Request) {
+  protected createPath(request: Request): string {
     const result = this.pattern.exec(request.url);
     const path = result?.pathname.groups[0];
 
     return join(this.docs, path || '');
   }
 
-  public onRequest(data: RequestData) {
+  public onRequest(data: RequestData): Promise<Response> {
     const path = this.createPath(data.request);
 
     switch (data.request.method) {
@@ -230,7 +232,7 @@ export class StaticRoute implements Route {
 
 const defaultMimeType = new MIMETypes();
 
-export async function ResponseFile(filePath: string, responseInit?: ResponseInit, mime?: MIMETypes) {
+export async function ResponseFile(filePath: string, responseInit?: ResponseInit, mime?: MIMETypes): Promise<Response> {
   const stat = await Deno.stat(filePath);
   const file = await Deno.open(filePath);
 
