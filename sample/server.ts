@@ -5,7 +5,8 @@
  */
 
 //import * as Minirachne from '../mod.ts';
-import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+//import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
+import * as Minirachne from "jsr:@minirachne/minirachne";
 
 // Middleware & Route
 class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {
@@ -162,7 +163,7 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
   //server.router.add(new URLPattern('http://localhost:8080/*'), new Minirachne.StaticRoute(publicDocs));
 
   /**
-   * Proirity
+   * Priority
    * - Simple login.
    *     Login/Logout/Get user status api.
    *     Use middleware(Simple login).
