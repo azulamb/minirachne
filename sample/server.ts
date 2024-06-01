@@ -5,8 +5,8 @@
  */
 
 //import * as Minirachne from '../mod.ts';
-//import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
-import * as Minirachne from "jsr:@minirachne/minirachne";
+//import * as Minirachne from "@minirachne/minirachne";
+import * as Minirachne from 'https://raw.githubusercontent.com/Azulamb/minirachne/main/mod.ts';
 
 // Middleware & Route
 class SimpleLogin implements Minirachne.Route, Minirachne.Middleware {

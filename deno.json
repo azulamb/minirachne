@@ -1,7 +1,7 @@
 {
 	"name": "@minirachne/minirachne",
 	"exports": "./mod.ts",
-	"version": "0.18.1",
+	"version": "0.18.2",
 	"lock": false,
 	"tasks": {
 		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
