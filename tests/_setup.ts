@@ -1,1 +1,1 @@
-export * from '$minirachne_std/assert/mod.ts';
+export * from 'jsr:@std/assert@^0.225.3';

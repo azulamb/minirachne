@@ -81,3 +81,5 @@ https://deno.com/deploy
 * deno doc用のコメント
   * https://doc.deno.land/
   * https://doc.deno.land/https://raw.githubusercontent.com/azulamb/minirachne/main/mod.ts
+* JSR
+* std version check.
