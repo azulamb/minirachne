@@ -8,7 +8,7 @@ deno task check
 
 * `sample/server.ts` のimport修正
 * バージョンの変更
-  * `version.ts`
+  * `deno.json`
 
 ## リリース手順
 

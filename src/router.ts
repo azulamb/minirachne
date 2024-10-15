@@ -229,7 +229,7 @@ class BaseRouter {
       try {
         return await onMatch(route);
       } catch (error) {
-        lastError = error;
+        lastError = <Error|null>error;
         if (error instanceof HTTPError && !error.getPropagation()) {
           return error.createResponse();
         }

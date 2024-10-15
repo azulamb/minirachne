@@ -98,20 +98,20 @@ class EchoChat extends Minirachne.WebSocketListener implements Minirachne.RouteL
 
   // WebSocketListener
 
-  public onOpen(ws: WebSocket, event: Event) {
+  public override onOpen(ws: WebSocket, event: Event) {
     console.log(`Start EchoChat:`);
   }
 
-  public onMessage(ws: WebSocket, event: MessageEvent) {
+  public override onMessage(ws: WebSocket, event: MessageEvent) {
     console.log(`Message EchoChat: ${event.data}`);
     ws.send(event.data);
   }
 
-  public onClose(ws: WebSocket, event: CloseEvent) {
+  public override onClose(ws: WebSocket, event: CloseEvent) {
     console.log(`Close EchoChat:`);
   }
 
-  public onError(ws: WebSocket, event: Event | ErrorEvent) {
+  public override onError(ws: WebSocket, event: Event | ErrorEvent) {
     console.log(`Error EchoChat:`);
   }
 }

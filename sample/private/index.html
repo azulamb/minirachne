@@ -1,131 +1,115 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Minirachne sample</title>
-<script>
-window.addEventListener('DOMContentLoaded', () =>
-{
-	document.getElementById( 'button' ).addEventListener( 'click', () =>
-	{
-		location.href = '/logout';
-	} );
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minirachne sample</title>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('button').addEventListener('click', () => {
+          location.href = '/logout';
+        });
 
-	fetch('/status').then( ( result ) =>
-	{
-		return result.json();
-	} ).then( ( result ) =>
-	{
-		document.getElementById( 'status' ).textContent = JSON.stringify( result );
-	} );
+        fetch('/status').then((result) => {
+          return result.json();
+        }).then((result) => {
+          document.getElementById('status').textContent = JSON.stringify(result);
+        });
 
-	const headers = new Headers();
-	headers.set('range', 'bytes=3-7');
-	fetch( '/range.txt', { headers: headers } ).then( ( result ) =>
-	{
-		return result.text();
-	} ).then( ( result ) =>
-	{
-		console.log( result );
-		document.getElementById( 'range' ).textContent = result;
-	} );
+        const headers = new Headers();
+        headers.set('range', 'bytes=3-7');
+        fetch('/range.txt', { headers: headers }).then((result) => {
+          return result.text();
+        }).then((result) => {
+          console.log(result);
+          document.getElementById('range').textContent = result;
+        });
 
-	fetch( '/user' ).then( ( result ) =>
-	{
-		return result.json();
-	} ).then( ( result ) =>
-	{
-		console.log( result );
-		document.getElementById( 'uid' ).textContent = result.uid;
-	} );
+        fetch('/user').then((result) => {
+          return result.json();
+        }).then((result) => {
+          console.log(result);
+          document.getElementById('uid').textContent = result.uid;
+        });
 
-	( () =>
-	{
-		const submit = document.getElementById( 'submit' );
-		const message = document.getElementById( 'message' );
-		const log = document.getElementById( 'log' );
+        (() => {
+          const submit = document.getElementById('submit');
+          const message = document.getElementById('message');
+          const log = document.getElementById('log');
 
-		let send = () => {};
-		submit.addEventListener( 'click', () =>
-		{
-			if ( message.disabled )
-			{
-				// Connect
-				const ws = new WebSocket( `${ location.href.replace( /^http/, 'ws' ) }echochat` );
+          let send = () => {};
+          submit.addEventListener('click', () => {
+            if (message.disabled) {
+              // Connect
+              const ws = new WebSocket(`${location.href.replace(/^http/, 'ws')}echochat`);
 
-				const close = () =>
-				{
-					message.disabled = true;
-					send = () => {};
-					message.value = '';
-				};
-				ws.onopen = () =>
-				{
-					log.innerHTML = '';
-					message.disabled = false;
-					send = ( message ) => { ws.send( message ); };
-				};
-				ws.onmessage = ( event ) =>
-				{
-					console.log(event);
-					const message = document.createElement( 'div' );
-					message.textContent = event.data;
-					log.appendChild( message );
-					if ( event.data === 'exit' )
-					{
-						ws.close();
-					}
-				};
-				ws.onclose = () =>
-				{
-					close();
-				};
-				ws.onerror = ( event ) =>
-				{
-					close();
-					message.value = 'ERROR !!!!';
-				};
-			} else
-			{
-				// Send
-				send( message.value );
-				message.value = '';
-			}
-		} );
-	} )();
+              const close = () => {
+                message.disabled = true;
+                send = () => {};
+                message.value = '';
+              };
+              ws.onopen = () => {
+                log.innerHTML = '';
+                message.disabled = false;
+                send = (message) => {
+                  ws.send(message);
+                };
+              };
+              ws.onmessage = (event) => {
+                console.log(event);
+                const message = document.createElement('div');
+                message.textContent = event.data;
+                log.appendChild(message);
+                if (event.data === 'exit') {
+                  ws.close();
+                }
+              };
+              ws.onclose = () => {
+                close();
+              };
+              ws.onerror = (event) => {
+                close();
+                message.value = 'ERROR !!!!';
+              };
+            } else {
+              // Send
+              send(message.value);
+              message.value = '';
+            }
+          });
+        })();
 
-	( () =>
-	{
-		fetch( '/postecho', { method: 'PUT', body: 'HELLO!!' } ).then( ( response ) =>
-		{
-			return response.text();
-		}).then( ( body ) =>
-		{
-			console.log( body );
-		} ).catch( ( error ) =>
-		{
-			console.log( error );
-		} );
-	} )();
-} );
-</script>
-<style>
-#submit::before { content: 'Send'; }
-#message:disabled + #submit::before { content: 'Connect'; }
-</style>
-</head>
-<body>
-	<h1>Private</h1>
-	<button id="button">Logout</button>
-	<div>Status: <span id="status"></span></div>
-	<div>Range test: <span id="range"></span></div>
-	<div>Uid: <span id="uid">-</span></div>
-	<div>
-		<div>
-			<input id="message" disabled>
-			<button id="submit"></button>
-		</div>
-		<div id="log"></div>
-	</div>
-</body>
+        (() => {
+          fetch('/postecho', { method: 'PUT', body: 'HELLO!!' }).then((response) => {
+            return response.text();
+          }).then((body) => {
+            console.log(body);
+          }).catch((error) => {
+            console.log(error);
+          });
+        })();
+      });
+    </script>
+    <style>
+      #submit::before {
+        content: 'Send';
+      }
+      #message:disabled + #submit::before {
+        content: 'Connect';
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Private</h1>
+    <button id="button">Logout</button>
+    <div>Status: <span id="status"></span></div>
+    <div>Range test: <span id="range"></span></div>
+    <div>Uid: <span id="uid">-</span></div>
+    <div>
+      <div>
+        <input id="message" disabled />
+        <button id="submit"></button>
+      </div>
+      <div id="log"></div>
+    </div>
+  </body>
 </html>

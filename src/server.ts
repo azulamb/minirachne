@@ -46,7 +46,7 @@ export class Server {
     this.controller.abort();
   }
 
-  protected getConfig(): Deno.ServeOptions | Deno.ServeTlsOptions {
+  protected getConfig(): Deno.ServeOptions | (Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem) {
     if (this.files.keyFile && this.files.certFile) {
       return {
         port: parseInt(this.url.port),

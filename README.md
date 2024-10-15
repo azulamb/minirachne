@@ -6,7 +6,7 @@ Minirachne is a Web API server made with Deno.
 
 ## Need
 
-- `Deno ^v1.20.1`
+- `Deno ^v2.0.0`
   - Use [Deno task runner](https://deno.land/manual@v1.20.1/tools/task_runner). (`^v1.20.1`)
   - Use [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern). (`^v1.15`)
 
@@ -22,10 +22,10 @@ deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/
 
 ### Fix version.
 
-Sample version is `v0.18.0`
+Sample version is `v0.19.0`
 
 ```sh
-deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.18.0/server.ts
+deno run --allow-read --allow-net --allow-env https://raw.githubusercontent.com/azulamb/minirachne/v0.19.0/server.ts
 ```
 
 ### Option.
@@ -74,6 +74,7 @@ https://deno.com/deploy
   * 現在テストをある程度まとめてやっているので。
 * 一番最後にレスポンス制御を入れるか検討
 * Digest
+* Basic認証のユーザーIDとパスワードの認証を別クラスか関数にする
 
 ### 1.0にむけて
 

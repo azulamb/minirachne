@@ -1,101 +1,98 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Minirachne sample</title>
-<meta charset="UTF-8">
-<script>
-window.addEventListener('DOMContentLoaded', () =>
-{
-	document.getElementById( 'button' ).addEventListener( 'click', () =>
-	{
-		location.href = '/login';
-	} );
+  <head>
+    <title>Minirachne sample</title>
+    <meta charset="UTF-8" />
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('button').addEventListener('click', () => {
+          location.href = '/login';
+        });
 
-	fetch('/status').then( ( result ) =>
-	{
-		return result.json();
-	} ).then( ( result ) =>
-	{
-		document.getElementById( 'status' ).textContent = JSON.stringify( result );
-	} );
+        fetch('/status').then((result) => {
+          return result.json();
+        }).then((result) => {
+          document.getElementById('status').textContent = JSON.stringify(result);
+        });
 
-	const headers = new Headers();
-	headers.set('range', 'bytes=3-7');
-	fetch( '/range.txt', { headers: headers } ).then( ( result ) =>
-	{
-		return result.text();
-	} ).then( ( result ) =>
-	{
-		console.log( result );
-		document.getElementById( 'range' ).textContent = result;
-	} );
+        const headers = new Headers();
+        headers.set('range', 'bytes=3-7');
+        fetch('/range.txt', { headers: headers }).then((result) => {
+          return result.text();
+        }).then((result) => {
+          console.log(result);
+          document.getElementById('range').textContent = result;
+        });
 
-	( () =>
-	{
-		const submit = document.getElementById( 'submit' );
-		const message = document.getElementById( 'message' );
+        (() => {
+          const submit = document.getElementById('submit');
+          const message = document.getElementById('message');
 
-		submit.addEventListener( 'click', () =>
-		{
-			if ( message.disabled )
-			{
-				// Connect (Failure.)
-				const ws = new WebSocket( `${ location.href.replace( /^http/, 'ws' ) }echochat` );
+          submit.addEventListener('click', () => {
+            if (message.disabled) {
+              // Connect (Failure.)
+              const ws = new WebSocket(`${location.href.replace(/^http/, 'ws')}echochat`);
 
-				ws.onerror = ( event ) =>
-				{
-					close();
-					message.value = 'ERROR !!!! Need login.';
-				};
-			}
-		} );
-	} )();
+              ws.onerror = (event) => {
+                close();
+                message.value = 'ERROR !!!! Need login.';
+              };
+            }
+          });
+        })();
 
-	( () =>
-	{
-		fetch( '/postecho', { method: 'POST', body: 'HELLO!!' } ).then( ( response ) =>
-		{
-			return response.text();
-		}).then( ( body ) =>
-		{
-			console.log( body );
-		} );
-	} )();
-} );
-</script>
-<style>
-#submit::before { content: 'Send'; }
-#message:disabled + #submit::before { content: 'Connect'; }
-.user::before { content: "username:"; color: gray; }
-.pass::before { content: "password:"; color: gray; }
-</style>
-</head>
-<body>
-	<h1>Public</h1>
-	<ul>
-		<li>
-			Simple login
-			<ul>
-				<li><button id="button">Login</button></li>
-			</ul>
-		</li>
-		<li>
-			Basic auth
-			<ul>
-				<li><a href="./basic/">Basic auth page.</a></li>
-				<li class="user">USER</li>
-				<li class="pass">PASS</li>
-			</ul>
-		</li>
-	</ul>
-	<div>Status: <span id="status"></span></div>
-	<div>Range test: <span id="range"></span></div>
-	<div>
-		<div>
-			<input id="message" disabled>
-			<button id="submit"></button>
-		</div>
-	</div>
-	<div>日本語テスト</div>
-</body>
+        (() => {
+          fetch('/postecho', { method: 'POST', body: 'HELLO!!' }).then((response) => {
+            return response.text();
+          }).then((body) => {
+            console.log(body);
+          });
+        })();
+      });
+    </script>
+    <style>
+      #submit::before {
+        content: 'Send';
+      }
+      #message:disabled + #submit::before {
+        content: 'Connect';
+      }
+      .user::before {
+        content: 'username:';
+        color: gray;
+      }
+      .pass::before {
+        content: 'password:';
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Public</h1>
+    <ul>
+      <li>
+        Simple login
+        <ul>
+          <li><button id="button">Login</button></li>
+        </ul>
+      </li>
+      <li>
+        Basic auth
+        <ul>
+          <li><a href="./basic/">Basic auth page.</a></li>
+          <li class="user">USER</li>
+          <li class="pass">PASS</li>
+        </ul>
+      </li>
+    </ul>
+    <div>Status: <span id="status"></span></div>
+    <div>Range test: <span id="range"></span></div>
+    <div>
+      <div>
+        <input id="message" disabled />
+        <button id="submit"></button>
+      </div>
+    </div>
+    <div>日本語テスト</div>
+  </body>
 </html>

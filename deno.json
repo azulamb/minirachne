@@ -1,15 +1,15 @@
 {
 	"name": "@minirachne/minirachne",
 	"exports": "./mod.ts",
-	"version": "0.18.3",
+	"version": "0.19.0",
 	"lock": false,
 	"tasks": {
-		"sample": "deno run --allow-read --allow-net --allow-env ./sample/server.ts",
+		"sample": "deno --allow-read --allow-net --allow-env ./sample/server.ts",
 		"clear": "deno cache -r ./mod.ts ./sample/server.ts",
-		"check": "deno run --allow-run --allow-net --allow-read tools/release_checker.ts",
+		"check": "deno --allow-run --allow-net --allow-read tools/release_checker.ts",
 		"docs": "deno doc --json mod.ts > docs/docs.json",
-		"server": "deno run --allow-read --allow-net --allow-env server.ts",
-		"tests": "deno test tests/ --allow-read --allow-net"
+		"server": "deno --allow-read --allow-net --allow-env server.ts",
+		"tests": "deno test --allow-read --allow-net tests/"
 	},
 	"imports": {},
 	"lint": {

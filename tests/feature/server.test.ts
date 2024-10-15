@@ -117,7 +117,7 @@ Deno.test('File server', async () => {
     asserts.assertEquals(response.headers.get('content-type'), 'text/html');
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Test page');
+    asserts.assertEquals(body.trim(), 'Test page');
   });
 
   await fetch(new URL('/private/index.html', url)).then((response) => {
@@ -125,7 +125,7 @@ Deno.test('File server', async () => {
     asserts.assertEquals(response.headers.get('content-type'), 'text/html');
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Private page');
+    asserts.assertEquals(body.trim(), 'Private page');
   });
 
   await fetch(new URL('test.png', url)).then((response) => {
@@ -158,7 +158,7 @@ Deno.test('Use middleware', async () => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Public page');
+    asserts.assertEquals(body.trim(), 'Public page');
   });
 
   const cookie = await fetch(new URL('/auth/login', url), { redirect: 'manual' }).then(async (response) => {
@@ -171,14 +171,14 @@ Deno.test('Use middleware', async () => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Private page');
+    asserts.assertEquals(body.trim(), 'Private page');
   });
 
   await fetch(new URL('/publiconly.txt', url), { headers: new Headers({ Cookie: cookie }) }).then((response) => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Public only');
+    asserts.assertEquals(body.trim(), 'Public only');
   });
 
   server.stop();
@@ -207,21 +207,21 @@ Deno.test('Use middleware(Failure)', async () => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Public page');
+    asserts.assertEquals(body.trim(), 'Public page');
   });
 
   await fetch(url, { headers: new Headers({ Cookie: 'password=pass1' }) }).then((response) => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Public page');
+    asserts.assertEquals(body.trim(), 'Public page');
   });
 
   await fetch(url, { headers: new Headers({ Cookie: 'password=pass2' }) }).then((response) => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Public page');
+    asserts.assertEquals(body.trim(), 'Public page');
   });
 
   server.stop();
@@ -305,13 +305,13 @@ Deno.test('Use middleware(With sub router)', async () => {
 });
 
 Deno.test('Use middleware(Basic auth)', async () => {
-  const url = new URL('http://localhost:18080/');
+  const baseUrl = new URL('http://localhost:0/'); // Port 0 is random port.
   const user = 'root';
   const password = 'password';
   const base64 = btoa(`${user}:${password}`);
 
   const server = new Minirachne.Server();
-  server.setURL(url);
+  server.setURL(baseUrl);
 
   const message = 'SECRET PAGE';
   const middleware = new Minirachne.BasicAuth(message);
@@ -320,20 +320,21 @@ Deno.test('Use middleware(Basic auth)', async () => {
   server.router.add('/*', new Minirachne.StaticRoute(testDir), middleware);
 
   const p = server.start();
+  const url = server.getURL();
 
   await fetch(url).then((response) => {
     asserts.assertEquals(response.status, 401);
     asserts.assertEquals(response.headers.get('WWW-Authenticate'), `Basic realm="${message}"`);
     return response.text();
   }).then((body) => {
-    asserts.assertNotEquals(body, 'Test page');
+    asserts.assertNotEquals(body.trim(), 'Test page');
   });
 
   await fetch(url, { headers: { 'Authorization': `Basic ${base64}` } }).then((response) => {
     asserts.assertEquals(response.status, 200);
     return response.text();
   }).then((body) => {
-    asserts.assertEquals(body, 'Test page');
+    asserts.assertEquals(body.trim(), 'Test page');
   });
 
   server.stop();
