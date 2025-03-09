@@ -5,8 +5,8 @@ import { GetHttpStatusText } from './deno_std.ts';
  */
 export class HTTPError extends Error {
   public responseInit: ResponseInit;
+  protected responseBody?: BodyInit;
   protected propagation = true;
-  // TODO: response body.
 
   /**
    * @param status HTTP Status code.
@@ -17,8 +17,13 @@ export class HTTPError extends Error {
     this.responseInit = createResponseInit(status, responseInit);
   }
 
-  public createResponse(): Promise<Response> {
-    return Promise.resolve(new Response(this.message, this.responseInit));
+  public setResponseBody(body: BodyInit): this {
+    this.responseBody = body;
+    return this;
+  }
+
+  public createResponse(bodyInit?: BodyInit): Promise<Response> {
+    return Promise.resolve(new Response(bodyInit ?? this.responseBody ?? this.message, this.responseInit));
   }
 
   public setPropagation(propagation: boolean): this {
